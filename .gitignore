@@ -1,5 +1,9 @@
 # Dependencies
 node_modules
+.DS_Store
+.vscode
+.cursorrules
+
 
 # Build
 dist
@@ -9,3 +13,5 @@ dist
 .env.local
 .env.development.local
 .env.test.local
+
+**/node_modules
