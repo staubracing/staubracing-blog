@@ -1,6 +1,6 @@
 ---
 import { getCollection, getEntry } from 'astro:content';
-import Layout from '../../../layouts/Layout.astro';
+import Layout from '../../layouts/Layout.astro';
 import type { CollectionEntry } from "astro:content";
 
 export async function getStaticPaths() {
@@ -17,6 +17,7 @@ if (!post) {
 }
 
 const rendered = await post.render();
+console.log(rendered);
 ---
 
 <Layout title={post.data.title ?? ''}>
