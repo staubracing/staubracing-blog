@@ -1,7 +1,7 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  site: 'https://blog.staubracing.com',
-  base: '/',
-  outDir: './dist'
+  site: "https://staubracing.github.io/staubracing-blog/",
+  base: "/staubracing-blog/",
+  outDir: "./dist",
 });
