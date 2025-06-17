@@ -9,16 +9,16 @@ export async function getStaticPaths() {
     params: { slug: post.slug }
   }));
 }
-
 const { slug } = Astro.params;
-const post = await getEntryBySlug('blog', slug) as CollectionEntry<"blog"> | null;
-const rendered = await post.render();
-
-console.log(rendered);
+const post = await getEntryBySlug('blog', slug);
 
 if (!post) {
   throw new Error(`Post not found for slug: ${slug}`);
 }
+
+const rendered = await post.render();
+
+console.log(rendered);
 ---
 
 <Layout title={post.data.title}>
