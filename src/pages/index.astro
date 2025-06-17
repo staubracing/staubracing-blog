@@ -1,13 +1,25 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import posts from '../content/blog/_index.js';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
 <Layout title="StaubRacing Blog">
   <h1>Welcome to the StaubRacing Blog</h1>
-  <ul>
-    {posts.map(post => (
-      <li><a href={post.url}>{post.frontmatter.title}</a></li>
-    ))}
-  </ul>
+  {sortedPosts.length > 0 ? (
+    <ul>
+      {sortedPosts.map(post => (
+        <li>
+          <a href={`/blog/${post.slug}`}>
+            {post.data.title}
+          </a>
+          <small> - {post.data.date.toLocaleDateString()}</small>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p>No blog posts available yet.</p>
+  )}
 </Layout>

@@ -9,6 +9,7 @@ export async function getStaticPaths() {
     params: { slug: post.slug }
   }));
 }
+
 const { slug } = Astro.params;
 const post = await getEntry('blog', slug);
 
@@ -16,14 +17,13 @@ if (!post) {
   throw new Error(`Post not found for slug: ${slug}`);
 }
 
-const rendered = await post.render();
-console.log(rendered);
+const { Content } = await post.render();
 ---
 
-<Layout title={post.data.title ?? ''}>
+<Layout title={post.data.title}>
   <article>
-    <h1>{rendered.remarkPluginFrontmatter.title}</h1>
-    <p><em>{rendered.remarkPluginFrontmatter.date.toString()}</em></p>
-    <rendered.Content />
+    <h1>{post.data.title}</h1>
+    <p><em>{post.data.date.toLocaleDateString()}</em></p>
+    <Content />
   </article>
 </Layout>
