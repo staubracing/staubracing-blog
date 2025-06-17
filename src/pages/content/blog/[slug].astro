@@ -11,6 +11,9 @@ export async function getStaticPaths() {
 
 const { slug } = Astro.params;
 const post = await getEntryBySlug('blog', slug);
+const rendered = await post.render();
+
+console.log(rendered);
 
 if (!post) {
   throw new Error(`Post not found for slug: ${slug}`);
@@ -19,8 +22,8 @@ if (!post) {
 
 <Layout title={post.data.title}>
   <article>
-    <h1>{post.data.title}</h1>
-    <p><em>{post.data.date}</em></p>
-    {await post.render()}
+    <h1>{rendered.remarkPluginFrontmatter.title}</h1>
+    <p><em>{rendered.remarkPluginFrontmatter.date.toString()}</em></p>
+    <rendered.Content />
   </article>
 </Layout>
