@@ -1,6 +1,10 @@
 ---
-title: "ZX6R Engine Rebuild - Part 1: The Mystery Noise"
+title: "ZX6R Engine Rebuild - Part 1"
 date: 2025-06-17
+description: "My adventure rebuilding a motorcycle engine after mysterious knocking"
+tags: ["motorcycle", "engine", "rebuild", "zx6r"]
+author: "StaubRacing"
+featured: true
 ---
 
 ## 🧠 Why I’m Writing This

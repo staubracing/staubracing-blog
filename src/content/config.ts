@@ -5,7 +5,10 @@ const blog = defineCollection({
   schema: z.object({
     title: z.string(),
     date: z.coerce.date(),
-    // Add more fields as needed (e.g., description, tags)
+    description: z.string().optional(),
+    tags: z.array(z.string()).default([]),
+    author: z.string().default("StaubRacing"),
+    featured: z.boolean().default(false),
   }),
 });
 
