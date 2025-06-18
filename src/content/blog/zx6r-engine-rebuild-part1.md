@@ -1,6 +1,6 @@
 ---
 title: "ZX6R Engine Rebuild - Part 1: The Mystery Noise"
-date: 2024-12-19
+date: 2025-06-17
 ---
 
 ## 🧠 Why I’m Writing This
