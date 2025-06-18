@@ -30,6 +30,4 @@ The engine removal itself went smoothly. Once it was out, we set it aside and go
 With all the bolts removed, we gently tapped the head to break it free. As we lifted it off, we almost immediately saw the issue. Yup—there it was. Everything suddenly made a lot more sense.
 
 **To be continued in Part 2...**  
-🕵️ In Part 2, I’ll walk through what we found once the head came off—including the exact damage and what it’ll take to fix it.  
-💬 _Have you ever had to pull an engine? Drop a comment—I’d love to hear your story._  
-👏 _If you enjoyed this, hit that clap and follow. Part 2 coming soon._
+🕵️ In Part 2, I’ll walk through what we found once the head came off—including the exact damage and what it’ll take to fix it.
