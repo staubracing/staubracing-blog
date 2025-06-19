@@ -9,6 +9,9 @@ const blog = defineCollection({
     tags: z.array(z.string()).default([]),
     author: z.string().default("StaubRacing"),
     featured: z.boolean().default(false),
+    category: z.enum(["racing", "code", "builds", "data", "life"]).default("life"),
+    series: z.string().optional(),
+    draft: z.boolean().default(false),
   }),
 });
 

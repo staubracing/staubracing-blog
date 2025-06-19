@@ -2,24 +2,280 @@
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
-const posts = await getCollection('blog');
+const posts = await getCollection('blog', (post) => !post.data.draft);
 const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+// Organize posts by category
+const featuredPosts = sortedPosts.filter(post => post.data.featured);
+const recentPosts = sortedPosts.slice(0, 6);
+
+const postsByCategory = {
+  racing: sortedPosts.filter(post => post.data.category === 'racing'),
+  code: sortedPosts.filter(post => post.data.category === 'code'),
+  builds: sortedPosts.filter(post => post.data.category === 'builds'),
+  data: sortedPosts.filter(post => post.data.category === 'data'),
+  life: sortedPosts.filter(post => post.data.category === 'life'),
+};
+
+const categoryInfo = {
+  racing: { emoji: '🏍️', title: 'Racing & Track', color: '#e74c3c' },
+  code: { emoji: '💻', title: 'Code & Tech', color: '#3498db' },
+  builds: { emoji: '🔧', title: 'Builds & Projects', color: '#f39c12' },
+  data: { emoji: '📊', title: 'Data & Analysis', color: '#9b59b6' },
+  life: { emoji: '📝', title: 'Life & Updates', color: '#2ecc71' },
+};
 ---
 
-<Layout title="StaubRacing Blog">
-  <h1>Welcome to the StaubRacing Blog</h1>
-  {sortedPosts.length > 0 ? (
-    <ul>
-      {sortedPosts.map(post => (
-        <li>
-          <a href={`/blog/${post.slug}`}>
-            {post.data.title}
-          </a>
-          <small> - {post.data.date.toLocaleDateString()}</small>
-        </li>
-      ))}
-    </ul>
-  ) : (
-    <p>No blog posts available yet.</p>
+<Layout title="StaubRacing - Racing, Code & Everything Between">
+  <div class="hero-section">
+    <h1>Hey, I'm StaubRacing! 🏁</h1>
+    <p class="hero-subtitle">
+      Software developer by day, motorcycle racer by weekend. 
+      Building things with code and wrenches.
+    </p>
+  </div>
+
+  <!-- Featured Content -->
+  {featuredPosts.length > 0 && (
+    <section class="featured-section">
+      <h2>🌟 Featured</h2>
+      <div class="featured-grid">
+        {featuredPosts.slice(0, 2).map(post => (
+          <article class="featured-post">
+            <div class="category-badge" style={`background-color: ${categoryInfo[post.data.category].color}`}>
+              {categoryInfo[post.data.category].emoji} {categoryInfo[post.data.category].title}
+            </div>
+            <h3><a href={`/blog/${post.slug}`}>{post.data.title}</a></h3>
+            <p class="post-description">{post.data.description}</p>
+            <small class="post-date">{post.data.date.toLocaleDateString()}</small>
+          </article>
+        ))}
+      </div>
+    </section>
   )}
+
+  <!-- Categories Overview -->
+  <section class="categories-section">
+    <h2>🎯 What I'm Working On</h2>
+    <div class="categories-grid">
+      {Object.entries(categoryInfo).map(([key, info]) => (
+        postsByCategory[key].length > 0 && (
+          <div class="category-card">
+            <div class="category-header">
+              <span class="category-emoji">{info.emoji}</span>
+              <h3>{info.title}</h3>
+              <span class="post-count">{postsByCategory[key].length} posts</span>
+            </div>
+            <div class="category-posts">
+              {postsByCategory[key].slice(0, 3).map(post => (
+                <a href={`/blog/${post.slug}`} class="category-post-link">
+                  {post.data.title}
+                </a>
+              ))}
+              {postsByCategory[key].length > 3 && (
+                <a href={`/category/${key}`} class="view-all-link">
+                  View all {postsByCategory[key].length} posts →
+                </a>
+              )}
+            </div>
+          </div>
+        )
+      ))}
+    </div>
+  </section>
+
+  <!-- Recent Posts -->
+  <section class="recent-section">
+    <h2>📋 Recent Posts</h2>
+    <div class="recent-posts">
+      {recentPosts.map(post => (
+        <article class="recent-post">
+          <div class="post-meta">
+            <span class="category-tag" style={`color: ${categoryInfo[post.data.category].color}`}>
+              {categoryInfo[post.data.category].emoji} {categoryInfo[post.data.category].title}
+            </span>
+            <time class="post-date">{post.data.date.toLocaleDateString()}</time>
+          </div>
+          <h3><a href={`/blog/${post.slug}`}>{post.data.title}</a></h3>
+          {post.data.description && <p class="post-description">{post.data.description}</p>}
+          {post.data.tags.length > 0 && (
+            <div class="post-tags">
+              {post.data.tags.map(tag => <span class="tag">{tag}</span>)}
+            </div>
+          )}
+        </article>
+      ))}
+    </div>
+  </section>
 </Layout>
+
+<style>
+  .hero-section {
+    text-align: center;
+    padding: 3rem 0;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 3rem;
+  }
+
+  .hero-section h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .featured-section {
+    margin-bottom: 3rem;
+  }
+
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+
+  .featured-post {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    background: white;
+  }
+
+  .category-badge {
+    display: inline-block;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .categories-section {
+    margin-bottom: 3rem;
+  }
+
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .category-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1.5rem;
+    background: white;
+  }
+
+  .category-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .category-emoji {
+    font-size: 1.5rem;
+  }
+
+  .category-header h3 {
+    margin: 0;
+    flex-grow: 1;
+  }
+
+  .post-count {
+    font-size: 0.8rem;
+    color: #7f8c8d;
+  }
+
+  .category-posts {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .category-post-link {
+    color: #2c3e50;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+
+  .category-post-link:hover {
+    color: #3498db;
+  }
+
+  .view-all-link {
+    color: #3498db;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+  }
+
+  .recent-section {
+    margin-bottom: 3rem;
+  }
+
+  .recent-posts {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .recent-post {
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 1rem;
+  }
+
+  .post-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .category-tag {
+    font-size: 0.8rem;
+    font-weight: bold;
+  }
+
+  .post-date {
+    color: #7f8c8d;
+    font-size: 0.8rem;
+  }
+
+  .post-description {
+    color: #7f8c8d;
+    margin: 0.5rem 0;
+  }
+
+  .post-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    background: #ecf0f1;
+    color: #2c3e50;
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.7rem;
+  }
+
+  section h2 {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+  }
+</style>

@@ -41,6 +41,24 @@
           "type": "boolean",
           "default": false
         },
+        "category": {
+          "type": "string",
+          "enum": [
+            "racing",
+            "code",
+            "builds",
+            "data",
+            "life"
+          ],
+          "default": "life"
+        },
+        "series": {
+          "type": "string"
+        },
+        "draft": {
+          "type": "boolean",
+          "default": false
+        },
         "$schema": {
           "type": "string"
         }
