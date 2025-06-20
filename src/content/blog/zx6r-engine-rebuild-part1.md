@@ -5,7 +5,7 @@ description: "My adventure rebuilding a motorcycle engine after mysterious knock
 tags: ["motorcycle", "engine", "rebuild", "zx6r"]
 author: "StaubRacing"
 featured: true
-category: "builds"
+category: "racing"
 series: "ZX6R Engine Rebuild"
 ---
 

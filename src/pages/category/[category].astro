@@ -1,0 +1,47 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  return [
+    { params: { category: 'racing' } },
+    { params: { category: 'code' } },
+    { params: { category: 'projects' } },
+    { params: { category: 'data' } },
+    { params: { category: 'life' } },
+  ];
+}
+
+const { category } = Astro.params;
+const posts = await getCollection('blog', (post) => 
+  post.data.category === category && !post.data.draft
+);
+const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const categoryInfo = {
+  racing: { emoji: '🏍️', title: 'Racing & Track' },
+  code: { emoji: '💻', title: 'Code & Tech' },
+  projects: { emoji: '🔧', title: 'Projects' },
+  data: { emoji: '📊', title: 'Data & Analysis' },
+  life: { emoji: '📝', title: 'Life & Updates' },
+};
+---
+
+<Layout title={`${categoryInfo[category].title} - StaubRacing`}>
+  <h1>{categoryInfo[category].emoji} {categoryInfo[category].title}</h1>
+  <p>All posts in this category</p>
+  
+  {sortedPosts.length > 0 ? (
+    <div class="posts-list">
+      {sortedPosts.map(post => (
+        <article class="post-card">
+          <h2><a href={`/blog/${post.slug}`}>{post.data.title}</a></h2>
+          <p class="post-date">{post.data.date.toLocaleDateString()}</p>
+          {post.data.description && <p>{post.data.description}</p>}
+        </article>
+      ))}
+    </div>
+  ) : (
+    <p>No posts in this category yet.</p>
+  )}
+</Layout> 

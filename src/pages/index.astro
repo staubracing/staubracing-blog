@@ -1,28 +1,21 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import { CATEGORIES, CATEGORY_INFO, type Category } from '../content/config';
 
 const posts = await getCollection('blog', (post) => !post.data.draft);
 const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
-// Organize posts by category
+// Organize posts by category with TypeScript safety
 const featuredPosts = sortedPosts.filter(post => post.data.featured);
 const recentPosts = sortedPosts.slice(0, 6);
 
-const postsByCategory = {
+// Type-safe category filtering
+const postsByCategory: Record<Category, typeof posts> = {
   racing: sortedPosts.filter(post => post.data.category === 'racing'),
   code: sortedPosts.filter(post => post.data.category === 'code'),
-  builds: sortedPosts.filter(post => post.data.category === 'builds'),
-  data: sortedPosts.filter(post => post.data.category === 'data'),
+  projects: sortedPosts.filter(post => post.data.category === 'projects'),
   life: sortedPosts.filter(post => post.data.category === 'life'),
-};
-
-const categoryInfo = {
-  racing: { emoji: '🏍️', title: 'Racing & Track', color: '#e74c3c' },
-  code: { emoji: '💻', title: 'Code & Tech', color: '#3498db' },
-  builds: { emoji: '🔧', title: 'Builds & Projects', color: '#f39c12' },
-  data: { emoji: '📊', title: 'Data & Analysis', color: '#9b59b6' },
-  life: { emoji: '📝', title: 'Life & Updates', color: '#2ecc71' },
 };
 ---
 
@@ -42,8 +35,8 @@ const categoryInfo = {
       <div class="featured-grid">
         {featuredPosts.slice(0, 2).map(post => (
           <article class="featured-post">
-            <div class="category-badge" style={`background-color: ${categoryInfo[post.data.category].color}`}>
-              {categoryInfo[post.data.category].emoji} {categoryInfo[post.data.category].title}
+            <div class="category-badge" style={`background-color: ${CATEGORY_INFO[post.data.category].color}`}>
+              {CATEGORY_INFO[post.data.category].emoji} {CATEGORY_INFO[post.data.category].title}
             </div>
             <h3><a href={`/blog/${post.slug}`}>{post.data.title}</a></h3>
             <p class="post-description">{post.data.description}</p>
@@ -58,8 +51,8 @@ const categoryInfo = {
   <section class="categories-section">
     <h2>🎯 What I'm Working On</h2>
     <div class="categories-grid">
-      {Object.entries(categoryInfo).map(([key, info]) => (
-        postsByCategory[key].length > 0 && (
+      {Object.entries(CATEGORY_INFO).map(([key, info]) => (
+        postsByCategory[key as Category].length > 0 && (
           <div class="category-card">
             <div class="category-header">
               <span class="category-emoji">{info.emoji}</span>
@@ -67,14 +60,14 @@ const categoryInfo = {
               <span class="post-count">{postsByCategory[key].length} posts</span>
             </div>
             <div class="category-posts">
-              {postsByCategory[key].slice(0, 3).map(post => (
+              {postsByCategory[key as Category].slice(0, 3).map(post => (
                 <a href={`/blog/${post.slug}`} class="category-post-link">
                   {post.data.title}
                 </a>
               ))}
-              {postsByCategory[key].length > 3 && (
+              {postsByCategory[key as Category].length > 3 && (
                 <a href={`/category/${key}`} class="view-all-link">
-                  View all {postsByCategory[key].length} posts →
+                  View all {postsByCategory[key as Category].length} posts →
                 </a>
               )}
             </div>
@@ -91,8 +84,8 @@ const categoryInfo = {
       {recentPosts.map(post => (
         <article class="recent-post">
           <div class="post-meta">
-            <span class="category-tag" style={`color: ${categoryInfo[post.data.category].color}`}>
-              {categoryInfo[post.data.category].emoji} {categoryInfo[post.data.category].title}
+            <span class="category-tag" style={`color: ${CATEGORY_INFO[post.data.category].color}`}>
+              {CATEGORY_INFO[post.data.category].emoji} {CATEGORY_INFO[post.data.category].title}
             </span>
             <time class="post-date">{post.data.date.toLocaleDateString()}</time>
           </div>

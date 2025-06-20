@@ -46,8 +46,7 @@
           "enum": [
             "racing",
             "code",
-            "builds",
-            "data",
+            "projects",
             "life"
           ],
           "default": "life"
