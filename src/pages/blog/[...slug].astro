@@ -4,9 +4,13 @@ import Layout from '../../layouts/Layout.astro';
 import type { CollectionEntry } from "astro:content";
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', (post) => post.slug !== 'index');
+  // Get all blog posts, including those in subdirectories
+  const posts = await getCollection('blog');
+  
+  // Return the proper slug structure that includes the category path
   return posts.map(post => ({
-    params: { slug: post.slug }
+    params: { slug: post.slug },
+    props: { post }
   }));
 }
 
