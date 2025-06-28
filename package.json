@@ -9,10 +9,9 @@
     "gray-matter": "^4.0.3"
   },
   "scripts": {
-  "dev": "astro dev",
-  "build": "astro build",
-  "preview": "astro preview",
-  "deploy": "astro build && gh-pages -d dist"
-}
-
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "deploy": "astro build && gh-pages -d dist"
+  }
 }
