@@ -1,0 +1,87 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-sckkx6r4> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Building a Raspberry Pi Home Server: From Zero to Hero</title><style>body{font-family:Segoe UI,Tahoma,Geneva,Verdana,sans-serif;line-height:1.6;margin:0;padding:0;background-color:#f5f5f5;color:#333}main[data-astro-cid-sckkx6r4]{max-width:800px;margin:0 auto;padding:2rem;background-color:#fff;min-height:100vh;box-shadow:0 0 10px #0000001a}
+.blog-post[data-astro-cid-7jjqptxk]{max-width:100%}.post-header[data-astro-cid-7jjqptxk]{border-bottom:2px solid #e0e0e0;margin-bottom:2rem;padding-bottom:1rem}.post-title[data-astro-cid-7jjqptxk]{color:#2c3e50;font-size:2.5rem;margin-bottom:.5rem;line-height:1.2}.post-date[data-astro-cid-7jjqptxk]{color:#7f8c8d;font-size:1rem;margin:0}.post-content[data-astro-cid-7jjqptxk]{font-size:1.1rem;line-height:1.7}.post-content[data-astro-cid-7jjqptxk] h2{color:#34495e;font-size:1.8rem;margin-top:2rem;margin-bottom:1rem;border-left:4px solid #3498db;padding-left:1rem}.post-content[data-astro-cid-7jjqptxk] p{margin-bottom:1.2rem}.post-content[data-astro-cid-7jjqptxk] strong{color:#2c3e50;font-weight:600}.post-content[data-astro-cid-7jjqptxk] em{color:#7f8c8d;font-style:italic}.post-content[data-astro-cid-7jjqptxk] p:has(>strong):first-of-type{background-color:#ecf0f1;padding:1rem;border-radius:8px;border-left:4px solid #f39c12}
+</style></head> <body data-astro-cid-sckkx6r4> <main data-astro-cid-sckkx6r4>  <article class="blog-post" data-astro-cid-7jjqptxk> <header class="post-header" data-astro-cid-7jjqptxk> <h1 class="post-title" data-astro-cid-7jjqptxk>Building a Raspberry Pi Home Server: From Zero to Hero</h1> <p class="post-date" data-astro-cid-7jjqptxk><em data-astro-cid-7jjqptxk>6/15/2025</em></p> </header> <div class="post-content" data-astro-cid-7jjqptxk> <p data-astro-cid-7jjqptxk>By: StaubRacing</p> <p class="description" data-astro-cid-7jjqptxk>How I turned a $50 Raspberry Pi into a powerful home server for media, backups, and automation</p>  <div class="tags" data-astro-cid-7jjqptxk> <span class="tag" data-astro-cid-7jjqptxk>raspberry-pi</span><span class="tag" data-astro-cid-7jjqptxk>home-server</span><span class="tag" data-astro-cid-7jjqptxk>linux</span><span class="tag" data-astro-cid-7jjqptxk>automation</span><span class="tag" data-astro-cid-7jjqptxk>self-hosted</span> </div> <h2 id="-why-build-a-home-server">🎯 Why Build a Home Server?</h2>
+<p>After years of relying on cloud services for everything, I decided it was time to take back control of my digital life. Between privacy concerns, recurring subscription costs, and the desire to learn more about Linux administration, building a home server became the perfect project.</p>
+<h2 id="️-the-hardware-setup">🛠️ The Hardware Setup</h2>
+<p>I started with a <strong>Raspberry Pi 4 Model B</strong> (8GB RAM) - the perfect balance of power and affordability. Here’s what I paired it with:</p>
+<ul>
+<li><strong>Storage</strong>: 1TB Samsung T7 SSD (external)</li>
+<li><strong>Power</strong>: Official Raspberry Pi power supply</li>
+<li><strong>Case</strong>: Flirc aluminum case for passive cooling</li>
+<li><strong>Network</strong>: Gigabit Ethernet connection</li>
+</ul>
+<h2 id="-operating-system-choice">🐧 Operating System Choice</h2>
+<p>I went with <strong>Ubuntu Server 22.04 LTS</strong> instead of Raspberry Pi OS. Here’s why:</p>
+<ul>
+<li><strong>Better package support</strong> for server applications</li>
+<li><strong>Longer support cycle</strong> (5 years vs 2 years)</li>
+<li><strong>More familiar</strong> for someone coming from desktop Ubuntu</li>
+<li><strong>Better Docker support</strong></li>
+</ul>
+<h2 id="-essential-services-im-running">📦 Essential Services I’m Running</h2>
+<h3 id="1-plex-media-server">1. <strong>Plex Media Server</strong></h3>
+<ul>
+<li>Streams my movie/TV collection to any device</li>
+<li>Automatic metadata fetching</li>
+<li>Hardware transcoding (limited on Pi, but works for 1080p)</li>
+</ul>
+<h3 id="2-nextcloud">2. <strong>Nextcloud</strong></h3>
+<ul>
+<li>Personal cloud storage replacement</li>
+<li>File sync across all devices</li>
+<li>Calendar and contact sync</li>
+</ul>
+<h3 id="3-pi-hole">3. <strong>Pi-hole</strong></h3>
+<ul>
+<li>Network-wide ad blocking</li>
+<li>DNS server for the entire home network</li>
+<li>Beautiful web interface for monitoring</li>
+</ul>
+<h3 id="4-home-assistant">4. <strong>Home Assistant</strong></h3>
+<ul>
+<li>Smart home automation hub</li>
+<li>Integrates with all my IoT devices</li>
+<li>Custom automations for daily routines</li>
+</ul>
+<h2 id="-configuration-highlights">🔧 Configuration Highlights</h2>
+<h3 id="docker-setup">Docker Setup</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="bash"><code><span class="line"><span style="color:#6A737D"># Install Docker</span></span>
+<span class="line"><span style="color:#B392F0">curl</span><span style="color:#79B8FF"> -fsSL</span><span style="color:#9ECBFF"> https://get.docker.com</span><span style="color:#79B8FF"> -o</span><span style="color:#9ECBFF"> get-docker.sh</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> sh</span><span style="color:#9ECBFF"> get-docker.sh</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D"># Add user to docker group</span></span>
+<span class="line"><span style="color:#B392F0">sudo</span><span style="color:#9ECBFF"> usermod</span><span style="color:#79B8FF"> -aG</span><span style="color:#9ECBFF"> docker</span><span style="color:#E1E4E8"> $USER</span></span></code></pre>
+<h3 id="automatic-backups">Automatic Backups</h3>
+<p>I set up a cron job that creates daily snapshots of my Nextcloud data and syncs them to an external drive.</p>
+<h3 id="network-configuration">Network Configuration</h3>
+<ul>
+<li>Static IP assignment</li>
+<li>Port forwarding for external access</li>
+<li>SSL certificates with Let’s Encrypt</li>
+</ul>
+<h2 id="-lessons-learned">💡 Lessons Learned</h2>
+<ol>
+<li><strong>Start Simple</strong>: Don’t try to run everything at once. Add services gradually.</li>
+<li><strong>Backup Everything</strong>: RAID isn’t backup. Have multiple backup strategies.</li>
+<li><strong>Monitor Resources</strong>: The Pi has limits. Keep an eye on CPU, RAM, and storage.</li>
+<li><strong>Security First</strong>: Change default passwords, use SSH keys, keep systems updated.</li>
+</ol>
+<h2 id="-performance-results">🚀 Performance Results</h2>
+<p>For a $50 computer, I’m amazed at what this little Pi can handle:</p>
+<ul>
+<li><strong>Plex</strong>: Streams 1080p content to 2-3 devices simultaneously</li>
+<li><strong>Nextcloud</strong>: Handles file sync for 3 users without breaking a sweat</li>
+<li><strong>Pi-hole</strong>: Blocks ~30% of DNS requests (ads/tracking)</li>
+<li><strong>Home Assistant</strong>: Manages 15+ smart devices with complex automations</li>
+</ul>
+<h2 id="-future-plans">🔮 Future Plans</h2>
+<ul>
+<li>Add a second Pi for redundancy</li>
+<li>Implement automated backup verification</li>
+<li>Set up a reverse proxy for better SSL management</li>
+<li>Add monitoring with Grafana/Prometheus</li>
+</ul>
+<p>The Raspberry Pi home server has been one of my most rewarding projects. It’s taught me so much about Linux administration, networking, and self-hosting. Plus, it’s saved me hundreds in subscription fees while giving me complete control over my data.</p>
+<p><strong>Total cost</strong>: ~$150<br>
+<strong>Monthly savings</strong>: ~$25<br>
+<strong>Knowledge gained</strong>: Priceless</p> </div> </article>  </main> </body></html> 
