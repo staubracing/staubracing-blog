@@ -13,7 +13,15 @@ series: "ZX6R Engine Rebuild"
 
 I bought a 2009 ZX6R in the summer of 2023, excited to race it all season and hopefully shave some time off my laps. Unfortunately, during the third round of the season—only my second race with the bike—the engine started making a knocking noise during Saturday morning practice.
 
-![My ZX6R at the track before the engine issues](/images/blog/racing/zx6r-engine-rebuild/zx6r-track-day.jpg)
+<div style="text-align: center; margin: 2rem 0;">
+  <img 
+    src="/images/blog/racing/zx6r-engine-rebuild/zx6r-track-day.jpg" 
+    alt="My ZX6R at the track before the engine issues" 
+    style="max-width: 100%; height: auto; border: 3px solid #e0e0e0; border-radius: 12px; transition: transform 0.3s ease, box-shadow 0.3s ease;" 
+    onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.2)'"
+    onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none'"
+  />
+</div>
 
 Right away, I pitted and started trying to figure out what was going on. I fired the bike back up and listened carefully. The noise sounded like a rattle—subtle, but definitely not normal. A few people came over to listen and tossed around their guesses, everything from cam chain rattle to a spun rod bearing. At that point, I knew I had a real problem on my hands, and racing that weekend was off the table.
 
@@ -27,13 +35,21 @@ A few people at the track were convinced it was a main rod bearing. But by using
 
 🛠️ **Digging in:** I started by removing the fairings, gas tank, and airbox to gain access to the valve cover. My thought was: let's verify the cam chain and check the valve clearances. This bike has an automatic cam chain tensioner, and I wanted to properly remove and inspect it. I also have a manual tensioner that will fit, so that was one of the first troubleshooting steps I wanted to try at this stage.
 
-![Engine with fairings removed for inspection](/images/blog/racing/zx6r-engine-rebuild/engine-fairings-removed.jpg)
-
 🛠️ **Initial findings:** The cam chain tensioner looked fine, and the chain itself was tight and in good condition. I checked the valve clearances, and everything was within spec. So at this point, I was confident the issue wasn't coming from the cam chain or valve train.
 
 🔧 **Time to go deeper:** With the cam chain, tensioner, and valve clearances all checking out, I was running out of options—and getting a little frustrated. I had hoped it would be something simple, but the noise wasn't going away, and I didn't want to risk making things worse by running it again. At that point, I knew what I had to do: pull the engine and dig in for real.
 
 🧰 **Let's drop it:** I had my friend Joe come over, and we began the process of dropping the engine. Before we could even get to that point, though, we had to remove the fairings, gas tank, and airbox again to fully expose the engine and free up space to work. I took a ton of pictures along the way—especially of the wiring, hoses, and mounting points—since I knew I'd need good documentation for the reassembly later.
+
+<div style="text-align: center; margin: 2rem 0;">
+  <img 
+    src="/images/blog/racing/zx6r-engine-rebuild/drop-prep.jpg" 
+    alt="My ZX6R at the track before the engine issues" 
+    style="max-width: 100%; height: auto; border: 3px solid #e0e0e0; border-radius: 12px; transition: transform 0.3s ease, box-shadow 0.3s ease;" 
+    onmouseover="this.style.transform='scale(1.02)'; this.style.boxShadow='0 8px 25px rgba(0,0,0,0.2)'"
+    onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none'"
+  />
+</div>
 
 ### 📸 Engine Removal Process
 

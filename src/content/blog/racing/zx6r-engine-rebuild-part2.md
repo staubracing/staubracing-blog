@@ -1,48 +1,50 @@
 ---
-title: "ZX6R Engine Rebuild - Part 2: The Damage Assessment"
-date: 2025-06-18
-description: "What we found when we opened up the engine - the real story behind the knocking"
-tags: ["motorcycle", "engine", "rebuild", "zx6r", "diagnosis"]
+title: "ZX6R Engine Rebuild - Part 2: The Damage Revealed"
+date: 2025-06-26
+description: "With the engine torn down, I finally saw the damage—and it wasn’t pretty"
+tags: ["motorcycle", "engine", "rebuild", "zx6r"]
 author: "StaubRacing"
 featured: true
 category: "racing"
 series: "ZX6R Engine Rebuild"
 ---
 
-## 🔍 The Moment of Truth
+In [Part 1](./zx6r-engine-rebuild-part1), I walked through how a subtle rattle at the track led me to drop the motor on my ZX6R. In this post, I’ll show you exactly what we found once the engine came apart—and what needs fixing.
 
-In Part 1, I left off with the cylinder head coming off and us finally getting our first look at what was really going on inside. Let me tell you - what we found was both exactly what I expected and completely shocking at the same time.
+The damage on cylinder #4 wasn’t subtle. You could clearly see vertical scoring on both the front and rear sides of the bore, along with a polished section where the piston had been making contact. Since these are **Nikasil-coated cylinders**, this kind of damage isn’t something you can just hone out. The coating is extremely hard but very thin—once it's compromised, your options are limited to either re-plating or replacement.
 
-## 💥 What We Found
+> ![Scoring on Cylinder #4](/images/zx6r/cylinder4-damage.jpg)
 
-As soon as we lifted the head, the problem was immediately obvious. The #4 cylinder piston had significant damage to the crown. There were deep gouges and what looked like impact marks around the edges. But here's the kicker - the cylinder walls themselves looked surprisingly good.
+Seeing this was a double-edged moment. I was relieved to have found the cause of the noise—it wasn’t in my head—but also bummed to be staring at real damage. I had no idea what the total cost would be or how deep this rebuild might go. But I was committed now. The engine was open, and there was no turning back.
 
-**The Real Culprit:** After closer inspection, we discovered that the damage wasn't from a catastrophic failure, but from something much more insidious - carbon buildup that had broken loose and gotten trapped between the piston and head.
+> [Insert teardown video clip here]
 
-## 🧠 Why This Happened
+Over the next few weeks, I chipped away at the teardown in stages. I started removing the external components: the starter, oil pump, radiator hoses going to the oil cooler, and the oil pan to drain everything and expose the lower end of the engine.
 
-This bike had been running rich for who knows how long before I got it. The previous owner had done some "performance mods" that included a power commander, but the fueling was never properly tuned. Over time, this created excessive carbon buildup in the combustion chambers.
+> ![Parts Laid Out on Workbench](/images/zx6r/parts-on-table.jpg)
 
-When I started pushing the bike harder on track, the increased heat and pressure caused some of this carbon to break loose. Once it got trapped between the piston and head, it created those distinctive knocking sounds I was hearing.
+When it came time to split the crankcase, I verified the proper bolt removal sequence using the service manual. These engines are tough, but skipping steps can cause warping or future sealing issues.
 
-## 🔧 The Fix Plan
+After getting all the bolts out, I split the case and finally exposed the crankshaft and connecting rod end caps.
 
-The good news is that this is totally repairable. Here's what we need to do:
+> ![Cases Split Open](/images/zx6r/split-cases.jpg)
 
-1. **Clean everything thoroughly** - Remove all carbon deposits
-2. **Inspect the piston** - Determine if it needs replacement or just cleaning
-3. **Check valve seats** - Make sure they're not damaged
-4. **Reassemble with proper torque specs**
-5. **Address the root cause** - Get the fueling properly tuned
+With the cases apart, I removed the rod caps and slid out the rod bearings. Then I carefully pulled the crankshaft and inspected the main bearings underneath.
 
-## 💡 Lessons Learned
+> ![Crankshaft Removed](/images/zx6r/crankshaft.jpg)
 
-This whole experience taught me a valuable lesson about buying used race bikes. Even if the bike runs well initially, you never know what's lurking beneath the surface. The previous owner's "improvements" actually created the problem that eventually sidelined me.
+Surprisingly, they looked good—no major scoring, no heat discoloration, and no embedded debris. That was a bit of good news. It meant the bottom end likely wasn’t completely wrecked. The damage looked isolated to the top end and that #4 cylinder.
 
-**Key Takeaway:** Always get a proper tune after any fueling modifications, and don't assume that "it runs fine" means everything is actually fine.
+The piston from cylinder #4 confirmed this theory. It had significant damage along the sides, especially where it had been rocking in the bore. That rocking motion—called **piston slap**—is what likely caused the polished sections and scoring on the cylinder wall.
 
-## 🛠️ Next Steps
+Piston slap happens when there’s too much clearance between the piston and cylinder wall, often due to wear or heat. Instead of moving straight up and down, the piston rocks slightly with each stroke. Over time, this repeated contact transfers aluminum from the piston onto the cylinder wall.
 
-In Part 3, I'll walk through the actual repair process - cleaning, inspection, and reassembly. We'll also talk about the fueling setup and how to prevent this from happening again.
+> ![Damaged Piston from Cylinder #4](/images/zx6r/damaged-piston.jpg)
 
-Stay tuned for the rebuild process!
+Since this is a Nikasil surface, aluminum transfer like this can’t just be honed out. It either needs to be chemically cleaned—there’s an acid method I want to try—or fully re-plated by a machine shop.
+
+---
+
+🔧 **Next Up**: I’ll be exploring cleaning options, talking to machine shops, and planning the repair path forward. I’ll share what I learn in Part 3.
+
+💬 Got experience with Nikasil repairs or piston slap damage? Drop a comment or DM—I’d love to hear how others have approached this.
