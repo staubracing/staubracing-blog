@@ -46,5 +46,3 @@ Since this is a Nikasil surface, aluminum transfer like this can't just be honed
 ---
 
 🔧 **Next Up**: I'll be exploring cleaning options, talking to machine shops, and planning the repair path forward. I'll share what I learn in Part 3.
-
-💬 Got experience with Nikasil repairs or piston slap damage? Drop a comment or DM—I'd love to hear how others have approached this.
