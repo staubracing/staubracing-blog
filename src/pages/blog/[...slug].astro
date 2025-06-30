@@ -1,6 +1,7 @@
 ---
 import { getCollection, getEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import MediaDisplay from '../../components/MediaDisplay.astro';
 import type { CollectionEntry } from "astro:content";
 
 export async function getStaticPaths() {
@@ -43,7 +44,7 @@ const { Content } = await post.render();
         </div>
       )}
       
-      <Content />
+      <Content components={{ MediaDisplay }} />
     </div>
   </article>
 </Layout>
