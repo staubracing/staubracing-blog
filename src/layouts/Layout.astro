@@ -8,31 +8,244 @@ const { title } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Racing+Sans+One&family=Roboto:wght@400;700&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
-    <main>
+    <div class="background" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="/">
+        <span class="brand-primary">Staub</span>
+        <span class="brand-secondary">Racing</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/category/racing">Racing</a>
+        <a href="/category/projects">Projects</a>
+        <a href="/category/code">Code</a>
+        <a href="/category/life">Life</a>
+        <a href="https://staubracing.com/#contact" rel="noreferrer" target="_blank">Contact</a>
+      </nav>
+    </header>
+
+    <main class="page-shell">
       <slot />
     </main>
+
+    <footer class="site-footer">
+      <p>© {new Date().getFullYear()} Staub Racing · Built for the grid and the garage.</p>
+    </footer>
   </body>
 </html>
 
 <style>
-  /* This CSS is scoped to this component */
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    background-color: #f5f5f5;
-    color: #333;
+  :global(:root) {
+    color-scheme: dark;
+    --bg-base: #020617;
+    --bg-overlay: linear-gradient(135deg, rgba(2, 6, 23, 0.95), rgba(15, 23, 42, 0.92));
+    --bg-highlight-1: radial-gradient(circle at top left, rgba(56, 189, 248, 0.35), transparent 55%);
+    --bg-highlight-2: radial-gradient(circle at bottom right, rgba(26, 135, 84, 0.35), transparent 50%);
+    --surface-solid: rgba(15, 23, 42, 0.86);
+    --surface-soft: rgba(15, 23, 42, 0.6);
+    --surface-border: rgba(148, 163, 184, 0.18);
+    --text-primary: #e2e8f0;
+    --text-secondary: #94a3b8;
+    --accent-electric: #38bdf8;
+    --accent-racing: #1a8754;
+    --accent-amber: #facc15;
+    --brand-font: 'Space Grotesk', 'Racing Sans One', sans-serif;
+    --body-font: 'Inter', 'Roboto', 'Segoe UI', sans-serif;
+    --radius-lg: 28px;
+    --radius-md: 18px;
+    --shadow-soft: 0 20px 55px -25px rgba(15, 23, 42, 0.75);
+    --shadow-hard: 0 20px 50px -15px rgba(26, 135, 84, 0.35);
+    --layout-max: 1200px;
   }
 
-  main {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem;
-    background-color: white;
+  :global(*), :global(*::before), :global(*::after) {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
     min-height: 100vh;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    font-family: var(--body-font);
+    font-size: 1rem;
+    line-height: 1.7;
+    background: var(--bg-base);
+    color: var(--text-primary);
+    position: relative;
+    padding: 0 1.5rem;
+  }
+
+  .background {
+    position: fixed;
+    inset: 0;
+    background:
+      var(--bg-highlight-1),
+      var(--bg-highlight-2),
+      var(--bg-overlay);
+    z-index: -2;
+  }
+
+  .site-header {
+    position: sticky;
+    top: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    max-width: var(--layout-max);
+    margin: 1.25rem auto;
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-md);
+    background: rgba(2, 6, 23, 0.85);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    backdrop-filter: blur(14px);
+    box-shadow: var(--shadow-soft);
+    z-index: 5;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    text-decoration: none;
+    font-family: var(--brand-font);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 1.1rem;
+  }
+
+  .brand-primary {
+    color: var(--accent-racing);
+  }
+
+  .brand-secondary {
+    color: #f8fafc;
+  }
+
+  .site-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .site-nav a {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.45rem 1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 163, 184, 0.22);
+    background: rgba(15, 23, 42, 0.6);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+
+  .site-nav a:hover,
+  .site-nav a:focus-visible {
+    background: rgba(56, 189, 248, 0.18);
+    border-color: rgba(56, 189, 248, 0.35);
+    color: #f8fafc;
+    transform: translateY(-1px);
+  }
+
+  .page-shell {
+    position: relative;
+    max-width: var(--layout-max);
+    margin: 0 auto;
+    padding: 2rem 0 6rem;
+    display: grid;
+    gap: 2rem;
+  }
+
+  .site-footer {
+    max-width: var(--layout-max);
+    margin: 0 auto 2.5rem;
+    padding: 1.5rem 1.75rem;
+    border-radius: var(--radius-md);
+    background: rgba(2, 6, 23, 0.85);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    backdrop-filter: blur(14px);
+  }
+
+  :global(a) {
+    color: var(--accent-electric);
+    text-decoration: none;
+  }
+
+  :global(a:hover),
+  :global(a:focus-visible) {
+    color: #f8fafc;
+  }
+
+  :global(p) {
+    color: var(--text-secondary);
+  }
+
+  :global(h1),
+  :global(h2),
+  :global(h3) {
+    font-family: var(--brand-font);
+    margin: 0;
+    color: var(--text-primary);
+  }
+
+  :global(.section-card) {
+    padding: clamp(1.75rem, 2.5vw, 2.75rem);
+    background: var(--surface-solid);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--surface-border);
+    box-shadow: var(--shadow-soft);
+    backdrop-filter: blur(16px);
+  }
+
+  :global(.pill) {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    background: rgba(56, 189, 248, 0.12);
+    color: #f8fafc;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 768px) {
+    body {
+      padding: 0 1rem;
+    }
+
+    .site-header {
+      flex-direction: column;
+      align-items: flex-start;
+      position: static;
+      margin-top: 1.5rem;
+    }
+
+    .site-nav {
+      width: 100%;
+      justify-content: flex-start;
+    }
+
+    .page-shell {
+      padding-top: 1rem;
+      gap: 1.5rem;
+    }
   }
 </style>

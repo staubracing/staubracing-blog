@@ -20,81 +20,92 @@ const postsByCategory: Record<Category, typeof posts> = {
 ---
 
 <Layout title="StaubRacing - Racing, Code & Everything Between">
-  <div class="hero-section">
-    <h1>Hey, I'm StaubRacing! 🏁</h1>
+  <section class="hero" id="top">
+    <span class="hero-eyebrow pill">Engineer · Racer · Developer</span>
+    <h1>Hey, I'm StaubRacing.</h1>
     <p class="hero-subtitle">
-      Software developer by day, motorcycle racer by weekend. 
-      Building things with code and wrenches.
+      Building fast bikes, reliable code, and the discipline to keep both on line.
     </p>
-  </div>
+    <div class="hero-actions">
+      <a class="hero-button primary" href="/category/racing">Race prep &amp; builds →</a>
+      <a class="hero-button ghost" href="https://staubracing.com" target="_blank" rel="noreferrer">staubracing.com</a>
+    </div>
+  </section>
 
-  <!-- Featured Content -->
   {featuredPosts.length > 0 && (
-    <section class="featured-section">
-      <h2>🌟 Featured</h2>
-      <div class="featured-grid">
-        {featuredPosts.slice(0, 2).map(post => (
-          <article class="featured-post">
-            <div class="category-badge" style={`background-color: ${CATEGORY_INFO[post.data.category].color}`}>
-              {CATEGORY_INFO[post.data.category].emoji} {CATEGORY_INFO[post.data.category].title}
-            </div>
+    <section class="section-card feature-card">
+      <header class="section-heading">
+        <h2>Featured stories</h2>
+        <p>Dive into the projects and race reports I can't stop talking about.</p>
+      </header>
+      <div class="feature-grid">
+        {featuredPosts.slice(0, 3).map(post => (
+          <article class="featured-post" style={`--badge-color: ${CATEGORY_INFO[post.data.category].color}`}>
+            <span class="category-pill">{CATEGORY_INFO[post.data.category].emoji} {CATEGORY_INFO[post.data.category].title}</span>
             <h3><a href={`/blog/${post.slug}`}>{post.data.title}</a></h3>
-            <p class="post-description">{post.data.description}</p>
-            <small class="post-date">{post.data.date.toLocaleDateString()}</small>
+            {post.data.description && <p>{post.data.description}</p>}
+            <footer>
+              <time>{post.data.date.toLocaleDateString()}</time>
+              <span class="read-more">Read more →</span>
+            </footer>
           </article>
         ))}
       </div>
     </section>
   )}
 
-  <!-- Categories Overview -->
-  <section class="categories-section">
-    <h2>🎯 What I'm Working On</h2>
+  <section class="section-card categories-card" id="categories">
+    <header class="section-heading">
+      <h2>What I'm tracking</h2>
+      <p>Choose your rabbit hole: wrenching, coding, or the life that happens between races.</p>
+    </header>
     <div class="categories-grid">
       {Object.entries(CATEGORY_INFO).map(([key, info]) => (
         postsByCategory[key as Category].length > 0 && (
-          <div class="category-card">
-            <div class="category-header">
-              <span class="category-emoji">{info.emoji}</span>
-              <h3>{info.title}</h3>
+          <article class="category-card" style={`--category-color: ${info.color}`}>
+            <header>
+              <span class="category-icon">{info.emoji}</span>
+              <div>
+                <h3>{info.title}</h3>
+                <p>{info.description}</p>
+              </div>
               <span class="post-count">{postsByCategory[key].length} posts</span>
-            </div>
-            <div class="category-posts">
+            </header>
+            <div class="category-links">
               {postsByCategory[key as Category].slice(0, 3).map(post => (
-                <a href={`/blog/${post.slug}`} class="category-post-link">
-                  {post.data.title}
+                <a href={`/blog/${post.slug}`}>
+                  <span>{post.data.title}</span>
+                  <time>{post.data.date.toLocaleDateString()}</time>
                 </a>
               ))}
-              {postsByCategory[key as Category].length > 3 && (
-                <a href={`/category/${key}`} class="view-all-link">
-                  View all {postsByCategory[key as Category].length} posts →
-                </a>
-              )}
             </div>
-          </div>
+            <a class="view-all" href={`/category/${key}`}>
+              View {info.title.toLowerCase()} →
+            </a>
+          </article>
         )
       ))}
     </div>
   </section>
 
-  <!-- Recent Posts -->
-  <section class="recent-section">
-    <h2>📋 Recent Posts</h2>
-    <div class="recent-posts">
+  <section class="section-card recent-card" id="recent">
+    <header class="section-heading">
+      <h2>Recent pit notes</h2>
+      <p>Fresh updates from the garage, the IDE, and wherever the next problem showed up.</p>
+    </header>
+    <div class="recent-list">
       {recentPosts.map(post => (
-        <article class="recent-post">
-          <div class="post-meta">
-            <span class="category-tag" style={`color: ${CATEGORY_INFO[post.data.category].color}`}>
-              {CATEGORY_INFO[post.data.category].emoji} {CATEGORY_INFO[post.data.category].title}
-            </span>
-            <time class="post-date">{post.data.date.toLocaleDateString()}</time>
-          </div>
+        <article class="recent-post" style={`--category-color: ${CATEGORY_INFO[post.data.category].color}`}>
+          <header>
+            <span class="category-chip">{CATEGORY_INFO[post.data.category].emoji} {CATEGORY_INFO[post.data.category].title}</span>
+            <time>{post.data.date.toLocaleDateString()}</time>
+          </header>
           <h3><a href={`/blog/${post.slug}`}>{post.data.title}</a></h3>
-          {post.data.description && <p class="post-description">{post.data.description}</p>}
+          {post.data.description && <p>{post.data.description}</p>}
           {post.data.tags.length > 0 && (
-            <div class="post-tags">
-              {post.data.tags.map(tag => <span class="tag">{tag}</span>)}
-            </div>
+            <ul class="tag-list">
+              {post.data.tags.map(tag => <li>{tag}</li>)}
+            </ul>
           )}
         </article>
       ))}
@@ -103,172 +114,331 @@ const postsByCategory: Record<Category, typeof posts> = {
 </Layout>
 
 <style>
-  .hero-section {
+  .hero {
+    display: grid;
+    gap: 1.5rem;
     text-align: center;
-    padding: 3rem 0;
-    border-bottom: 1px solid #e0e0e0;
-    margin-bottom: 3rem;
+    padding: clamp(3rem, 10vw, 5rem) clamp(1rem, 4vw, 3.5rem);
+    margin-top: 2rem;
+    background: linear-gradient(140deg, rgba(26, 135, 84, 0.22), rgba(56, 189, 248, 0.18));
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    box-shadow: var(--shadow-hard);
+    backdrop-filter: blur(18px);
   }
 
-  .hero-section h1 {
-    font-size: 2.5rem;
-    color: #2c3e50;
-    margin-bottom: 1rem;
+  .hero-eyebrow {
+    justify-self: center;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.8rem, 6vw, 3.75rem);
+    font-family: var(--brand-font);
+    letter-spacing: 0.08em;
   }
 
   .hero-subtitle {
-    font-size: 1.2rem;
-    color: #7f8c8d;
-    max-width: 600px;
+    max-width: 680px;
     margin: 0 auto;
+    font-size: 1.15rem;
   }
 
-  .featured-section {
-    margin-bottom: 3rem;
+  .hero-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
   }
 
-  .featured-grid {
+  .hero-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.75rem;
+    border-radius: 999px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    border: 1px solid transparent;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border 0.2s ease;
+  }
+
+  .hero-button.primary {
+    background: var(--accent-racing);
+    color: #f8fafc;
+    box-shadow: 0 15px 35px -20px rgba(26, 135, 84, 0.8);
+  }
+
+  .hero-button.primary:hover,
+  .hero-button.primary:focus-visible {
+    transform: translateY(-1px);
+    box-shadow: 0 20px 40px -18px rgba(26, 135, 84, 0.9);
+  }
+
+  .hero-button.ghost {
+    border-color: rgba(56, 189, 248, 0.35);
+    background: rgba(15, 23, 42, 0.6);
+    color: var(--text-primary);
+  }
+
+  .hero-button.ghost:hover,
+  .hero-button.ghost:focus-visible {
+    border-color: rgba(56, 189, 248, 0.6);
+    background: rgba(56, 189, 248, 0.16);
+    transform: translateY(-1px);
+  }
+
+  .section-heading {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 1rem;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-heading h2 {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .section-heading p {
+    max-width: 620px;
+  }
+
+  .feature-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   }
 
   .featured-post {
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 1.5rem;
-    background: white;
+    display: grid;
+    gap: 0.85rem;
+    padding: 1.75rem;
+    border-radius: var(--radius-md);
+    background:
+      linear-gradient(150deg, rgba(56, 189, 248, 0.12), rgba(26, 135, 84, 0.08)),
+      rgba(15, 23, 42, 0.78);
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    box-shadow: 0 18px 40px -28px rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(14px);
   }
 
-  .category-badge {
-    display: inline-block;
-    color: white;
-    padding: 0.25rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
+  .featured-post:hover {
+    border-color: rgba(148, 163, 184, 0.28);
+    transform: translateY(-2px);
   }
 
-  .categories-section {
-    margin-bottom: 3rem;
+  .featured-post .category-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.85rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--badge-color) 25%, transparent);
+    border: 1px solid color-mix(in srgb, var(--badge-color) 45%, transparent);
+    color: #f8fafc;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .featured-post h3 {
+    font-size: 1.35rem;
+    line-height: 1.3;
+  }
+
+  .featured-post p {
+    margin: 0;
+  }
+
+  .featured-post footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+
+  .featured-post .read-more {
+    color: var(--accent-electric);
+    font-weight: 600;
+    letter-spacing: 0.05em;
   }
 
   .categories-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
-    margin-top: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   }
 
   .category-card {
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 1.5rem;
-    background: white;
+    display: grid;
+    gap: 1.25rem;
+    padding: 1.75rem;
+    border-radius: var(--radius-md);
+    background: linear-gradient(155deg, color-mix(in srgb, var(--category-color) 18%, transparent), rgba(15, 23, 42, 0.8));
+    border: 1px solid color-mix(in srgb, var(--category-color) 30%, rgba(148, 163, 184, 0.18));
+    box-shadow: 0 16px 36px -28px rgba(15, 23, 42, 0.9);
   }
 
-  .category-header {
-    display: flex;
+  .category-card header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0.9rem;
     align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
   }
 
-  .category-emoji {
+  .category-icon {
     font-size: 1.5rem;
   }
 
-  .category-header h3 {
+  .category-card p {
     margin: 0;
-    flex-grow: 1;
   }
 
   .post-count {
     font-size: 0.8rem;
-    color: #7f8c8d;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--category-color) 60%, #dbeafe);
   }
 
-  .category-posts {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+  .category-links {
+    display: grid;
+    gap: 0.75rem;
   }
 
-  .category-post-link {
-    color: #2c3e50;
-    text-decoration: none;
-    font-size: 0.9rem;
+  .category-links a {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.75rem;
+    padding: 0.8rem 1rem;
+    border-radius: 14px;
+    border: 1px solid rgba(148, 163, 184, 0.14);
+    background: rgba(2, 6, 23, 0.45);
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    transition: transform 0.2s ease, border 0.2s ease;
   }
 
-  .category-post-link:hover {
-    color: #3498db;
+  .category-links a:hover,
+  .category-links a:focus-visible {
+    transform: translateY(-1px);
+    border-color: color-mix(in srgb, var(--category-color) 45%, transparent);
   }
 
-  .view-all-link {
-    color: #3498db;
-    font-size: 0.8rem;
-    font-weight: bold;
-    margin-top: 0.5rem;
+  .category-links time {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
   }
 
-  .recent-section {
-    margin-bottom: 3rem;
+  .view-all {
+    justify-self: flex-start;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--category-color) 65%, var(--accent-electric));
   }
 
-  .recent-posts {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin-top: 1rem;
+  .recent-list {
+    display: grid;
+    gap: 1.25rem;
   }
 
   .recent-post {
-    border-bottom: 1px solid #e0e0e0;
-    padding-bottom: 1rem;
+    display: grid;
+    gap: 0.75rem;
+    padding: 1.5rem 1.75rem;
+    border-radius: var(--radius-md);
+    background: rgba(2, 6, 23, 0.6);
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    transition: border 0.2s ease, transform 0.2s ease;
   }
 
-  .post-meta {
+  .recent-post:hover,
+  .recent-post:focus-within {
+    border-color: color-mix(in srgb, var(--category-color) 42%, transparent);
+    transform: translateY(-1px);
+  }
+
+  .recent-post header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 0.5rem;
-  }
-
-  .category-tag {
+    gap: 0.75rem;
     font-size: 0.8rem;
-    font-weight: bold;
+    color: var(--text-secondary);
   }
 
-  .post-date {
-    color: #7f8c8d;
-    font-size: 0.8rem;
+  .category-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--category-color) 45%, transparent);
+    background: color-mix(in srgb, var(--category-color) 20%, transparent);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
   }
 
-  .post-description {
-    color: #7f8c8d;
-    margin: 0.5rem 0;
+  .recent-post h3 {
+    margin: 0;
+    font-size: 1.2rem;
   }
 
-  .post-tags {
+  .recent-post p {
+    margin: 0;
+  }
+
+  .tag-list {
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
   }
 
-  .tag {
-    background: #ecf0f1;
-    color: #2c3e50;
-    padding: 0.2rem 0.5rem;
-    border-radius: 12px;
-    font-size: 0.7rem;
+  .tag-list li {
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    background: rgba(15, 23, 42, 0.6);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
   }
 
-  section h2 {
-    color: #2c3e50;
-    border-bottom: 2px solid #3498db;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
+  @media (max-width: 768px) {
+    .hero {
+      padding: 2.5rem 1.5rem;
+    }
+
+    .feature-grid,
+    .categories-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .category-card header {
+      grid-template-columns: auto 1fr;
+    }
+
+    .post-count {
+      justify-self: flex-start;
+      margin-top: 0.35rem;
+    }
+
+    .category-links a {
+      grid-template-columns: 1fr;
+      gap: 0.35rem;
+    }
+
+    .recent-post {
+      padding: 1.25rem 1.4rem;
+    }
   }
 </style>
