@@ -19,29 +19,185 @@ const posts = await getCollection('blog', (post) =>
 const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 const categoryInfo = {
-  racing: { emoji: '🏍️', title: 'Racing & Track' },
-  code: { emoji: '💻', title: 'Code & Tech' },
-  projects: { emoji: '🔧', title: 'Projects' },
-  data: { emoji: '📊', title: 'Data & Analysis' },
-  life: { emoji: '📝', title: 'Life & Updates' },
+  racing: {
+    emoji: '🏍️',
+    title: 'Racing & Track',
+    description: 'Latest track notes, bike builds, and race prep logs.',
+    color: '#e74c3c',
+  },
+  code: {
+    emoji: '💻',
+    title: 'Code & Tech',
+    description: 'Experiments in software, tooling, and automation.',
+    color: '#3498db',
+  },
+  projects: {
+    emoji: '🔧',
+    title: 'Projects',
+    description: 'Shop projects, fabrication, and electronics tinkering.',
+    color: '#f39c12',
+  },
+  data: {
+    emoji: '📊',
+    title: 'Data & Analysis',
+    description: 'Telemetry breakdowns, metrics, and race analytics.',
+    color: '#9b59b6',
+  },
+  life: {
+    emoji: '📝',
+    title: 'Life & Updates',
+    description: 'Personal updates, philosophies, and everything between.',
+    color: '#2ecc71',
+  },
 };
 ---
 
 <Layout title={`${categoryInfo[category].title} - StaubRacing`}>
-  <h1>{categoryInfo[category].emoji} {categoryInfo[category].title}</h1>
-  <p>All posts in this category</p>
-  
-  {sortedPosts.length > 0 ? (
-    <div class="posts-list">
-      {sortedPosts.map(post => (
-        <article class="post-card">
-          <h2><a href={`/blog/${post.slug}`}>{post.data.title}</a></h2>
-          <p class="post-date">{post.data.date.toLocaleDateString()}</p>
-          {post.data.description && <p>{post.data.description}</p>}
-        </article>
-      ))}
-    </div>
-  ) : (
-    <p>No posts in this category yet.</p>
-  )}
-</Layout> 
+  <section class="category-shell section-card" style={`--category-color: ${categoryInfo[category].color}`}>
+    <header class="category-header">
+      <span class="category-pill">{categoryInfo[category].emoji} {categoryInfo[category].title}</span>
+      <h1>{categoryInfo[category].title}</h1>
+      <p>{categoryInfo[category].description}</p>
+    </header>
+
+    {sortedPosts.length > 0 ? (
+      <div class="posts-grid">
+        {sortedPosts.map(post => (
+          <article class="post-card">
+            <header>
+              <h2><a href={`/blog/${post.slug}`}>{post.data.title}</a></h2>
+              <time>{post.data.date.toLocaleDateString()}</time>
+            </header>
+            {post.data.description && <p>{post.data.description}</p>}
+            {post.data.tags.length > 0 && (
+              <ul class="tag-list">
+                {post.data.tags.map(tag => <li>{tag}</li>)}
+              </ul>
+            )}
+          </article>
+        ))}
+      </div>
+    ) : (
+      <p class="empty-state">No posts in this category yet.</p>
+    )}
+  </section>
+</Layout>
+
+<style>
+  .category-shell {
+    display: grid;
+    gap: 1.75rem;
+  }
+
+  .category-header {
+    display: grid;
+    gap: 0.8rem;
+    text-align: center;
+  }
+
+  .category-header h1 {
+    font-size: clamp(2.3rem, 5vw, 3.1rem);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .category-header p {
+    margin: 0;
+    color: var(--text-secondary);
+  }
+
+  .category-pill {
+    justify-self: center;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.4rem 0.95rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--category-color) 45%, transparent);
+    background: color-mix(in srgb, var(--category-color) 18%, transparent);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.8rem;
+  }
+
+  .posts-grid {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .post-card {
+    display: grid;
+    gap: 0.75rem;
+    padding: 1.35rem 1.5rem;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    background: rgba(2, 6, 23, 0.55);
+    transition: border 0.2s ease, transform 0.2s ease;
+  }
+
+  .post-card:hover,
+  .post-card:focus-within {
+    border-color: color-mix(in srgb, var(--category-color) 42%, transparent);
+    transform: translateY(-1px);
+  }
+
+  .post-card header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .post-card h2 {
+    margin: 0;
+    font-size: 1.3rem;
+  }
+
+  .post-card time {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .post-card p {
+    margin: 0;
+  }
+
+  .tag-list {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .tag-list li {
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    background: rgba(15, 23, 42, 0.6);
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .empty-state {
+    margin: 0;
+    text-align: center;
+    color: var(--text-secondary);
+  }
+
+  @media (max-width: 768px) {
+    .post-card {
+      padding: 1.2rem 1.25rem;
+    }
+
+    .post-card header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
