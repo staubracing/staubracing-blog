@@ -12,4 +12,7 @@ export default defineConfig({
   vite: {
     publicDir: "public",
   },
+  build: {
+    inlineStylesheets: "auto",
+  },
 });
