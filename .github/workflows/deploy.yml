@@ -1,8 +1,9 @@
 name: Deploy to GitHub Pages
 
-on:
-  push:
-    branches: [main]
+# Disabled - using manual deployment with yarn deploy instead
+# on:
+#   push:
+#     branches: [main]
 
 permissions:
   contents: read
