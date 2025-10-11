@@ -33,4 +33,42 @@ K-Dog and I were usually the problem solvers — the ones called when something 
 I pulled the truck under the number-three engine and started opening the cowlings, digging in. Each of our trucks had what we called surfboards on top — steel platforms welded to the bed and frame that stretched out over the cab of the old GMC 1500 Sierras. They were built for reaching the engines and gave us just enough height to work without dragging out a maintenance stand. It wasn’t fancy, but it got the job done.
 
 I was halfway through pulling panels when I spotted some movement out of the corner of my eye. One of the Sun Country contractors was circling the aircraft, clipboard in hand, pretending to look busy. Great, I thought, now I get to help this asshole too. The last thing we needed was another body in the way, especially one who didn’t know our airplane.
-**[To be continued...]**
+
+I started digging into pulling the old transmitter, ready to get after it. I sent K-Dog up to the cockpit to pull the fuel shutoff handle and cut the supply to the engine. With that pulled, the fuel system’s isolated — this baby won’t start without the go juice. You still get a shot of fuel that’s left in the lines, and it’s damn near impossible not to end up with your hands covered in Jet-A.
+Kevin came back to see if I needed a hand, and I told him to just be my moral support and maybe give me a back rub. He laughed and said, “How about I give you a rub and a tug while I smoke and watch you do all the work?” I flipped him off and went back to wrestling with the fuel line. Same routine every night. While I was installing the new fuel-flow transmitter, I asked Kevin what the other shitheads were up to.
+
+“The dumbass is up in the cockpit,” he said over the intercom. “Looks like he’s poking around, asking what we’re working on.”
+I rolled my eyes. “Perfect. Last thing I need is a helper.”
+Kevin chuckled. “Yeah, he’s got that ‘I’m here to help’ look.”
+
+I could hear him up there talking with the guy, some small talk over the radio. I didn’t think much of it, just figured the contractor was curious, maybe trying to look useful. The job was simple, just messy, and I was almost ready to button everything up. As long as he stayed out of the way, we’d be done in no time.
+
+I sent Kevin to the cockpit and told him, “Fire this fucker up!” We both knew the drill with this kind of part change. The fuel lines were drained, and it would take a while for fuel to reach the fuel controller, think of it like a carburetor or fuel injection system, but for a jet engine.  
+The starter whined, spooling up like a turbine hair dryer, but I knew it’d take a minute before she caught fuel. I was inches from the engine and could see the fuel-control rod slide into place — that meant Kevin had switched on the fuel flow, right on cue.
+
+But we weren’t getting light-off — no signs of the engine spooling up toward idle. After a few seconds, I told Kevin to kill it. With all the noise, radios were useless anyway. Guys like Kevin and me had an unspoken language. I grabbed the fuel-control rod and gave it a shake — our signal. I knew Kevin was several yards away in the cockpit, his hand resting on the fuel shutoff lever, waiting for that exact move.
+
+Just as I reached my hand toward the lever, thinking to myself, What the hell did I screw up? — the whole area lit up like a lightning bolt went off. A chest-thumping boom followed that damn near made me shit my pants. Out of the corner of my eye, I saw a blast of blue and orange flame shoot at least thirty feet out the tailpipe.
+
+I immediately felt like the biggest idiot. No hesitation, no excuses, just that voice in my head going, You stupid fuck, what did you forget to do this time?
+
+Scrambling to get my senses back, I realized the engine was running smooth at idle. Well, fuck it! I’m here now; might as well make sure I don’t have any leaks.
+
+Once I knew things at the engine were under control, I saw the fuel-control rod return to the shutoff position and knew Kevin was shutting it down. Damn, that dude knows me too well — he could tell I wasn’t panicking and that I was just doing a leak check.
+
+These are the people you want on your team — the ones who know what you need and when you need it, without a single word said.
+
+I climbed off the truck, made my way up the aft airstair, and headed for the cockpit. Kevin was already standing in the doorway, and I could tell he was pissed. The thing about Kevin, though — when he’s pissed, he doesn’t yell or turn red. He just smiles, and that’s how you know it’s bad.
+
+I wasn’t even halfway up the row of those typical blue-covered seats when I called out, “What the fuck was that?”
+I looked at him and said, “Why did you fucking pull it in the first place?”
+He shrugged. “Well, I didn’t want the engine to accidentally start while you were working on it.”
+I just stared at him. “Accidentally start? Really? What — we’d accidentally fire up the APU for bleed air, accidentally hit the start switch, accidentally move the fuel shutoff to run, and just sit back while the jet lights itself off?”
+
+The sarcasm wasn’t lost on anyone. Even Kevin cracked a grin. The sarcasm wasn’t lost on anyone. Even Kevin cracked a grin. He always got a kick out of watching me “do my thing,” as he liked to call it — meaning when I really let someone have it. He’s been known to let me off the leash now and then, just to make a point.
+
+I’ve been called an asshole more than once, and fair enough — sometimes you have to be. There are ramp rats and bag smashers out there so clueless you’ve got to make sure they understand, usually with a very specific tone of, Are you fucking kidding me?
+
+By the time the paperwork was done and the ramp lights started to fade into dawn, it already felt like another story no one would believe. Just another night, another near-miss, another reason to wonder why we kept coming back.
+
+But that’s the thing about this life — you don’t do it for the glory or the paycheck. You do it because you can’t stand not knowing what broke, or how to make it run again. You do it for the noise, the smell, the brotherhood, and the stories that start with “You’re not gonna believe this one…”
