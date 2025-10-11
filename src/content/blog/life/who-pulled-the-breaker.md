@@ -22,13 +22,12 @@ That night, we drew a 727-200 with an erratic fuel-flow issue — easy job, just
 Kevin killed the engine and popped the door.
 
 "You grab the transmitter?" he asked, already knowing I had.
-
 "No, I left it at the hangar, dumbass," I shot back. "Of course I grabbed it."
-
 He just grinned — the kind of grin that said _same shit, different night_.
 
 The talk was always rough, the kind of banter you'd hear in a kitchen at rush hour. Outsiders might've thought we hated each other, but it was the opposite. That back-and-forth was respect in our world, a bond built from too many long nights and close calls. You could trust a guy who'd call you an that would make a sailor blush and still hand you the wrench before you asked.
 
-We hauled our toolboxes down, boots crunching on ice and grit, the smell of jet fuel thick enough to taste. Somewhere off in the distance an APU whined, a reminder that the rest of the airport was still alive and moving freight while we froze our asses off.
+We hauled our toolboxes down, boots crunching on ice and grit, the smell of jet fuel thick enough to taste. Somewhere off in the distance an APU whined, a reminder that the rest of the airport was still alive and moving freight while we froze our asses off
+K-Dog and I were usually the problem solvers — the ones called when something refused to cooperate. The rest of the overnight work fell to a gang of contractors from the, at-the-time, bankrupt Sun Country Airlines. They handled the basic checks — periodic service inspections, PS checks, the routine stuff. Good enough hands, but they didn’t know our airplanes the way we did. Every now and then one of them would wander over, eager to “help,” and that’s usually when the fun began.
 
 **[To be continued...]**
