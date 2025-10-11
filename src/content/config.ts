@@ -48,6 +48,7 @@ const blog = defineCollection({
     description: z.string().optional(),
     tags: z.array(z.string()).default([]),
     author: z.string().default("StaubRacing"),
+    editor: z.string().optional(), // Optional editor credit
     featured: z.boolean().default(false),
     // Now uses the typed constant
     category: z.enum(CATEGORIES).default("life"),

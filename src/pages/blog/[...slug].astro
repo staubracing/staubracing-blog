@@ -33,6 +33,7 @@ const { Content } = await post.render();
     </header>
     <div class="post-content">
       <p>By: {post.data.author}</p>
+      {post.data.editor && <p class="editor-credit">Edited by: {post.data.editor}</p>}
       
       {post.data.description && <p class="description">{post.data.description}</p>}
       
@@ -80,6 +81,13 @@ const { Content } = await post.render();
 
   .post-content > p {
     margin: 0;
+  }
+
+  .editor-credit {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    opacity: 0.85;
   }
 
   .featured-badge {

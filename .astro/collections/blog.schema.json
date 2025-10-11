@@ -37,6 +37,9 @@
           "type": "string",
           "default": "StaubRacing"
         },
+        "editor": {
+          "type": "string"
+        },
         "featured": {
           "type": "boolean",
           "default": false

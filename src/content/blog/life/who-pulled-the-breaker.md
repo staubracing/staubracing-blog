@@ -4,6 +4,7 @@ date: 2025-10-11
 description: "Midnight shifts, cold ramps, and keeping tired 727s flying at MSP in the mid-2000s"
 tags: ["aviation", "maintenance", "MSP", "aircraft", "night-shift", "727"]
 author: "StaubRacing"
+editor: "Michael T Smith"
 featured: true
 category: "life"
 draft: false
