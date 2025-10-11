@@ -6,7 +6,7 @@ tags: ["aviation", "maintenance", "MSP", "aircraft", "night-shift", "727"]
 author: "StaubRacing"
 featured: true
 category: "life"
-draft: true
+draft: false
 ---
 
 The mid-2000s feel like another lifetime now — when Champion Air still flew vacation charters and Kevin, my partner in crime, and I were keeping tired 727s moving at MSP.
