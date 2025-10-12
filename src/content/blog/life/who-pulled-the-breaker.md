@@ -10,9 +10,9 @@ category: "life"
 draft: false
 ---
 
-The mid-2000s feel like another lifetime now — when Champion Air still flew vacation charters and Kevin, my partner in crime, and I were keeping tired 727s moving at MSP.
+The mid-2000s feel like another lifetime now, when Champion Air still flew vacation charters and Kevin, my partner in crime, and I were keeping tired 727s moving at MSP. Back then, every night bled into the next. Same ramp, same cold, same noise.
 
-Yet another midnight shift on the cold ramp at Minneapolis–Saint Paul International Airport — or as we knew it, simply MSP. Third shift started at nine and, if we were lucky, ended around nine the next morning, but usually dragged closer to ten. The air smelled of jet fuel and exhaust, the kind of cold that made metal sting when you touched it.
+Most nights were all noise and exhaust, the kind that fade together over time. But some nights, the ramp still finds a way to entertain you and scare the hell out of you in the same breath. There’s one night I can still see clear as day, a midnight shift on the cold ramp at Minneapolis–Saint Paul International Airport, or as we knew it, simply MSP. The night shift started at nine and, if we were lucky, ended around nine the next morning, but usually dragged closer to ten. The air smelled of jet fuel and exhaust, the kind of cold that made metal sting when you touched it.
 
 I started every night the same way — park outside the hangar, pull my collar up against the wind, and walk through the side door into the little office in back where the coffee pot hissed and the night's task sheets waited. The place always smelled like burnt grounds, cold air, and hydraulic fluid. That's where I grabbed my assignment and found out what kind of trouble I'd be babysitting till sunrise.
 
@@ -22,8 +22,7 @@ That night, we drew a 727-200 with an erratic fuel-flow issue — easy job, just
 
 Kevin killed the engine and popped the door.
 
-"You grab the transmitter?" he asked, already knowing I had.
-"No, I left it at the hangar, dumbass," I shot back. "Of course I grabbed it."
+“You grab the transmitter?” he asked, already knowing I had. “No, shithead, I left it at the hangar,” I shot back. “Of course I grabbed it.”
 He just grinned — the kind of grin that said _same shit, different night_.
 
 The talk was always rough, the kind of banter you'd hear in a kitchen at rush hour. Outsiders might've thought we hated each other, but it was the opposite. That back-and-forth was respect in our world, a bond built from too many long nights and close calls. You could trust a guy who'd call you an that would make a sailor blush and still hand you the wrench before you asked.
