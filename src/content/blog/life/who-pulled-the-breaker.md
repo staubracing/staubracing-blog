@@ -66,7 +66,7 @@ I looked at him and said, “Why did you fucking pull it in the first place?”
 He shrugged. “Well, I didn’t want the engine to accidentally start while you were working on it.”
 I just stared at him. “Accidentally start? Really? What — we’d accidentally fire up the APU for bleed air, accidentally hit the start switch, accidentally move the fuel shutoff to run, and just sit back while the jet lights itself off?”
 
-The sarcasm wasn’t lost on anyone. He always got a kick out of watching me “do my thing,” as he liked to call it — meaning when I really let someone have it. He’s been known to let me off the leash now and then, just to make a point.
+The sarcasm wasn’t lost on anyone. Even Kevin cracked a grin. He always got a kick out of watching me “do my thing,” as he liked to call it — meaning when I really let someone have it. He’s been known to let me off the leash now and then, just to make a point.
 
 I’ve been called an asshole more than once, and fair enough — sometimes you have to be. There are ramp rats and bag smashers out there so clueless you’ve got to make sure they understand, usually with a very specific tone of, Are you fucking kidding me?
 
