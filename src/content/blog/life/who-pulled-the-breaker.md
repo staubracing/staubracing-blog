@@ -62,13 +62,15 @@ These are the people you want on your team — the ones who know what you need a
 I climbed off the truck, made my way up the aft airstair, and headed for the cockpit. Kevin was already standing in the doorway, and I could tell he was pissed. The thing about Kevin, though — when he’s pissed, he doesn’t yell or turn red. He just smiles, and that’s how you know it’s bad.
 
 I wasn’t even halfway up the row of those typical blue-covered seats when I called out, “What the fuck was that?”
-I looked at him and said, “Why did you fucking pull it in the first place?”
+Kevin didn’t answer — he just looked over at, you guessed it, Dumbass. Still smiling that calm, dangerous smile, he said, “Ask him,” motioning toward the newly and well-earned name, Dumbass.
+I turned toward him. “Why did you fucking pull it in the first place?”
 He shrugged. “Well, I didn’t want the engine to accidentally start while you were working on it.”
+
 I just stared at him. “Accidentally start? Really? What — we’d accidentally fire up the APU for bleed air, accidentally hit the start switch, accidentally move the fuel shutoff to run, and just sit back while the jet lights itself off?”
 
 The sarcasm wasn’t lost on anyone. Even Kevin cracked a grin. He always got a kick out of watching me “do my thing,” as he liked to call it — meaning when I really let someone have it. He’s been known to let me off the leash now and then, just to make a point.
 
-I’ve been called an asshole more than once, and fair enough — sometimes you have to be. There are ramp rats and bag smashers out there so clueless you’ve got to make sure they understand, usually with a very specific tone of, Are you fucking kidding me?
+I’ve been called an asshole more than once, and fair enough,sometimes you have to be. There are ramp rats and bag smashers out there so clueless you’ve got to make sure they understand, usually with a very specific tone of, Are you fucking kidding me?
 
 By the time the paperwork was done and the ramp lights started to fade into dawn, it already felt like another story no one would believe. Just another night, another near-miss, another reason to wonder why we kept coming back.
 
