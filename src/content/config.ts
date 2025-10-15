@@ -1,7 +1,10 @@
 import { defineCollection, z } from "astro:content";
+import categoriesJson from "./categories.json";
+
+const categoriesData = categoriesJson as const;
 
 // Define category types for better TypeScript support
-export const CATEGORIES = ["racing", "code", "projects", "life"] as const;
+export const CATEGORIES = categoriesData.categories;
 export type Category = (typeof CATEGORIES)[number];
 
 // Category metadata with proper typing
@@ -13,32 +16,7 @@ export const CATEGORY_INFO: Record<
     color: string;
     description: string;
   }
-> = {
-  racing: {
-    emoji: "🏍️",
-    title: "Racing & Bikes",
-    color: "#e74c3c",
-    description: "Track days, race reports, bike builds, setup",
-  },
-  code: {
-    emoji: "💻",
-    title: "Code Projects",
-    color: "#3498db",
-    description: "Apps, tutorials, dev journey",
-  },
-  projects: {
-    emoji: "🔧",
-    title: "Projects",
-    color: "#f39c12",
-    description: "Linux, Raspberry Pi, DIY electronics",
-  },
-  life: {
-    emoji: "📝",
-    title: "Life & Updates",
-    color: "#2ecc71",
-    description: "Personal stuff, thoughts, what I am up to",
-  },
-};
+> = categoriesData.info;
 
 const blog = defineCollection({
   type: "content",

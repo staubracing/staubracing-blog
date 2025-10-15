@@ -12,13 +12,13 @@
 
 const fs = require("fs");
 const path = require("path");
+const categoriesData = require("../src/content/categories.json");
 
 const PUBLIC_IMAGES_DIR = "public/images/blog";
+const CATEGORIES = categoriesData.categories;
 
 function createImageFolders() {
-  const categories = ["racing", "code", "projects", "life"];
-
-  categories.forEach((category) => {
+  CATEGORIES.forEach((category) => {
     const categoryPath = path.join(PUBLIC_IMAGES_DIR, category);
 
     if (!fs.existsSync(categoryPath)) {
@@ -29,10 +29,9 @@ function createImageFolders() {
 
   console.log("\n📁 Image folder structure created!");
   console.log("Now you can add images to the appropriate folders:");
-  console.log("  - public/images/blog/racing/");
-  console.log("  - public/images/blog/code/");
-  console.log("  - public/images/blog/projects/");
-  console.log("  - public/images/blog/life/");
+  CATEGORIES.forEach((category) => {
+    console.log(`  - public/images/blog/${category}/`);
+  });
 }
 
 function generateImageHTML(postSlug) {

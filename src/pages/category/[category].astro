@@ -1,63 +1,33 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import { CATEGORIES, CATEGORY_INFO, type Category } from '../../content/config';
 
 export async function getStaticPaths() {
-  return [
-    { params: { category: 'racing' } },
-    { params: { category: 'code' } },
-    { params: { category: 'projects' } },
-    { params: { category: 'data' } },
-    { params: { category: 'life' } },
-  ];
+  return CATEGORIES.map((category) => ({
+    params: { category },
+  }));
 }
 
-const { category } = Astro.params;
+const categoryParam = Astro.params.category;
+
+if (!categoryParam || !(categoryParam in CATEGORY_INFO)) {
+  throw new Error(`Unknown category: ${categoryParam}`);
+}
+
+const category = categoryParam as Category;
 const posts = await getCollection('blog', (post) => 
   post.data.category === category && !post.data.draft
 );
 const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
-
-const categoryInfo = {
-  racing: {
-    emoji: '🏍️',
-    title: 'Racing & Track',
-    description: 'Latest track notes, bike builds, and race prep logs.',
-    color: '#e74c3c',
-  },
-  code: {
-    emoji: '💻',
-    title: 'Code & Tech',
-    description: 'Experiments in software, tooling, and automation.',
-    color: '#3498db',
-  },
-  projects: {
-    emoji: '🔧',
-    title: 'Projects',
-    description: 'Shop projects, fabrication, and electronics tinkering.',
-    color: '#f39c12',
-  },
-  data: {
-    emoji: '📊',
-    title: 'Data & Analysis',
-    description: 'Telemetry breakdowns, metrics, and race analytics.',
-    color: '#9b59b6',
-  },
-  life: {
-    emoji: '📝',
-    title: 'Life & Updates',
-    description: 'Personal updates, philosophies, and everything between.',
-    color: '#2ecc71',
-  },
-};
 ---
 
-<Layout title={`${categoryInfo[category].title} - StaubRacing`}>
-  <section class="category-shell section-card" style={`--category-color: ${categoryInfo[category].color}`}>
+<Layout title={`${CATEGORY_INFO[category].title} - StaubRacing`}>
+  <section class="category-shell section-card" style={`--category-color: ${CATEGORY_INFO[category].color}`}>
     <header class="category-header">
-      <span class="category-pill">{categoryInfo[category].emoji} {categoryInfo[category].title}</span>
-      <h1>{categoryInfo[category].title}</h1>
-      <p>{categoryInfo[category].description}</p>
+      <span class="category-pill">{CATEGORY_INFO[category].emoji} {CATEGORY_INFO[category].title}</span>
+      <h1>{CATEGORY_INFO[category].title}</h1>
+      <p>{CATEGORY_INFO[category].description}</p>
     </header>
 
     {sortedPosts.length > 0 ? (

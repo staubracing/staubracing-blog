@@ -1,0 +1,29 @@
+{
+  "categories": ["racing", "code", "projects", "life"],
+  "info": {
+    "racing": {
+      "emoji": "🏍️",
+      "title": "Racing & Bikes",
+      "color": "#e74c3c",
+      "description": "Track days, race reports, bike builds, setup"
+    },
+    "code": {
+      "emoji": "💻",
+      "title": "Code Projects",
+      "color": "#3498db",
+      "description": "Apps, tutorials, dev journey"
+    },
+    "projects": {
+      "emoji": "🔧",
+      "title": "Projects",
+      "color": "#f39c12",
+      "description": "Linux, Raspberry Pi, DIY electronics"
+    },
+    "life": {
+      "emoji": "📝",
+      "title": "Life & Updates",
+      "color": "#2ecc71",
+      "description": "Personal stuff, thoughts, what I am up to"
+    }
+  }
+}
