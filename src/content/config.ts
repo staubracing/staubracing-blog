@@ -1,10 +1,8 @@
 import { defineCollection, z } from "astro:content";
 import categoriesJson from "./categories.json";
 
-const categoriesData = categoriesJson as const;
-
 // Define category types for better TypeScript support
-export const CATEGORIES = categoriesData.categories;
+export const CATEGORIES = ["racing", "code", "projects", "life"] as const;
 export type Category = (typeof CATEGORIES)[number];
 
 // Category metadata with proper typing
@@ -16,7 +14,7 @@ export const CATEGORY_INFO: Record<
     color: string;
     description: string;
   }
-> = categoriesData.info;
+> = categoriesJson.info;
 
 const blog = defineCollection({
   type: "content",
