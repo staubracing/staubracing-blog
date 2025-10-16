@@ -49,6 +49,18 @@
   /* Shadows */
   --shadow-soft: 0 20px 55px -25px rgba(15, 23, 42, 0.75);
   --shadow-hard: 0 20px 50px -15px rgba(26, 135, 84, 0.35);
+
+  /* Semi-transparent Overlays */
+  --overlay-base-light: rgba(15, 23, 42, 0.55);
+  --overlay-base-medium: rgba(15, 23, 42, 0.6);
+  --overlay-base-strong: rgba(15, 23, 42, 0.75);
+  --overlay-base-subtle: rgba(2, 6, 23, 0.45);
+  --overlay-base-soft: rgba(2, 6, 23, 0.6);
+  --overlay-accent-hover: rgba(56, 189, 248, 0.18);
+  --overlay-accent-light: rgba(56, 189, 248, 0.08);
+  --overlay-accent-medium: rgba(56, 189, 248, 0.16);
+  --overlay-warning-light: rgba(250, 204, 21, 0.08);
+  --overlay-warning-medium: rgba(250, 204, 21, 0.15);
 }
 
 /* ============================================
@@ -87,6 +99,18 @@
   /* Shadows (lighter for light mode) */
   --shadow-soft: 0 20px 55px -25px rgba(15, 23, 42, 0.08);
   --shadow-hard: 0 20px 50px -15px rgba(26, 135, 84, 0.12);
+
+  /* Semi-transparent Overlays (adjusted for light mode) */
+  --overlay-base-light: rgba(241, 245, 249, 0.8);
+  --overlay-base-medium: rgba(248, 250, 252, 0.9);
+  --overlay-base-strong: rgba(255, 255, 255, 0.95);
+  --overlay-base-subtle: rgba(241, 245, 249, 0.6);
+  --overlay-base-soft: rgba(248, 250, 252, 0.85);
+  --overlay-accent-hover: rgba(56, 189, 248, 0.1);
+  --overlay-accent-light: rgba(56, 189, 248, 0.05);
+  --overlay-accent-medium: rgba(56, 189, 248, 0.08);
+  --overlay-warning-light: rgba(250, 204, 21, 0.1);
+  --overlay-warning-medium: rgba(250, 204, 21, 0.2);
 }
 
 /* ============================================

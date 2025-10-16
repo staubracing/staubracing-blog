@@ -97,7 +97,7 @@ const { Content } = await post.render();
     padding: 0.35rem 0.85rem;
     border-radius: 999px;
     border: 1px solid rgba(250, 204, 21, 0.4);
-    background: rgba(250, 204, 21, 0.15);
+    background: var(--overlay-warning-medium);
     color: var(--accent-amber);
     font-size: 0.8rem;
     letter-spacing: 0.06em;
@@ -114,7 +114,7 @@ const { Content } = await post.render();
     padding: 0.35rem 0.75rem;
     border-radius: 999px;
     border: 1px solid rgba(148, 163, 184, 0.25);
-    background: rgba(15, 23, 42, 0.55);
+    background: var(--overlay-base-light);
     font-size: 0.75rem;
     letter-spacing: 0.05em;
     text-transform: uppercase;
@@ -154,7 +154,7 @@ const { Content } = await post.render();
 
   /* Style your special formatting */
   .post-content :global(p):has(> strong):first-of-type {
-    background: rgba(250, 204, 21, 0.08);
+    background: var(--overlay-warning-light);
     padding: 1.25rem;
     border-radius: var(--radius-md);
     border-left: 4px solid rgba(250, 204, 21, 0.75);
@@ -165,7 +165,7 @@ const { Content } = await post.render();
     margin: 1.5rem 0;
     padding: 1.2rem 1.5rem;
     border-left: 4px solid rgba(56, 189, 248, 0.6);
-    background: rgba(56, 189, 248, 0.08);
+    background: var(--overlay-accent-light);
     border-radius: var(--radius-md);
     color: var(--text-secondary);
   }
@@ -180,8 +180,8 @@ const { Content } = await post.render();
   }
 
   .post-content :global(pre) {
-    background: rgba(15, 23, 42, 0.75);
-    border: 1px solid rgba(148, 163, 184, 0.22);
+    background: var(--overlay-base-strong);
+    border: 1px solid var(--surface-border);
     border-radius: var(--radius-md);
     padding: 1.25rem;
     overflow-x: auto;
