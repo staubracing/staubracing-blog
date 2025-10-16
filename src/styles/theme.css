@@ -1,0 +1,105 @@
+/**
+ * Theme Variables
+ * Central location for all theme colors and tokens
+ * Organized like your React Native theme.ts for easy updates
+ */
+
+/* ============================================
+   DARK MODE (Default)
+   ============================================ */
+:root {
+  /* Color Scheme */
+  color-scheme: dark;
+
+  /* Base Colors */
+  --bg-base: #020617;
+  --bg-overlay: linear-gradient(135deg, rgba(2, 6, 23, 0.95), rgba(15, 23, 42, 0.92));
+
+  /* Highlights & Gradients */
+  --bg-highlight-1: radial-gradient(circle at top left, rgba(56, 189, 248, 0.35), transparent 55%);
+  --bg-highlight-2: radial-gradient(
+    circle at bottom right,
+    rgba(26, 135, 84, 0.35),
+    transparent 50%
+  );
+
+  /* Surface Colors */
+  --surface-solid: rgba(15, 23, 42, 0.86);
+  --surface-soft: rgba(15, 23, 42, 0.6);
+  --surface-border: rgba(148, 163, 184, 0.18);
+
+  /* Text Colors */
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+
+  /* Accent Colors */
+  --accent-electric: #38bdf8; /* Sky blue - links, highlights */
+  --accent-racing: #1a8754; /* Racing green - brand primary */
+  --accent-amber: #facc15; /* Warning/attention */
+
+  /* Typography */
+  --brand-font: "Space Grotesk", "Racing Sans One", sans-serif;
+  --body-font: "Inter", "Roboto", "Segoe UI", sans-serif;
+
+  /* Layout */
+  --radius-lg: 28px;
+  --radius-md: 18px;
+  --layout-max: 1200px;
+
+  /* Shadows */
+  --shadow-soft: 0 20px 55px -25px rgba(15, 23, 42, 0.75);
+  --shadow-hard: 0 20px 50px -15px rgba(26, 135, 84, 0.35);
+}
+
+/* ============================================
+   LIGHT MODE
+   ============================================ */
+:root[data-theme="light"] {
+  /* Color Scheme */
+  color-scheme: light;
+
+  /* Base Colors */
+  --bg-base: #ffffff;
+  --bg-overlay: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.95));
+
+  /* Highlights & Gradients */
+  --bg-highlight-1: radial-gradient(circle at top left, rgba(56, 189, 248, 0.08), transparent 60%);
+  --bg-highlight-2: radial-gradient(
+    circle at bottom right,
+    rgba(26, 135, 84, 0.08),
+    transparent 55%
+  );
+
+  /* Surface Colors */
+  --surface-solid: rgba(255, 255, 255, 0.95);
+  --surface-soft: rgba(255, 255, 255, 0.85);
+  --surface-border: rgba(71, 85, 105, 0.2);
+
+  /* Text Colors */
+  --text-primary: #0f172a; /* Dark slate - high contrast */
+  --text-secondary: #1e293b; /* Darker for better readability */
+
+  /* Accent Colors */
+  --accent-electric: #0369a1; /* Darker blue for contrast */
+  --accent-racing: #15803d; /* Green - maintains brand */
+  --accent-amber: #b45309; /* Darker amber for readability */
+
+  /* Shadows (lighter for light mode) */
+  --shadow-soft: 0 20px 55px -25px rgba(15, 23, 42, 0.08);
+  --shadow-hard: 0 20px 50px -15px rgba(26, 135, 84, 0.12);
+}
+
+/* ============================================
+   THEME TOKENS REFERENCE
+   
+   Update these colors to change your entire theme!
+   
+   Brand Colors:
+   - Racing Green: #1a8754 (dark) / #15803d (light)
+   - Electric Blue: #38bdf8 (dark) / #0369a1 (light)
+   
+   Neutrals:
+   - Dark mode: #020617 -> #e2e8f0
+   - Light mode: #ffffff -> #0f172a
+   
+   ============================================ */

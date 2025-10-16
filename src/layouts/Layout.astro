@@ -1,5 +1,8 @@
 ---
 import ThemeToggle from '../components/ThemeToggle.astro';
+import '../styles/theme.css';
+import '../styles/global.css';
+
 const { title } = Astro.props;
 ---
 
@@ -99,65 +102,11 @@ const { title } = Astro.props;
 </html>
 
 <style>
-  :global(:root) {
-    /* Dark mode colors (default) */
-    color-scheme: dark;
-    --bg-base: #020617;
-    --bg-overlay: linear-gradient(135deg, rgba(2, 6, 23, 0.95), rgba(15, 23, 42, 0.92));
-    --bg-highlight-1: radial-gradient(circle at top left, rgba(56, 189, 248, 0.35), transparent 55%);
-    --bg-highlight-2: radial-gradient(circle at bottom right, rgba(26, 135, 84, 0.35), transparent 50%);
-    --surface-solid: rgba(15, 23, 42, 0.86);
-    --surface-soft: rgba(15, 23, 42, 0.6);
-    --surface-border: rgba(148, 163, 184, 0.18);
-    --text-primary: #e2e8f0;
-    --text-secondary: #94a3b8;
-    --accent-electric: #38bdf8;
-    --accent-racing: #1a8754;
-    --accent-amber: #facc15;
-    --brand-font: 'Space Grotesk', 'Racing Sans One', sans-serif;
-    --body-font: 'Inter', 'Roboto', 'Segoe UI', sans-serif;
-    --radius-lg: 28px;
-    --radius-md: 18px;
-    --shadow-soft: 0 20px 55px -25px rgba(15, 23, 42, 0.75);
-    --shadow-hard: 0 20px 50px -15px rgba(26, 135, 84, 0.35);
-    --layout-max: 1200px;
-  }
-
-  /* Light mode color overrides */
-  :global(:root[data-theme="light"]) {
-    color-scheme: light;
-    --bg-base: #ffffff;
-    --bg-overlay: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.95));
-    --bg-highlight-1: radial-gradient(circle at top left, rgba(56, 189, 248, 0.08), transparent 60%);
-    --bg-highlight-2: radial-gradient(circle at bottom right, rgba(26, 135, 84, 0.08), transparent 55%);
-    --surface-solid: rgba(255, 255, 255, 0.95);
-    --surface-soft: rgba(255, 255, 255, 0.85);
-    --surface-border: rgba(71, 85, 105, 0.2);
-    --text-primary: #0f172a;
-    --text-secondary: #1e293b;
-    --accent-electric: #0369a1;
-    --accent-racing: #15803d;
-    --accent-amber: #b45309;
-    --shadow-soft: 0 20px 55px -25px rgba(15, 23, 42, 0.08);
-    --shadow-hard: 0 20px 50px -15px rgba(26, 135, 84, 0.12);
-  }
-
-  :global(*), :global(*::before), :global(*::after) {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    min-height: 100vh;
-    font-family: var(--body-font);
-    font-size: 1rem;
-    line-height: 1.7;
-    background: var(--bg-base);
-    color: var(--text-primary);
-    position: relative;
-    padding: 0 1.5rem;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
+  /* ============================================
+     LAYOUT-SPECIFIC STYLES
+     Global styles are in src/styles/global.css
+     Theme variables are in src/styles/theme.css
+     ============================================ */
 
   .background {
     position: fixed;
@@ -266,60 +215,8 @@ const { title } = Astro.props;
     backdrop-filter: blur(16px);
   }
 
-  :global(a) {
-    color: var(--accent-electric);
-    text-decoration: none;
-  }
-
-  :global(a:hover),
-  :global(a:focus-visible) {
-    color: var(--text-primary);
-    text-decoration: underline;
-  }
-
-  :global(p) {
-    color: var(--text-secondary);
-    line-height: 1.7;
-  }
-
-  :global(h1),
-  :global(h2),
-  :global(h3) {
-    font-family: var(--brand-font);
-    margin: 0;
-    color: var(--text-primary);
-    font-weight: 700;
-    letter-spacing: 0.02em;
-  }
-
-  :global(.section-card) {
-    padding: clamp(1.75rem, 2.5vw, 2.75rem);
-    background: var(--surface-solid);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--surface-border);
-    box-shadow: var(--shadow-soft);
-    backdrop-filter: blur(16px);
-  }
-
-  :global(.pill) {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    padding: 0.35rem 0.85rem;
-    border-radius: 999px;
-    border: 1px solid rgba(56, 189, 248, 0.25);
-    background: rgba(56, 189, 248, 0.12);
-    color: #f8fafc;
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-
+  /* Mobile Responsive */
   @media (max-width: 768px) {
-    body {
-      padding: 0 1rem;
-    }
 
     .site-header {
       flex-direction: column;
