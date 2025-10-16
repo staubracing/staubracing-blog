@@ -90,6 +90,57 @@ a:focus-visible {
   text-transform: uppercase;
 }
 
+/* Category Pills & Chips */
+.category-pill,
+.category-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--badge-color, var(--category-color)) 20%, transparent);
+  border: 1px solid color-mix(in srgb, var(--badge-color, var(--category-color)) 45%, transparent);
+  color: var(--text-primary);
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Tag List */
+.tag-list {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag-list li {
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  background: var(--overlay-base-medium);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+/* Base Card Styles */
+.card-base {
+  display: grid;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  transition: border 0.2s ease, transform 0.2s ease;
+}
+
+.card-base:hover,
+.card-base:focus-within {
+  border-color: color-mix(in srgb, var(--category-color, var(--accent-electric)) 42%, transparent);
+  transform: translateY(-1px);
+}
+
 /* ============================================
    MOBILE RESPONSIVE
    ============================================ */

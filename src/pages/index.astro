@@ -120,9 +120,9 @@ const postsByCategory: Record<Category, typeof posts> = {
     text-align: center;
     padding: clamp(3rem, 10vw, 5rem) clamp(1rem, 4vw, 3.5rem);
     margin-top: 2rem;
-    background: linear-gradient(140deg, rgba(26, 135, 84, 0.22), rgba(56, 189, 248, 0.18));
+    background: linear-gradient(140deg, color-mix(in srgb, var(--accent-racing) 15%, transparent), color-mix(in srgb, var(--accent-electric) 12%, transparent));
     border-radius: var(--radius-lg);
-    border: 1px solid rgba(56, 189, 248, 0.25);
+    border: 1px solid color-mix(in srgb, var(--accent-electric) 25%, var(--surface-border));
     box-shadow: var(--shadow-hard);
     backdrop-filter: blur(18px);
   }
@@ -177,14 +177,14 @@ const postsByCategory: Record<Category, typeof posts> = {
   }
 
   .hero-button.ghost {
-    border-color: rgba(56, 189, 248, 0.35);
+    border-color: color-mix(in srgb, var(--accent-electric) 35%, transparent);
     background: var(--overlay-base-medium);
     color: var(--text-primary);
   }
 
   .hero-button.ghost:hover,
   .hero-button.ghost:focus-visible {
-    border-color: rgba(56, 189, 248, 0.6);
+    border-color: color-mix(in srgb, var(--accent-electric) 60%, transparent);
     background: var(--overlay-accent-medium);
     transform: translateY(-1px);
   }
@@ -216,31 +216,16 @@ const postsByCategory: Record<Category, typeof posts> = {
     gap: 0.85rem;
     padding: 1.75rem;
     border-radius: var(--radius-md);
-    background:
-      linear-gradient(150deg, rgba(56, 189, 248, 0.12), rgba(26, 135, 84, 0.08)),
-      rgba(15, 23, 42, 0.78);
-    border: 1px solid rgba(148, 163, 184, 0.18);
-    box-shadow: 0 18px 40px -28px rgba(15, 23, 42, 0.8);
+    background: var(--surface-solid);
+    border: 1px solid var(--surface-border);
+    box-shadow: var(--shadow-soft);
     backdrop-filter: blur(14px);
   }
 
   .featured-post:hover {
-    border-color: rgba(148, 163, 184, 0.28);
+    border-color: color-mix(in srgb, var(--badge-color) 35%, var(--surface-border));
     transform: translateY(-2px);
-  }
-
-  .featured-post .category-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.4rem 0.85rem;
-    border-radius: 999px;
-    background: color-mix(in srgb, var(--badge-color) 25%, transparent);
-    border: 1px solid color-mix(in srgb, var(--badge-color) 45%, transparent);
-    color: var(--text-primary);
-    font-size: 0.75rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
+    box-shadow: var(--shadow-hard);
   }
 
   .featured-post h3 {
@@ -277,9 +262,9 @@ const postsByCategory: Record<Category, typeof posts> = {
     gap: 1.25rem;
     padding: 1.75rem;
     border-radius: var(--radius-md);
-    background: linear-gradient(155deg, color-mix(in srgb, var(--category-color) 18%, transparent), rgba(15, 23, 42, 0.8));
-    border: 1px solid color-mix(in srgb, var(--category-color) 30%, rgba(148, 163, 184, 0.18));
-    box-shadow: 0 16px 36px -28px rgba(15, 23, 42, 0.9);
+    background: linear-gradient(155deg, color-mix(in srgb, var(--category-color) 10%, transparent), var(--surface-solid));
+    border: 1px solid color-mix(in srgb, var(--category-color) 25%, var(--surface-border));
+    box-shadow: var(--shadow-soft);
   }
 
   .category-card header {
@@ -315,17 +300,18 @@ const postsByCategory: Record<Category, typeof posts> = {
     gap: 0.75rem;
     padding: 0.8rem 1rem;
     border-radius: 14px;
-    border: 1px solid rgba(148, 163, 184, 0.14);
-    background: var(--overlay-base-subtle);
+    border: 1px solid var(--surface-border);
+    background: var(--overlay-base-light);
     color: var(--text-primary);
     font-size: 0.95rem;
-    transition: transform 0.2s ease, border 0.2s ease;
+    transition: transform 0.2s ease, border 0.2s ease, background 0.2s ease;
   }
 
   .category-links a:hover,
   .category-links a:focus-visible {
     transform: translateY(-1px);
-    border-color: color-mix(in srgb, var(--category-color) 45%, transparent);
+    border-color: color-mix(in srgb, var(--category-color) 40%, var(--surface-border));
+    background: var(--overlay-base-medium);
   }
 
   .category-links time {
@@ -352,15 +338,16 @@ const postsByCategory: Record<Category, typeof posts> = {
     gap: 0.75rem;
     padding: 1.5rem 1.75rem;
     border-radius: var(--radius-md);
-    background: var(--overlay-base-soft);
-    border: 1px solid rgba(148, 163, 184, 0.16);
-    transition: border 0.2s ease, transform 0.2s ease;
+    background: var(--surface-solid);
+    border: 1px solid var(--surface-border);
+    transition: border 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
 
   .recent-post:hover,
   .recent-post:focus-within {
-    border-color: color-mix(in srgb, var(--category-color) 42%, transparent);
+    border-color: color-mix(in srgb, var(--category-color) 40%, var(--surface-border));
     transform: translateY(-1px);
+    box-shadow: var(--shadow-soft);
   }
 
   .recent-post header {
@@ -372,18 +359,6 @@ const postsByCategory: Record<Category, typeof posts> = {
     color: var(--text-secondary);
   }
 
-  .category-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.35rem 0.8rem;
-    border-radius: 999px;
-    border: 1px solid color-mix(in srgb, var(--category-color) 45%, transparent);
-    background: color-mix(in srgb, var(--category-color) 20%, transparent);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-
   .recent-post h3 {
     margin: 0;
     font-size: 1.2rem;
@@ -391,26 +366,6 @@ const postsByCategory: Record<Category, typeof posts> = {
 
   .recent-post p {
     margin: 0;
-  }
-
-  .tag-list {
-    display: flex;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .tag-list li {
-    padding: 0.3rem 0.7rem;
-    border-radius: 999px;
-    border: 1px solid rgba(148, 163, 184, 0.2);
-    background: var(--overlay-base-medium);
-    font-size: 0.75rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--text-secondary);
   }
 
   @media (max-width: 768px) {
