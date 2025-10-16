@@ -1,0 +1,82 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-sckkx6r4> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="dark light"><title>ZX6R Engine Rebuild - Part 1: From Trackside Trouble to Engine Pull</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Racing+Sans+One&family=Roboto:wght@400;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="/_astro/_slug_.CrNHjrRA.css">
+<style>.media-container[data-astro-cid-giot6bxk]{margin:2.25rem 0;display:grid;justify-items:center;gap:.75rem}.media-element[data-astro-cid-giot6bxk]{width:100%;border-radius:var(--radius-lg);border:1px solid rgba(148,163,184,.2);box-shadow:0 25px 45px -30px #0f172ad9;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;background:#020617bf}.media-element[data-astro-cid-giot6bxk]:hover{transform:translateY(-3px);border-color:#38bdf847;box-shadow:0 30px 55px -28px #1a875499}.media-caption[data-astro-cid-giot6bxk]{margin:0;font-style:italic;color:var(--text-secondary);font-size:.9rem;text-align:center}@media (max-width: 768px){.media-container[data-astro-cid-giot6bxk]{margin:1.75rem 0}}
+.post-header[data-astro-cid-7jjqptxk]{display:grid;gap:.65rem;margin-bottom:2rem;padding-bottom:1.25rem;border-bottom:1px solid rgba(148,163,184,.2)}.post-title[data-astro-cid-7jjqptxk]{font-size:clamp(2.2rem,4vw,3rem);letter-spacing:.04em;line-height:1.15}.post-date[data-astro-cid-7jjqptxk]{font-size:.95rem;color:var(--text-secondary);letter-spacing:.08em;text-transform:uppercase}.post-content[data-astro-cid-7jjqptxk]{font-size:1.3rem;line-height:1.85;display:grid;gap:1.75rem}.post-content[data-astro-cid-7jjqptxk]>p[data-astro-cid-7jjqptxk]{margin:0}.editor-credit[data-astro-cid-7jjqptxk]{font-size:.95rem;color:var(--text-secondary);font-style:italic;opacity:.85}.featured-badge[data-astro-cid-7jjqptxk]{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .85rem;border-radius:999px;border:1px solid rgba(250,204,21,.4);background:#facc1526;color:#fde68a;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase}.tags[data-astro-cid-7jjqptxk]{display:flex;gap:.5rem;flex-wrap:wrap}.tag[data-astro-cid-7jjqptxk]{padding:.35rem .75rem;border-radius:999px;border:1px solid rgba(148,163,184,.25);background:#0f172a8c;font-size:.75rem;letter-spacing:.05em;text-transform:uppercase;color:var(--text-secondary)}.post-content[data-astro-cid-7jjqptxk] h2,.post-content[data-astro-cid-7jjqptxk] h3{color:var(--text-primary);font-family:var(--brand-font);margin-top:2.5rem;margin-bottom:1rem;position:relative}.post-content[data-astro-cid-7jjqptxk] h2:after,.post-content[data-astro-cid-7jjqptxk] h3:after{content:"";position:absolute;bottom:-.5rem;left:0;width:160px;height:2px;background:linear-gradient(90deg,#1a8754cc,#38bdf899)}.post-content[data-astro-cid-7jjqptxk] p{margin:0 0 1.8rem;color:#cbd5e1}.post-content[data-astro-cid-7jjqptxk] strong{color:#f8fafc;font-weight:600}.post-content[data-astro-cid-7jjqptxk] p:has(>strong):first-of-type{background:#facc1514;padding:1.25rem;border-radius:var(--radius-md);border-left:4px solid rgba(250,204,21,.75);color:#fde68a}.post-content[data-astro-cid-7jjqptxk] blockquote{margin:1.5rem 0;padding:1.2rem 1.5rem;border-left:4px solid rgba(56,189,248,.6);background:#38bdf814;border-radius:var(--radius-md);color:#e0f2fe}.post-content[data-astro-cid-7jjqptxk] code{font-family:JetBrains Mono,Fira Code,monospace;background:#0f172acc;border:1px solid rgba(148,163,184,.25);border-radius:6px;padding:.15rem .4rem;color:#f8fafc}.post-content[data-astro-cid-7jjqptxk] pre{background:#0f172abf;border:1px solid rgba(148,163,184,.22);border-radius:var(--radius-md);padding:1.25rem;overflow-x:auto;box-shadow:var(--shadow-soft)}
+</style></head> <body data-astro-cid-sckkx6r4> <div class="background" aria-hidden="true" data-astro-cid-sckkx6r4></div> <header class="site-header" data-astro-cid-sckkx6r4> <a class="brand" href="/" data-astro-cid-sckkx6r4> <span class="brand-primary" data-astro-cid-sckkx6r4>Staub</span> <span class="brand-secondary" data-astro-cid-sckkx6r4>Racing</span> </a> <nav class="site-nav" aria-label="Primary navigation" data-astro-cid-sckkx6r4> <a href="/" data-astro-cid-sckkx6r4>Home</a> <a href="/category/racing" data-astro-cid-sckkx6r4>Racing</a> <a href="/category/projects" data-astro-cid-sckkx6r4>Projects</a> <a href="/category/code" data-astro-cid-sckkx6r4>Code</a> <a href="/category/life" data-astro-cid-sckkx6r4>Life</a> <a href="https://staubracing.com/#contact" rel="noreferrer" target="_blank" data-astro-cid-sckkx6r4>Contact</a> <div class="theme-toggle" role="radiogroup" aria-label="Theme switcher" data-astro-cid-x3pjskd3> <button class="theme-option" data-theme-option="light" role="radio" aria-checked="false" aria-label="Switch to light mode" data-astro-cid-x3pjskd3> <span class="theme-icon" data-astro-cid-x3pjskd3>☀️</span> <span class="theme-label" data-astro-cid-x3pjskd3>Light</span> </button> <button class="theme-option" data-theme-option="dark" role="radio" aria-checked="true" aria-label="Switch to dark mode" data-astro-cid-x3pjskd3> <span class="theme-icon" data-astro-cid-x3pjskd3>🌙</span> <span class="theme-label" data-astro-cid-x3pjskd3>Dark</span> </button> <div class="theme-indicator" aria-hidden="true" data-astro-cid-x3pjskd3></div> </div>  <script type="module">function i(){const n=document.querySelector(".theme-toggle");if(!n)return;const o=n.querySelectorAll(".theme-option");function c(e){o.forEach(t=>{const d=t.getAttribute("data-theme-option")===e;t.setAttribute("aria-checked",d.toString())})}o.forEach(e=>{e.addEventListener("click",()=>{const t=e.getAttribute("data-theme-option");t&&document.dispatchEvent(new CustomEvent("theme-change",{detail:{theme:t}}))})}),document.addEventListener("theme-changed",e=>{c(e.detail.theme)});const a=document.documentElement.getAttribute("data-theme")||"dark";c(a)}i();document.addEventListener("astro:page-load",i);</script> </nav> </header> <main class="page-shell" data-astro-cid-sckkx6r4>  <article class="blog-post section-card" data-astro-cid-7jjqptxk> <header class="post-header" data-astro-cid-7jjqptxk> <h1 class="post-title" data-astro-cid-7jjqptxk>ZX6R Engine Rebuild - Part 1: From Trackside Trouble to Engine Pull</h1> <p class="post-date" data-astro-cid-7jjqptxk><em data-astro-cid-7jjqptxk>6/16/2025</em></p> </header> <div class="post-content" data-astro-cid-7jjqptxk> <p data-astro-cid-7jjqptxk>By: StaubRacing</p>  <p class="description" data-astro-cid-7jjqptxk>My adventure rebuilding a motorcycle engine after mysterious knocking</p> <span class="featured-badge" data-astro-cid-7jjqptxk>Featured Post!</span> <div class="tags" data-astro-cid-7jjqptxk> <span class="tag" data-astro-cid-7jjqptxk>motorcycle</span><span class="tag" data-astro-cid-7jjqptxk>engine</span><span class="tag" data-astro-cid-7jjqptxk>rebuild</span><span class="tag" data-astro-cid-7jjqptxk>zx6r</span> </div> <h2 id="-why-im-writing-this">🧠 Why I’m Writing This</h2>
+<p>I bought a 2009 ZX6R in the summer of 2023, excited to race it all season and hopefully shave some time off my laps. Unfortunately, during the third round of the season—only my second race with the bike—the engine started making a knocking noise during Saturday morning practice.</p>
+<div style="text-align: center; margin: 2rem 0;">
+  <img src="/images/blog/racing/zx6r-engine-rebuild/zx6r-track-day.jpg" alt="My ZX6R at the track before the engine issues" style="max-width: 100%; height: auto; border: 3px solid #e0e0e0; border-radius: 12px; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform=&#x27;scale(1.02)&#x27;; this.style.boxShadow=&#x27;0 8px 25px rgba(0,0,0,0.2)&#x27;" onmouseout="this.style.transform=&#x27;scale(1)&#x27;; this.style.boxShadow=&#x27;none&#x27;">
+</div>
+<p>Right away, I pitted and started trying to figure out what was going on. I fired the bike back up and listened carefully. The noise sounded like a rattle—subtle, but definitely not normal. A few people came over to listen and tossed around their guesses, everything from cam chain rattle to a spun rod bearing. At that point, I knew I had a real problem on my hands, and racing that weekend was off the table.</p>
+<p>I’m writing this to share my experience taking on this project—and hopefully motivate someone else to find the confidence to do the same.</p>
+<h2 id="-what-happened--what-i-learned">💬 What Happened / What I Learned</h2>
+<p>I started with some high-level troubleshooting to figure out what the noise was and where it was coming from. The sound was definitely coming from the right side of the engine, which led me to believe it might be a cam chain issue.</p>
+<p>A few people at the track were convinced it was a main rod bearing. But by using the old screwdriver-to-the-ear trick—the classic “poor man’s stethoscope”—I was able to narrow the noise down to the #4 cylinder area, right around where the cam chain sits.</p>
+<p>🛠️ <strong>Digging in:</strong> I started by removing the fairings, gas tank, and airbox to gain access to the valve cover. My thought was: let’s verify the cam chain and check the valve clearances. This bike has an automatic cam chain tensioner, and I wanted to properly remove and inspect it. I also have a manual tensioner that will fit, so that was one of the first troubleshooting steps I wanted to try at this stage.</p>
+<p>🛠️ <strong>Initial findings:</strong> The cam chain tensioner looked fine, and the chain itself was tight and in good condition. I checked the valve clearances, and everything was within spec. So at this point, I was confident the issue wasn’t coming from the cam chain or valve train.</p>
+<p>🔧 <strong>Time to go deeper:</strong> With the cam chain, tensioner, and valve clearances all checking out, I was running out of options—and getting a little frustrated. I had hoped it would be something simple, but the noise wasn’t going away, and I didn’t want to risk making things worse by running it again. At that point, I knew what I had to do: pull the engine and dig in for real.</p>
+<p>🧰 <strong>Let’s drop it:</strong> I had my friend Joe come over, and we began the process of dropping the engine. Before we could even get to that point, though, we had to remove the fairings, gas tank, and airbox again to fully expose the engine and free up space to work. I took a ton of pictures along the way—especially of the wiring, hoses, and mounting points—since I knew I’d need good documentation for the reassembly later.</p>
+<div style="text-align: center; margin: 2rem 0;">
+  <img src="/images/blog/racing/zx6r-engine-rebuild/drop-prep.jpg" alt="My ZX6R at the track before the engine issues" style="max-width: 100%; height: auto; border: 3px solid #e0e0e0; border-radius: 12px; transition: transform 0.3s ease, box-shadow 0.3s ease;" onmouseover="this.style.transform=&#x27;scale(1.02)&#x27;; this.style.boxShadow=&#x27;0 8px 25px rgba(0,0,0,0.2)&#x27;" onmouseout="this.style.transform=&#x27;scale(1)&#x27;; this.style.boxShadow=&#x27;none&#x27;">
+</div>
+<h3 id="-engine-removal-process">📸 Engine Removal Process</h3>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0;">
+  <img src="/images/blog/racing/zx6r-engine-rebuild/engine-drop.jpg" alt="Engine removal step 1">
+  <img src="/images/blog/racing/zx6r-engine-rebuild/engine-removal-2.jpg" alt="Engine removal step 2">
+  <img src="/images/blog/racing/zx6r-engine-rebuild/engine-removal-3.jpg" alt="Engine removal step 3">
+  <img src="/images/blog/racing/zx6r-engine-rebuild/engine-removal-4.jpg" alt="Engine removal step 4">
+</div>
+<p>The engine removal itself went smoothly. Once it was out, we set it aside and got to work. We removed the valve cover, pulled the camshafts, and carefully removed the valve buckets along with the shims. When it came time to remove the cylinder head, I made sure to loosen the bolts in the correct sequence to avoid warping it. Taking the time to follow the proper order was critical—and something I didn’t want to rush or guess on.</p>
+<p><img src="/images/blog/racing/zx6r-engine-rebuild/engine-workbench.jpg" alt="Engine on the workbench ready for disassembly"></p>
+<p>With all the bolts removed, we gently tapped the head to break it free. As we lifted it off, we almost immediately saw the issue. Yup—there it was. Everything suddenly made a lot more sense.</p>
+<p><strong>To be continued in Part 2…</strong><br>
+🕵️ In Part 2, I’ll walk through what we found once the head came off—including the exact damage and what it’ll take to fix it.</p> </div> </article>  </main> <footer class="site-footer" data-astro-cid-sckkx6r4> <p data-astro-cid-sckkx6r4>
+© 2025 Staub Racing<br data-astro-cid-sckkx6r4>
+Created by Christopher Staub · Edited (and improved) by Michael T. Smith<br data-astro-cid-sckkx6r4>
+No bullshit. Just bikes, builds, and bytes.
+</p> </footer> <script>
+      // Theme initialization - runs immediately to prevent flash
+      (function() {
+        function getPreferredTheme() {
+          // Check localStorage first
+          const stored = localStorage.getItem('theme');
+          if (stored === 'light' || stored === 'dark') {
+            return stored;
+          }
+          
+          // Fall back to system preference
+          if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+            return 'light';
+          }
+          
+          // Default to dark
+          return 'dark';
+        }
+
+        function setTheme(theme) {
+          document.documentElement.setAttribute('data-theme', theme);
+          localStorage.setItem('theme', theme);
+          
+          // Notify components that theme has changed
+          document.dispatchEvent(new CustomEvent('theme-changed', { 
+            detail: { theme } 
+          }));
+        }
+
+        // Apply theme immediately
+        const theme = getPreferredTheme();
+        setTheme(theme);
+
+        // Listen for toggle clicks
+        document.addEventListener('theme-change', (e) => {
+          setTheme(e.detail.theme);
+        });
+
+        // Listen for system preference changes
+        window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+          // Only auto-switch if user hasn't manually set a preference
+          if (!localStorage.getItem('theme')) {
+            setTheme(e.matches ? 'light' : 'dark');
+          }
+        });
+      })();
+    </script> </body> </html>  
