@@ -98,7 +98,7 @@ const { Content } = await post.render();
     border-radius: 999px;
     border: 1px solid rgba(250, 204, 21, 0.4);
     background: rgba(250, 204, 21, 0.15);
-    color: #fde68a;
+    color: var(--accent-amber);
     font-size: 0.8rem;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -144,11 +144,11 @@ const { Content } = await post.render();
 
   .post-content :global(p) {
     margin: 0 0 1.8rem;
-    color: #cbd5e1;
+    color: var(--text-secondary);
   }
 
   .post-content :global(strong) {
-    color: #f8fafc;
+    color: var(--text-primary);
     font-weight: 600;
   }
 
@@ -158,7 +158,7 @@ const { Content } = await post.render();
     padding: 1.25rem;
     border-radius: var(--radius-md);
     border-left: 4px solid rgba(250, 204, 21, 0.75);
-    color: #fde68a;
+    color: var(--text-secondary);
   }
 
   .post-content :global(blockquote) {
@@ -167,16 +167,16 @@ const { Content } = await post.render();
     border-left: 4px solid rgba(56, 189, 248, 0.6);
     background: rgba(56, 189, 248, 0.08);
     border-radius: var(--radius-md);
-    color: #e0f2fe;
+    color: var(--text-secondary);
   }
 
   .post-content :global(code) {
     font-family: 'JetBrains Mono', 'Fira Code', monospace;
-    background: rgba(15, 23, 42, 0.8);
-    border: 1px solid rgba(148, 163, 184, 0.25);
+    background: var(--surface-soft);
+    border: 1px solid var(--surface-border);
     border-radius: 6px;
     padding: 0.15rem 0.4rem;
-    color: #f8fafc;
+    color: var(--text-primary);
   }
 
   .post-content :global(pre) {

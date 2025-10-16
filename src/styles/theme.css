@@ -76,8 +76,8 @@
   --surface-border: rgba(71, 85, 105, 0.2);
 
   /* Text Colors */
-  --text-primary: #0f172a; /* Dark slate - high contrast */
-  --text-secondary: #1e293b; /* Darker for better readability */
+  --text-primary: #000000; /* Pure black */
+  --text-secondary: #1a1a1a; /* Near black */
 
   /* Accent Colors */
   --accent-electric: #0369a1; /* Darker blue for contrast */
