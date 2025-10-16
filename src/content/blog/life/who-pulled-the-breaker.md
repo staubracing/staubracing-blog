@@ -24,7 +24,7 @@ Kevin, or K-Dog, as everyone called him, was a farmer from International Falls, 
 
 ## The Assignment
 
-That night, we drew a 727-200 with an erratic fuel-flow issue — easy job, just messy as hell sometimes. We loaded the truck with toolboxes, a spare transmitter, and our standard survival kit — coffee strong enough to strip paint, a couple bottles of Mountain Dew, and enough smokes to fog the hangar. The dashboard was a mess of logbooks, menthol cigarettes, and empty Copenhagen cans sliding around as we bounced across the ramp toward the airplane.
+That night, we drew a 727-200 with an erratic fuel-flow issue, easy job, just messy as hell sometimes. We loaded the truck with toolboxes, a spare transmitter, and our standard survival kit, coffee strong enough to strip paint, a couple bottles of Mountain Dew, and enough smokes to fog the hangar. The dashboard was a mess of logbooks, menthol cigarettes, and empty Copenhagen cans sliding around as we bounced across the ramp toward the airplane.
 
 Kevin killed the engine and popped the door.
 
