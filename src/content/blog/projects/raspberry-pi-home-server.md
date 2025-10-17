@@ -23,13 +23,6 @@ I started with a **Raspberry Pi 4 Model B** (8GB RAM) - the perfect balance of p
 
 ## 🐧 Operating System Choice
 
-I went with **Ubuntu Server 22.04 LTS** instead of Raspberry Pi OS. Here's why:
-
-- **Better package support** for server applications
-- **Longer support cycle** (5 years vs 2 years)
-- **More familiar** for someone coming from desktop Ubuntu
-- **Better Docker support**
-
 ## 📦 Essential Services I'm Running
 
 ### 1. **Plex Media Server**
