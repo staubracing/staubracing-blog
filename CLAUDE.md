@@ -6,12 +6,20 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 StaubRacing Blog is a personal blog built with Astro 5, featuring content about motorcycle racing, coding projects, DIY builds, and life updates. The site uses static generation with MDX support and deploys to GitHub Pages.
 
+## Quick Start
+
+```bash
+yarn install              # Install dependencies
+yarn dev                  # Start development server (http://localhost:4321)
+```
+
 ## Commands
 
 ```bash
 yarn dev          # Start development server (http://localhost:4321)
 yarn build        # Build for production (outputs to dist/)
 yarn preview      # Preview production build locally
+yarn astro check  # TypeScript validation
 yarn deploy       # Build and deploy to GitHub Pages
 ```
 
@@ -21,7 +29,9 @@ node scripts/add-images.js create-folders           # Scaffold category director
 node scripts/add-images.js generate-html <post>      # Print Markdown snippets for images
 ```
 
-Before committing changes, run `yarn build` and `yarn preview` to verify. Use `yarn astro check` for TypeScript validation.
+**Image organization:** Blog images follow the pattern `public/images/blog/{category}/{post-slug}/`. Use the helper script above to scaffold folders and generate HTML snippets.
+
+Before committing changes, run `yarn build` and `yarn preview` to verify.
 
 ## File Conventions
 
@@ -29,6 +39,30 @@ Before committing changes, run `yarn build` and `yarn preview` to verify. Use `y
 - **Components**: PascalCase (`MediaDisplay.astro`, `ThemeToggle.astro`)
 - **Blog posts**: kebab-case slugs, organized by category in `src/content/blog/{category}/`
 - **Indentation**: 2 spaces
+
+### Directory Structure
+
+```
+staubracing-blog/
+├── public/
+│   └── images/blog/       # Static images organized by {category}/{slug}/
+├── scripts/
+│   └── add-images.js      # Media helper for blog post images
+├── src/
+│   ├── components/        # Astro components (PascalCase)
+│   ├── content/
+│   │   ├── blog/          # Blog posts organized by category
+│   │   ├── categories.json
+│   │   └── config.ts      # Content collection schema
+│   ├── layouts/
+│   │   └── Layout.astro   # Main site wrapper
+│   ├── pages/
+│   │   ├── blog/[...slug].astro
+│   │   ├── category/[category].astro
+│   │   └── index.astro
+│   └── styles/
+└── astro.config.mjs       # Site config (URL: https://blog.staubracing.com)
+```
 
 ## Content Collections
 
@@ -38,6 +72,8 @@ Blog posts use Astro's content collection system with schema validation in `src/
 - `tags` - Array of tags
 - `category` - One of: racing, code, projects, life
 - `draft` - Boolean (true for WIP posts, excluded from builds)
+
+**Draft posts:** Setting `draft: true` excludes the post from production builds. Draft posts are still visible during development (`yarn dev`).
 
 Categories are configured in `src/content/categories.json` with associated emojis and colors.
 
