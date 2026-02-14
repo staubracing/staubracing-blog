@@ -2,7 +2,8 @@ import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 
 export default defineConfig({
-  site: "https://blog.staubracing.com",
+  site: "https://www.staubracing.com",
+  base: "/blog",
   outDir: "./dist",
   markdown: {
     remarkPlugins: [],
