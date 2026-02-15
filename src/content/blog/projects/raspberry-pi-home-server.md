@@ -12,7 +12,7 @@ category: "projects"
 
 Let me tell you how a credit card-sized computer ended up running more of my life than I ever planned.
 
-It started the way these things always start — with spite. I was staring at another round of subscription renewals. Cloud storage here, music streaming there, backup service over there. Fifteen bucks a month doesn't sound like much until you realize you're paying rent on your own data. Files I created, music I own, photos I took — all held hostage behind someone else's login page.
+It started the way these things always start , with spite. I was staring at another round of subscription renewals. Cloud storage here, music streaming there, backup service over there. Fifteen bucks a month doesn't sound like much until you realize you're paying rent on your own data. Files I created, music I own, photos I took , all held hostage behind someone else's login page.
 
 So I bought a Raspberry Pi. And then things got out of hand.
 
@@ -26,27 +26,27 @@ Total investment? Under $200 for the whole stack. That's less than a year of the
 
 ## What's Actually Running
 
-Here's the thing about homelab content on the internet — everyone shows you the twenty-container Docker stack with Grafana dashboards and reverse proxies and monitoring tools monitoring other monitoring tools. Nobody tells you that most of that stuff gets set up once, tinkered with for a weekend, and never looked at again.
+Here's the thing about homelab content on the internet , everyone shows you the twenty-container Docker stack with Grafana dashboards and reverse proxies and monitoring tools monitoring other monitoring tools. Nobody tells you that most of that stuff gets set up once, tinkered with for a weekend, and never looked at again.
 
 So here's what I'm _actually_ running. Not what I planned to run. Not what looked cool on r/selfhosted. What survived contact with reality.
 
-### Nextcloud — The Cloud, Except It's Mine
+### Nextcloud , The Cloud, Except It's Mine
 
-This is the workhorse. File sync across every device I own — laptop, phone, tablet. Contacts. Calendar. The works.
+This is the workhorse. File sync across every device I own , laptop, phone, tablet. Contacts. Calendar. The works.
 
 Is it as polished as Google Drive? No. Does the sync client occasionally do something weird that makes me open a terminal at 11pm? Yes. Do I care? Not even a little. My files live on hardware I can physically touch, and nobody's training an AI model on my data.
 
-The backup angle is where it really earns its keep. My laptop backs up to Nextcloud, Nextcloud lives on the external drive. If my laptop dies tomorrow, I lose nothing. I've tested this. Not on purpose — but I've tested it.
+The backup angle is where it really earns its keep. My laptop backs up to Nextcloud, Nextcloud lives on the external drive. If my laptop dies tomorrow, I lose nothing. I've tested this. Not on purpose , but I've tested it.
 
-### Navidrome — The One That Surprised Me
+### Navidrome , The One That Surprised Me
 
 I did not expect a self-hosted music server to become the thing I use most. But here we are.
 
-Navidrome serves my entire music library — the stuff I actually own, ripped from CDs, bought from Bandcamp, accumulated over twenty years of questionable taste. It runs a Subsonic-compatible API, which means any Subsonic client on any platform just works. Phone, desktop, car — doesn't matter.
+Navidrome serves my entire music library , the stuff I actually own, ripped from CDs, bought from Bandcamp, accumulated over twenty years of questionable taste. It runs a Subsonic-compatible API, which means any Subsonic client on any platform just works. Phone, desktop, car , doesn't matter.
 
 The audio quality is better than Spotify because I'm playing my own FLACs, not whatever compressed stream the algorithm decided I deserve. And there's something deeply satisfying about building a playlist without an algorithm trying to sell me a mood.
 
-### Backups — rclone, cron, and Trust Issues
+### Backups , rclone, cron, and Trust Issues
 
 Nobody writes blog posts about backup systems because they're not sexy. They just sit there, quietly doing their job, until the one day you need them and suddenly they're the most important thing you've ever built.
 
@@ -56,13 +56,13 @@ I've seen people build backup systems so complicated that the backup system itse
 
 ## What Didn't Make the Cut (Yet)
 
-This is the part nobody talks about — the gap between what you planned to run and what you actually ended up with.
+This is the part nobody talks about , the gap between what you planned to run and what you actually ended up with.
 
 When I started this project, I had the full homelab fantasy. Plex for movies and TV. Pi-hole for network-wide ad blocking. Home Assistant for smart home automation. The whole stack, neatly containerized, beautifully monitored.
 
-Here's what actually happened: I got Nextcloud and Navidrome running, they solved the problems I actually had, and the rest stayed on the to-do list. Not because they're bad tools — they're excellent. But there's a difference between a tool that solves a problem you have and a tool that solves a problem you think you should have.
+Here's what actually happened: I got Nextcloud and Navidrome running, they solved the problems I actually had, and the rest stayed on the to-do list. Not because they're bad tools , they're excellent. But there's a difference between a tool that solves a problem you have and a tool that solves a problem you think you should have.
 
-**Plex** is still on the radar. I have the media library for it, and video serving is the next logical step. It's happening — just hasn't happened yet. One project at a time.
+**Plex** is still on the radar. I have the media library for it, and video serving is the next logical step. It's happening , just hasn't happened yet. One project at a time.
 
 **Pi-hole** I still want. Network-wide ad blocking is genuinely useful, not just a flex. But the Pi is handling its current workload clean, and I didn't want to start stacking services until I was sure the foundation was solid.
 
