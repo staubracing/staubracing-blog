@@ -1,0 +1,150 @@
+---
+interface Props {
+  name: string;
+  image: string;
+  engine: string;
+  power: string;
+  weight: string;
+  status: 'ready' | 'maintenance';
+  statusText: string;
+}
+
+const { name, image, engine, power, weight, status, statusText } = Astro.props;
+---
+
+<article class="bike-card" data-status={status}>
+  <header class="bike-header">
+    <h3>{name}</h3>
+    <span class={`status-badge ${status}`}>
+      {status === 'ready' ? '✓' : '⚙'} {statusText}
+    </span>
+  </header>
+
+  <div class="bike-image">
+    <img src={image} alt={name} loading="lazy" />
+  </div>
+
+  <ul class="bike-specs">
+    <li><span class="spec-label">Engine</span><span class="spec-value">{engine}</span></li>
+    <li><span class="spec-label">Power</span><span class="spec-value">{power}</span></li>
+    <li><span class="spec-label">Weight</span><span class="spec-value">{weight}</span></li>
+  </ul>
+</article>
+
+<style>
+  .bike-card {
+    display: grid;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    background: var(--surface-solid);
+    border: 1px solid var(--surface-border);
+    transition: border 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .bike-card:hover {
+    border-color: var(--accent-racing);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hard);
+  }
+
+  .bike-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .bike-header h3 {
+    margin: 0;
+    font-size: 1.35rem;
+    letter-spacing: 0.05em;
+  }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .status-badge.ready {
+    background: color-mix(in srgb, var(--accent-racing) 20%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent-racing) 50%, transparent);
+    color: var(--accent-racing);
+  }
+
+  .status-badge.maintenance {
+    background: color-mix(in srgb, #f39c12 20%, transparent);
+    border: 1px solid color-mix(in srgb, #f39c12 50%, transparent);
+    color: #f39c12;
+  }
+
+  .bike-image {
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    background: var(--overlay-base-medium);
+  }
+
+  .bike-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .bike-card:hover .bike-image img {
+    transform: scale(1.03);
+  }
+
+  .bike-specs {
+    display: grid;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .bike-specs li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--surface-border);
+  }
+
+  .bike-specs li:last-child {
+    border-bottom: none;
+  }
+
+  .spec-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .spec-value {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  @media (max-width: 768px) {
+    .bike-card {
+      padding: 1.25rem;
+    }
+
+    .bike-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

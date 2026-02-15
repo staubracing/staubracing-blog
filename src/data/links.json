@@ -1,0 +1,47 @@
+{
+  "categories": [
+    {
+      "name": "Racing & Motorcycles",
+      "emoji": "🏍️",
+      "links": [
+        {
+          "title": "CRA Racing",
+          "url": "https://www.cra-mn.com/",
+          "description": "Championship Cup Series - Central Roadracing Association"
+        },
+        {
+          "title": "Brainerd International Raceway",
+          "url": "https://www.brainerdraceway.org/",
+          "description": "Home track for CRA races"
+        }
+      ]
+    },
+    {
+      "name": "Development & Code",
+      "emoji": "💻",
+      "links": [
+        {
+          "title": "GitHub",
+          "url": "https://github.com/staubracing",
+          "description": "My open source projects and code"
+        },
+        {
+          "title": "Astro",
+          "url": "https://astro.build",
+          "description": "The web framework this site is built with"
+        }
+      ]
+    },
+    {
+      "name": "Tools & Resources",
+      "emoji": "🔧",
+      "links": [
+        {
+          "title": "Claude Code",
+          "url": "https://claude.ai/code",
+          "description": "AI-powered terminal coding assistant"
+        }
+      ]
+    }
+  ]
+}

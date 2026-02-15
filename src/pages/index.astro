@@ -22,10 +22,17 @@ const postsByCategory: Record<Category, typeof posts> = {
 <Layout title="StaubRacing - Racing, Code & Everything Between">
   <section class="hero" id="top">
     <span class="hero-eyebrow pill">Engineer · Racer · Developer</span>
-    <h1>Welcome to StaubRacing!</h1>
+    <div class="hero-brand">
+      <h1>Welcome to <span class="brand-accent">Staub</span>Racing!</h1>
+    </div>
     <p class="hero-subtitle">
       I race motorcycles with more heart than skill, write code with more determination than genius, and document the whole beautiful disaster here.
     </p>
+    <div class="hero-badge">
+      <span class="badge-item">EST 2020</span>
+      <span class="badge-divider">·</span>
+      <span class="badge-item">CRA #106</span>
+    </div>
     <!-- <div class="hero-actions">
       <a class="hero-button primary" href="/category/racing">Race prep &amp; builds →</a>
       <a class="hero-button ghost" href="https://staubracing.com" target="_blank" rel="noreferrer">staubracing.com</a>
@@ -79,7 +86,7 @@ const postsByCategory: Record<Category, typeof posts> = {
                 </a>
               ))}
             </div>
-            <a class="view-all" href={`/category/${key}`}>
+            <a class="view-all" href={`/${key}`}>
               View {info.title.toLowerCase()} →
             </a>
           </article>
@@ -135,6 +142,26 @@ const postsByCategory: Record<Category, typeof posts> = {
     font-size: clamp(2.8rem, 6vw, 3.75rem);
     font-family: var(--brand-font);
     letter-spacing: 0.08em;
+  }
+
+  .brand-accent {
+    color: var(--accent-racing);
+  }
+
+  .hero-badge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .badge-divider {
+    color: var(--accent-racing);
   }
 
   .hero-subtitle {

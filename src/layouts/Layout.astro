@@ -13,6 +13,22 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="dark light" />
     <title>{title}</title>
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-profile-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Open Graph / Social -->
+    <meta name="description" content="Staub Racing - Motorcycle racing, coding projects, DIY builds, and life updates. Follow the journey at staubracing.com." />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content="Motorcycle racing, coding projects, DIY builds, and life updates." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://staubracing.com" />
+    <meta property="og:image" content="/images/brand/logo.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@StaubRacing106" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -30,11 +46,11 @@ const { title } = Astro.props;
       </a>
       <nav class="site-nav" aria-label="Primary navigation">
         <a href="/">Home</a>
-        <a href="/category/racing">Racing</a>
-        <a href="/category/projects">Projects</a>
-        <a href="/category/code">Code</a>
-        <a href="/category/life">Life</a>
-        <a href="https://staubracing.com/#contact" rel="noreferrer" target="_blank">Contact</a>
+        <a href="/racing">Racing</a>
+        <a href="/projects">Projects</a>
+        <a href="/code">Code</a>
+        <a href="/life">Life</a>
+        <a href="/contact">Contact</a>
         <ThemeToggle />
       </nav>
     </header>

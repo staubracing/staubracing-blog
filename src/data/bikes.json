@@ -1,0 +1,24 @@
+{
+  "bikes": [
+    {
+      "id": "kx450f",
+      "name": "2014 KX450F",
+      "image": "/images/gallery/450BIR.jpg",
+      "engine": "449cc",
+      "power": "55+ HP",
+      "weight": "247.5 lbs",
+      "status": "ready",
+      "statusText": "Ready for next race"
+    },
+    {
+      "id": "zx6r",
+      "name": "2009 ZX6R",
+      "image": "/images/gallery/ZX6R_Turn13.jpg",
+      "engine": "599cc",
+      "power": "127 HP",
+      "weight": "421 lbs",
+      "status": "maintenance",
+      "statusText": "Undergoing maintenance"
+    }
+  ]
+}

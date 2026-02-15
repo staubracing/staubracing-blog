@@ -1,0 +1,229 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+import { CATEGORY_INFO } from '../content/config';
+import BikeCard from '../components/ui/BikeCard.astro';
+import bikesData from '../data/bikes.json';
+
+const posts = await getCollection('blog', (post) =>
+  post.data.category === 'racing' && !post.data.draft
+);
+const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<Layout title="Racing - StaubRacing">
+  <section class="section-card" style={`--category-color: ${CATEGORY_INFO.racing.color}`}>
+    <header class="section-header">
+      <span class="category-pill">{CATEGORY_INFO.racing.emoji} {CATEGORY_INFO.racing.title}</span>
+      <h1>Racing</h1>
+      <p>{CATEGORY_INFO.racing.description}</p>
+    </header>
+
+    <div class="stats-row">
+      <div class="stat-item">
+        <span class="stat-label">Next Race</span>
+        <span class="stat-value">2026 Season Opener</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Current Focus</span>
+        <span class="stat-value">Suspension tuning</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Championship</span>
+        <span class="stat-value">7th - Ultralight</span>
+      </div>
+    </div>
+
+    <section class="bikes-section">
+      <h2>The Fleet</h2>
+      <div class="bikes-grid">
+        {bikesData.bikes.map(bike => (
+          <BikeCard
+            name={bike.name}
+            image={bike.image}
+            engine={bike.engine}
+            power={bike.power}
+            weight={bike.weight}
+            status={bike.status}
+            statusText={bike.statusText}
+          />
+        ))}
+      </div>
+    </section>
+
+    {sortedPosts.length > 0 ? (
+      <section class="posts-section">
+        <h2>Race Journal</h2>
+        <div class="posts-grid">
+          {sortedPosts.map(post => (
+            <article class="post-card">
+              <header>
+                <h3><a href={`/blog/${post.slug}`}>{post.data.title}</a></h3>
+                <time>{post.data.date.toLocaleDateString()}</time>
+              </header>
+              {post.data.description && <p>{post.data.description}</p>}
+              {post.data.tags.length > 0 && (
+                <ul class="tag-list">
+                  {post.data.tags.map(tag => <li>{tag}</li>)}
+                </ul>
+              )}
+            </article>
+          ))}
+        </div>
+      </section>
+    ) : (
+      <p class="empty-state">No racing posts yet. Check back soon for track day reports and bike builds.</p>
+    )}
+  </section>
+</Layout>
+
+<style>
+  .section-card {
+    display: grid;
+    gap: 1.75rem;
+    padding: clamp(1.75rem, 2.5vw, 2.75rem);
+    background: var(--surface-solid);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--surface-border);
+    box-shadow: var(--shadow-soft);
+    backdrop-filter: blur(16px);
+  }
+
+  .section-header {
+    display: grid;
+    gap: 0.8rem;
+    text-align: center;
+  }
+
+  .section-header h1 {
+    font-size: clamp(2.3rem, 5vw, 3.1rem);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .section-header p {
+    margin: 0;
+    color: var(--text-secondary);
+  }
+
+  .section-header .category-pill {
+    justify-self: center;
+  }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    padding: 1.25rem;
+    background: linear-gradient(155deg, color-mix(in srgb, var(--category-color) 8%, transparent), var(--overlay-base-light));
+    border-radius: var(--radius-md);
+    border: 1px solid color-mix(in srgb, var(--category-color) 20%, var(--surface-border));
+  }
+
+  .stat-item {
+    display: grid;
+    gap: 0.35rem;
+    text-align: center;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .stat-value {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .bikes-section h2,
+  .posts-section h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--surface-border);
+  }
+
+  .bikes-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+
+  .posts-section {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .posts-grid {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .post-card {
+    display: grid;
+    gap: 0.75rem;
+    padding: 1.35rem 1.5rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--surface-border);
+    background: var(--surface-solid);
+    transition: border 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .post-card:hover,
+  .post-card:focus-within {
+    border-color: color-mix(in srgb, var(--category-color) 40%, var(--surface-border));
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .post-card header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .post-card h3 {
+    margin: 0;
+    font-size: 1.3rem;
+  }
+
+  .post-card time {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .post-card p {
+    margin: 0;
+  }
+
+  .empty-state {
+    margin: 0;
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .post-card {
+      padding: 1.2rem 1.25rem;
+    }
+
+    .post-card header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .stats-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
