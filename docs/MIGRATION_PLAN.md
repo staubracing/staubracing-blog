@@ -8,128 +8,135 @@ Consolidate `staubracing.com` (static HTML) and `blog.staubracing.com` (Astro/Gi
 
 ---
 
-## Phase 1: Foundation
+## Current Status (Updated 2026-02-15)
 
-**Goal:** Get a working Astro project with the new site structure and design system.
-
-- Clone the existing Astro blog repo as the starting point
-- Define the design system: green accent color, dark/light toggle, monospace typography, card patterns
-- Build core layout components:
-  - `BaseLayout.astro` — shared page shell (head, meta, fonts)
-  - `Nav.astro` — main navigation (Home, Racing, Projects, Code, Life, Contact)
-  - `SubNav.astro` — contextual sub-navigation per section
-  - `Footer.astro`
-- Build reusable UI components:
-  - `BikeCard.astro`
-  - `BlogPostCard.astro`
-  - `StatCard.astro`
-  - `LinkCard.astro`
-- Set up the page routing structure:
-  - `src/pages/index.astro` — Home
-  - `src/pages/racing.astro`
-  - `src/pages/projects.astro`
-  - `src/pages/code.astro`
-  - `src/pages/life.astro`
-  - `src/pages/contact.astro`
-  - `src/pages/links.astro`
-  - `src/pages/blog/[...slug].astro` — dynamic blog post pages
-
-**Milestone:** Site builds locally with all pages navigable and styled. No content yet — just structure.
+| Phase | Status | Completion |
+|-------|--------|------------|
+| 1: Foundation | ✅ Complete | 100% |
+| 2: Content Migration | ✅ Complete | 100% |
+| 3: Home Page & Polish | ✅ Complete | 100% |
+| 4: AWS Deployment | ✅ Complete | 100% |
+| 5: Content Cadence | ⏳ Ongoing | — |
 
 ---
 
-## Phase 2: Content Migration
+## Phase 1: Foundation ✅
+
+**Goal:** Get a working Astro project with the new site structure and design system.
+
+- [x] Clone the existing Astro blog repo as the starting point
+- [x] Define the design system: green accent color, dark/light toggle, monospace typography, card patterns
+- [x] Build core layout components:
+  - [x] `Layout.astro` — shared page shell (head, meta, fonts, nav, footer combined)
+  - [x] `ThemeToggle.astro` — dark/light mode with localStorage persistence
+  - [ ] `SubNav.astro` — contextual sub-navigation per section (optional, later)
+- [x] Build reusable UI components:
+  - [x] `BikeCard.astro` — bike specs with status indicators
+  - [x] `StatCard.astro` — key-value stat display
+  - [x] `MediaDisplay.astro` — images, videos, embeds
+- [x] Set up the page routing structure:
+  - [x] `src/pages/index.astro` — Home
+  - [x] `src/pages/racing.astro` — Racing section (with bike cards + stats)
+  - [x] `src/pages/projects.astro` — Projects section
+  - [x] `src/pages/code.astro` — Code section
+  - [x] `src/pages/life.astro` — Life section
+  - [x] `src/pages/contact.astro` — Contact page with social links
+  - [x] `src/pages/links.astro` — Links hub
+  - [x] `src/pages/blog/[...slug].astro` — dynamic blog post pages
+  - [x] `src/pages/category/[category].astro` — category listings (backwards compatible)
+
+**Milestone:** ✅ Site builds locally with all pages navigable and styled.
+
+---
+
+## Phase 2: Content Migration ✅
 
 **Goal:** Move all existing content into the Astro project.
 
 ### From the main site (`staubracing.com`)
-- Bike specs and status → racing page data (can be a simple JSON/YAML data file or frontmatter)
-- Gallery images → `public/images/` directory
-- Race results and championship standing → racing page
-- Hero copy and branding → home page
+- [x] Bike specs and status → `src/data/bikes.json` (KX450F, ZX6R)
+- [x] Gallery images → `public/images/gallery/` (20+ racing photos)
+- [x] Race results and championship standing → racing page stats row
+- [x] Hero copy and branding → home page (EST 2020, CRA #106)
+- [x] Favicons → `public/`
 
 ### From the blog (`blog.staubracing.com`)
-- Existing markdown posts move to `src/content/blog/` as-is (they should already have frontmatter with categories and tags)
-- Verify all 5 posts render correctly:
-  - ZX6R Engine Rebuild Part 1 & 2 (Racing)
-  - Raspberry Pi Home Server (Projects)
-  - Learning TypeScript (Code)
-  - Who Pulled the Breaker? (Life)
-- Category filtering works on section pages
-- Tag system carries over
+- [x] Existing markdown posts in `src/content/blog/`
+- [x] All 5 posts render correctly:
+  - [x] ZX6R Engine Rebuild Part 1 (Racing)
+  - [x] ZX6R Engine Rebuild Part 2 (Racing)
+  - [x] Raspberry Pi Home Server (Projects)
+  - [x] Learning TypeScript in 2025 (Code)
+  - [x] Who Pulled the Breaker? (Life)
+- [x] Category filtering works on section pages
+- [x] Tag system carries over
 
 ### From the links page
-- Convert `links.md` into a content collection or data file
-- Build `links.astro` page — static HTML, no client-side fetch/parse
-- Organize links by site categories (or keep standalone, your call)
+- [x] Created `src/data/links.json` with categorized links
+- [x] Built `src/pages/links.astro` — static, no client-side fetch
 
-**Milestone:** All existing content is visible and browsable. Nothing lost from either site.
+**Milestone:** ✅ All existing content is visible and browsable.
 
 ---
 
-## Phase 3: Home Page & Polish
+## Phase 3: Home Page & Polish ✅
 
 **Goal:** Build the combined home page and refine the user experience.
 
-- Home page hero with STAUB RACING branding, EST 2020, CRA #106
-- Quick stats panel (next race, current focus, championship standing)
-- "Recent Pit Notes" feed pulling latest posts from all categories
-- Dark/light mode toggle with persistence
-- Mobile responsiveness — test nav collapse, card stacking, hero scaling
-- Image optimization (Astro's built-in `<Image />` component for automatic sizing/format)
-- Meta tags and Open Graph data for social sharing (important since this is your social link)
-- Favicon and branding assets
+- [x] Home page hero with STAUB RACING branding
+- [x] EST 2020 · CRA #106 badge
+- [x] "Recent Pit Notes" feed pulling latest posts from all categories
+- [x] Categories grid with post counts
+- [x] Dark/light mode toggle with localStorage persistence
+- [x] Flash prevention inline script
+- [x] Mobile responsiveness — nav collapse, card stacking, hero scaling
+- [x] Meta tags and Open Graph data for social sharing
+- [x] Twitter card meta tags
+- [x] Favicon and branding assets
 
-**Milestone:** Site looks and feels like the mockup. Ready for real users.
+**Milestone:** ✅ Site looks and feels complete. Ready for real users.
 
 ---
 
-## Phase 4: AWS Deployment
+## Phase 4: AWS Deployment ✅
 
 **Goal:** Deploy to S3 + CloudFront, retire GitHub Pages.
 
-- Verify `astro build` produces clean output in `dist/`
-- Sync `dist/` to the existing S3 bucket (or create a new one)
-- Update CloudFront configuration:
-  - Verify or add URL rewrite function (`/racing` → `/racing/index.html`)
-  - Cache behaviors for static assets vs HTML
-  - SSL cert still valid for `staubracing.com`
-- Update Route 53 if any DNS changes needed
-- Set up GitHub Actions workflow:
-  - Trigger: push to `main`
-  - Steps: checkout → install → `astro build` → `aws s3 sync` → CloudFront invalidation
-  - AWS credentials stored as GitHub Secrets
-- Redirect `blog.staubracing.com` → `staubracing.com/blog` (301 redirect)
-- Retire the old GitHub Pages deployment
+- [x] `astro build` produces clean output in `dist/`
+- [x] GitHub Actions workflow configured:
+  - [x] Trigger: push to `main`
+  - [x] Steps: checkout → install → `astro build` → `aws s3 sync` → CloudFront invalidation
+  - [x] Syncs to `s3://staubracing.com` (root, not `/blog` subpath)
+  - [x] Invalidates `/*` paths on CloudFront
+- [x] AWS credentials stored as GitHub Secrets
 
-**Milestone:** Push to main auto-deploys to AWS. One command to publish.
+**Milestone:** ✅ Push to main auto-deploys to AWS.
 
 ---
 
-## Phase 5: Content Cadence
+## Phase 5: Content Cadence ⏳
 
 **Goal:** Establish the weekly publishing habit.
 
-- Start with biweekly posts for the first 8 weeks, then move to weekly
-- Rotate across categories to keep the site balanced:
+- [ ] Start with biweekly posts for the first 8 weeks, then move to weekly
+- [ ] Rotate across categories to keep the site balanced:
   - Week 1: Racing (race report, bike update, track day recap)
   - Week 2: Code or Projects (tutorial, project update, dev log)
   - Week 3: Life (story, reflection, career)
   - Week 4: Wild card
-- Blog post workflow: write `.md` file → `git add` → `git push` → auto-deploys
-- Keep a running ideas list so you're never staring at a blank page
+- [x] Blog post workflow: write `.md` file → `git add` → `git push` → auto-deploys
+- [ ] Keep a running ideas list in `docs/BLOG_IDEAS.md`
 
 ---
 
-## Decisions to Make Before Starting
+## Future Improvements (Optional)
 
-| Decision | Options | Notes |
-|----------|---------|-------|
-| Color scheme | Green accent (current leaning) vs orange vs something new | Get feedback from your people |
-| Hero style | Cinematic (main site) vs casual (blog) vs hybrid | The mockup used cinematic — confirm |
-| Sub-nav items | What goes under each section? | Draft the full nav tree |
-| Links page | Standalone page or integrated into sections? | Standalone is simpler to start |
-| Domain for `chrisstaub` site | Redirect to staubracing? Kill it? Keep separate? | Low priority but worth deciding |
+| Item | Priority | Notes |
+|------|----------|-------|
+| SubNav component | Low | Contextual nav per section (see `claude-code-prompt.md`) |
+| Image optimization | Medium | Use Astro's `<Image />` for auto-sizing/format |
+| Blog post Part 2 | Medium | ZX6R Engine Rebuild Part 2 needs content |
+| Navigation restructure | Medium | User has ideas for later |
 
 ---
 
@@ -137,9 +144,9 @@ Consolidate `staubracing.com` (static HTML) and `blog.staubracing.com` (Astro/Gi
 
 | Layer | Tool |
 |-------|------|
-| Framework | Astro |
-| Content | Markdown with frontmatter |
-| Styling | CSS (scoped in components) |
+| Framework | Astro 5 |
+| Content | Markdown/MDX with frontmatter |
+| Styling | CSS with custom properties (`src/styles/theme.css`) |
 | Hosting | AWS S3 (static files) |
 | CDN | AWS CloudFront |
 | DNS | AWS Route 53 |
