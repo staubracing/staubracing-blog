@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Staub Racing is a consolidated personal site built with Astro 5, featuring motorcycle racing content, coding projects, DIY builds, and life updates. The site uses static generation with MDX support and deploys to AWS S3 + CloudFront at `staubracing.com`.
 
-**Migration Status:** Consolidating the legacy static HTML site and blog into a unified Astro codebase. See `staubracing-migration-plan.md` for phased implementation.
+**Migration Status:** Consolidating the legacy static HTML site and blog into a unified Astro codebase. See `docs/MIGRATION_PLAN.md` for phased implementation.
 
 ## Quick Start
 
@@ -154,10 +154,19 @@ Use imperative sentence case: "Revise homepage content..." or "Add new blog post
 
 ## Migration Reference
 
-The site is being migrated from a two-site setup (static HTML + blog subdomain) to a unified Astro codebase. Key migration tasks are tracked in `staubracing-migration-plan.md`:
+The site is being migrated from a two-site setup (static HTML + blog subdomain) to a unified Astro codebase. Key migration tasks are tracked in `docs/MIGRATION_PLAN.md`:
 
 - **Phase 1**: Foundation — Layout components, routing structure, design system
 - **Phase 2**: Content migration — Blog posts, bike data, gallery images, links
 - **Phase 3**: Home page & polish — Hero, stats, dark/light toggle, responsiveness
 - **Phase 4**: AWS deployment — S3 sync, CloudFront config, GitHub Actions
 - **Phase 5**: Content cadence — Weekly publishing habit
+
+## Documentation
+
+| File | Purpose |
+|------|---------|
+| `docs/MIGRATION_PLAN.md` | Consolidation roadmap and phases |
+| `docs/THEME_GUIDE.md` | How to update colors and theme variables |
+| `docs/IMAGE_GUIDE.md` | Adding images to blog posts |
+| `docs/BLOG_IDEAS.md` | Content ideas and post tracking |

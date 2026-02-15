@@ -137,4 +137,4 @@ const primaryColor = themeConfig.colors.dark.primary;
 
 ---
 
-**Questions?** Check the comments in each file for detailed explanations!
+**Questions?** Check the comments in `src/styles/theme.css` for detailed variable explanations.
