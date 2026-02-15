@@ -19,6 +19,17 @@ src/
 
 ## 🎨 How to Update Colors
 
+### Accent Color Usage
+
+| Color | Variable | Use Case |
+| ----- | -------- | -------- |
+| Racing Green | `--accent-racing` | Primary brand elements, hero sections, main accents |
+| Kawasaki Lime | `--accent-lime` | Subtle pops, highlights, status badges, hover glows |
+| Electric Blue | `--accent-electric` | Links, interactive highlights, secondary accents |
+| Amber | `--accent-amber` | Warnings, attention states |
+
+**Design principle:** Racing green is the foundation, lime adds pops, blue handles interactivity.
+
 ### Want to change your brand colors?
 
 **Edit `src/styles/theme.css`**
@@ -26,14 +37,16 @@ src/
 ```css
 /* Dark Mode */
 :root {
-  --accent-racing: #1a8754; /* Your racing green */
-  --accent-electric: #38bdf8; /* Your electric blue */
+  --accent-racing: #1a8754; /* Racing green - brand primary */
+  --accent-lime: #66BB6A; /* Kawasaki lime - subtle pops */
+  --accent-electric: #38bdf8; /* Electric blue - links, highlights */
 }
 
 /* Light Mode */
 :root[data-theme="light"] {
-  --accent-racing: #15803d; /* Adjusted for light mode */
-  --accent-electric: #0369a1; /* Adjusted for light mode */
+  --accent-racing: #15803d; /* Racing green - adjusted for contrast */
+  --accent-lime: #4CAF50; /* Kawasaki lime - adjusted for contrast */
+  --accent-electric: #0369a1; /* Electric blue - adjusted for contrast */
 }
 ```
 
