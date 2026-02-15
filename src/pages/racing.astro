@@ -9,6 +9,8 @@ const posts = await getCollection('blog', (post) =>
   post.data.category === 'racing' && !post.data.draft
 );
 const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+type BikeStatus = 'ready' | 'maintenance';
 ---
 
 <Layout title="Racing - StaubRacing">
@@ -44,7 +46,7 @@ const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.get
             engine={bike.engine}
             power={bike.power}
             weight={bike.weight}
-            status={bike.status}
+            status={bike.status as BikeStatus}
             statusText={bike.statusText}
           />
         ))}
