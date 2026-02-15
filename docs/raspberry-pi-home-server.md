@@ -18,7 +18,7 @@ So I bought a Raspberry Pi. And then things got out of hand.
 
 ## The Hardware (What's Actually on the Shelf)
 
-The heart of the operation is a **Raspberry Pi 5** with 16GB of RAM. Sitting next to it is a 4TB external drive doing NAS duty. That's it. That's the whole data center.
+The heart of the operation is a **Raspberry Pi 5** with 16GB of RAM. Sitting next to it is a 1TB external drive doing NAS duty. That's it. That's the whole data center.
 
 No rack mount. No Synology. No blinking lights in a closet. Just a tiny computer and a drive, plugged into the router, doing more useful work than half the cloud services I used to pay for.
 
