@@ -1,27 +1,37 @@
 ---
-// ThemeToggle.astro - Theme switcher component
+// ThemeToggle.astro - Theme switcher with Light, Dark, and System options (icons only)
 ---
 
 <div class="theme-toggle" role="radiogroup" aria-label="Theme switcher">
-  <button 
-    class="theme-option" 
+  <button
+    class="theme-option"
     data-theme-option="light"
     role="radio"
     aria-checked="false"
     aria-label="Switch to light mode"
+    title="Light mode"
   >
     <span class="theme-icon">☀️</span>
-    <span class="theme-label">Light</span>
   </button>
-  <button 
-    class="theme-option" 
+  <button
+    class="theme-option"
+    data-theme-option="system"
+    role="radio"
+    aria-checked="false"
+    aria-label="Use system theme"
+    title="System theme"
+  >
+    <span class="theme-icon">💻</span>
+  </button>
+  <button
+    class="theme-option"
     data-theme-option="dark"
     role="radio"
     aria-checked="true"
     aria-label="Switch to dark mode"
+    title="Dark mode"
   >
     <span class="theme-icon">🌙</span>
-    <span class="theme-label">Dark</span>
   </button>
   <div class="theme-indicator" aria-hidden="true"></div>
 </div>
@@ -32,7 +42,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0;
-    padding: 0.3rem;
+    padding: 0.2rem;
     border-radius: 999px;
     border: 1px solid var(--surface-border);
     background: var(--surface-soft);
@@ -44,23 +54,20 @@
     position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    padding: 0.45rem 0.9rem;
+    justify-content: center;
+    padding: 0.4rem;
     border: none;
     background: transparent;
     color: var(--text-secondary);
-    font-size: 0.85rem;
-    font-family: var(--body-font);
-    font-weight: 600;
     cursor: pointer;
     border-radius: 999px;
     transition: color 0.3s ease;
     z-index: 2;
+    min-width: 32px;
   }
 
   .theme-option[aria-checked="true"] {
     color: var(--text-primary);
-    font-weight: 700;
   }
 
   .theme-icon {
@@ -74,16 +81,12 @@
     filter: grayscale(0);
   }
 
-  .theme-label {
-    letter-spacing: 0.03em;
-  }
-
   .theme-indicator {
     position: absolute;
-    top: 0.3rem;
-    left: 0.3rem;
-    width: calc(50% - 0.3rem);
-    height: calc(100% - 0.6rem);
+    top: 0.2rem;
+    left: 0.2rem;
+    width: calc(33.333% - 0.13rem);
+    height: calc(100% - 0.4rem);
     background: linear-gradient(135deg, rgba(56, 189, 248, 0.20), rgba(26, 135, 84, 0.20));
     border: 1px solid var(--accent-electric);
     border-radius: 999px;
@@ -93,9 +96,17 @@
     box-shadow: 0 2px 8px -2px rgba(56, 189, 248, 0.3);
   }
 
-  /* When dark mode is active, move indicator to the right */
-  .theme-toggle:has([data-theme-option="dark"][aria-checked="true"]) .theme-indicator {
+  /* Indicator positions for each option */
+  .theme-toggle[data-active="light"] .theme-indicator {
+    transform: translateX(0);
+  }
+
+  .theme-toggle[data-active="system"] .theme-indicator {
     transform: translateX(100%);
+  }
+
+  .theme-toggle[data-active="dark"] .theme-indicator {
+    transform: translateX(200%);
   }
 
   .theme-option:hover {
@@ -110,35 +121,21 @@
     outline: 2px solid var(--accent-electric);
     outline-offset: 2px;
   }
-
-  @media (max-width: 768px) {
-    .theme-label {
-      display: none;
-    }
-
-    .theme-option {
-      padding: 0.5rem;
-    }
-
-    .theme-icon {
-      font-size: 1.1rem;
-    }
-  }
 </style>
 
 <script>
-  // Theme toggle functionality - runs on every page
   function initThemeToggle() {
     const toggleContainer = document.querySelector('.theme-toggle');
     if (!toggleContainer) return;
 
     const options = toggleContainer.querySelectorAll('.theme-option');
-    
-    // Update UI to match current theme
-    function updateToggleUI(theme: string) {
+
+    // Update UI to match current preference
+    function updateToggleUI(preference: string) {
+      toggleContainer.setAttribute('data-active', preference);
       options.forEach(option => {
         const optionTheme = option.getAttribute('data-theme-option');
-        const isActive = optionTheme === theme;
+        const isActive = optionTheme === preference;
         option.setAttribute('aria-checked', isActive.toString());
       });
     }
@@ -146,30 +143,26 @@
     // Handle toggle clicks
     options.forEach(option => {
       option.addEventListener('click', () => {
-        const newTheme = option.getAttribute('data-theme-option');
-        if (newTheme) {
+        const newPreference = option.getAttribute('data-theme-option');
+        if (newPreference) {
           // Dispatch custom event that Layout.astro will listen for
-          document.dispatchEvent(new CustomEvent('theme-change', { 
-            detail: { theme: newTheme } 
+          document.dispatchEvent(new CustomEvent('theme-preference-change', {
+            detail: { preference: newPreference }
           }));
         }
       });
     });
 
-    // Listen for theme changes from other sources
-    document.addEventListener('theme-changed', ((e: CustomEvent) => {
-      updateToggleUI(e.detail.theme);
+    // Listen for preference changes from other sources
+    document.addEventListener('theme-preference-changed', ((e: CustomEvent) => {
+      updateToggleUI(e.detail.preference);
     }) as EventListener);
 
-    // Initialize UI on load
-    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-    updateToggleUI(currentTheme);
+    // Initialize UI on load - get the stored preference
+    const storedPreference = localStorage.getItem('theme-preference') || 'system';
+    updateToggleUI(storedPreference);
   }
 
-  // Initialize on page load
   initThemeToggle();
-
-  // Re-initialize after Astro view transitions (if you add them later)
   document.addEventListener('astro:page-load', initThemeToggle);
 </script>
-
