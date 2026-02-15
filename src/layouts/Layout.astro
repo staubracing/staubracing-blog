@@ -209,10 +209,10 @@ const { title } = Astro.props;
   .site-nav a:hover,
   .site-nav a:focus-visible {
     background: var(--overlay-accent-hover);
-    border-color: var(--accent-electric);
+    border-color: color-mix(in srgb, var(--accent-electric) 50%, var(--accent-lime));
     color: var(--text-primary);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px -4px rgba(56, 189, 248, 0.3);
+    box-shadow: 0 4px 12px -4px rgba(102, 187, 106, 0.25), 0 4px 12px -4px rgba(56, 189, 248, 0.2);
   }
 
   .page-shell {
@@ -231,6 +231,7 @@ const { title } = Astro.props;
     border-radius: var(--radius-md);
     background: var(--surface-solid);
     border: 1px solid var(--surface-border);
+    border-top-color: color-mix(in srgb, var(--accent-lime) 40%, var(--surface-border));
     text-align: center;
     font-size: 0.85rem;
     color: var(--text-secondary);

@@ -35,6 +35,7 @@
   /* Accent Colors */
   --accent-electric: #38bdf8; /* Sky blue - links, highlights */
   --accent-racing: #1a8754; /* Racing green - brand primary */
+  --accent-lime: #66BB6A; /* Kawasaki lime green - subtle pops */
   --accent-amber: #facc15; /* Warning/attention */
 
   /* Typography */
@@ -94,6 +95,7 @@
   /* Accent Colors */
   --accent-electric: #0369a1; /* Darker blue for contrast */
   --accent-racing: #15803d; /* Green - maintains brand */
+  --accent-lime: #4CAF50; /* Kawasaki lime green - subtle pops */
   --accent-amber: #b45309; /* Darker amber for readability */
 
   /* Shadows (lighter for light mode) */
@@ -120,6 +122,7 @@
    
    Brand Colors:
    - Racing Green: #1a8754 (dark) / #15803d (light)
+   - Kawasaki Lime: #66BB6A (dark) / #4CAF50 (light)
    - Electric Blue: #38bdf8 (dark) / #0369a1 (light)
    
    Neutrals:

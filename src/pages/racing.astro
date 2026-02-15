@@ -115,9 +115,11 @@ const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.get
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 1rem;
     padding: 1.25rem;
+    padding-left: calc(1.25rem + 3px);
     background: linear-gradient(155deg, color-mix(in srgb, var(--category-color) 8%, transparent), var(--overlay-base-light));
     border-radius: var(--radius-md);
     border: 1px solid color-mix(in srgb, var(--category-color) 20%, var(--surface-border));
+    border-left: 3px solid var(--accent-lime);
   }
 
   .stat-item {
@@ -147,6 +149,19 @@ const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.get
     text-transform: uppercase;
     padding-bottom: 0.75rem;
     border-bottom: 1px solid var(--surface-border);
+    position: relative;
+  }
+
+  .bikes-section h2::after,
+  .posts-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: var(--accent-lime);
+    border-radius: 1px;
   }
 
   .bikes-grid {
