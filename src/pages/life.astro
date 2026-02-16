@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import { CATEGORY_INFO } from '../content/config';
+import SubNav from '../components/SubNav.astro';
 
 const posts = await getCollection('blog', (post) =>
   post.data.category === 'life' && !post.data.draft
@@ -10,6 +11,8 @@ const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.get
 ---
 
 <Layout title="Life - StaubRacing">
+  <SubNav slot="subnav" section="life" currentPath="/life" />
+
   <section class="section-card" style={`--category-color: ${CATEGORY_INFO.life.color}`}>
     <header class="section-header">
       <span class="category-pill">{CATEGORY_INFO.life.emoji} {CATEGORY_INFO.life.title}</span>

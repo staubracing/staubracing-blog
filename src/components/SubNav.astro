@@ -1,0 +1,169 @@
+---
+/**
+ * SubNav - Contextual sub-navigation for section pages
+ * Appears below the main nav on Racing, Projects, Code, and Life pages
+ */
+
+interface SubNavItem {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  section: 'racing' | 'projects' | 'code' | 'life';
+  currentPath?: string;
+}
+
+const { section, currentPath } = Astro.props;
+
+const subNavConfig: Record<string, { label: string; items: SubNavItem[] }> = {
+  racing: {
+    label: 'RACING',
+    items: [
+      { label: 'Overview', href: '/racing' },
+      { label: 'Bikes', href: '/racing#fleet' },
+      { label: 'Calendar', href: '/calendar' },
+      { label: 'Maintenance', href: '/maintenance' },
+      { label: 'Race Journal', href: '/racing#journal' },
+    ],
+  },
+  projects: {
+    label: 'PROJECTS',
+    items: [
+      { label: 'All Projects', href: '/projects' },
+      { label: 'Homelab', href: '/projects#homelab' },
+      { label: 'Automation', href: '/projects#automation' },
+      { label: 'Hardware', href: '/projects#hardware' },
+    ],
+  },
+  code: {
+    label: 'CODE',
+    items: [
+      { label: 'Overview', href: '/code' },
+      { label: 'Projects', href: '/code#projects' },
+      { label: 'Posts', href: '/code#posts' },
+    ],
+  },
+  life: {
+    label: 'LIFE',
+    items: [
+      { label: 'All Stories', href: '/life' },
+      { label: 'Aviation', href: '/life#aviation' },
+      { label: 'Personal', href: '/life#personal' },
+      { label: 'Adventures', href: '/life#adventures' },
+    ],
+  },
+};
+
+const config = subNavConfig[section];
+
+function isActive(item: SubNavItem): boolean {
+  if (!currentPath) return false;
+
+  // Normalize paths by removing trailing slashes
+  const normalize = (path: string) => path.replace(/\/$/, '') || '/';
+  const normalizedCurrent = normalize(currentPath);
+
+  // For hash links, compare against the base path
+  if (item.href.includes('#')) {
+    const basePath = item.href.split('#')[0];
+    return normalizedCurrent === normalize(basePath);
+  }
+
+  return normalizedCurrent === normalize(item.href);
+}
+---
+
+<nav class="sub-nav" aria-label={`${section} sub-navigation`}>
+  <span class="section-label">{config.label}</span>
+  <ul class="sub-nav-items">
+    {config.items.map(item => (
+      <li>
+        <a
+          href={item.href}
+          class:list={['sub-nav-link', { active: isActive(item) }]}
+        >
+          {item.label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<style>
+  .sub-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    max-width: var(--layout-max);
+    margin: -0.5rem auto 0;
+    padding: 0.75rem 1.5rem;
+    background: var(--surface-soft);
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+    border: 1px solid var(--surface-border);
+    border-top: none;
+    overflow-x: auto;
+  }
+
+  .section-label {
+    flex-shrink: 0;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    padding-right: 1rem;
+    border-right: 1px solid var(--surface-border);
+  }
+
+  .sub-nav-items {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .sub-nav-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.4rem 0.85rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+  }
+
+  .sub-nav-link:hover {
+    color: var(--text-primary);
+    background: var(--overlay-accent-light);
+  }
+
+  .sub-nav-link.active {
+    color: var(--accent-lime);
+    background: color-mix(in srgb, var(--accent-lime) 15%, transparent);
+  }
+
+  @media (max-width: 768px) {
+    .sub-nav {
+      padding: 0.6rem 1rem;
+      gap: 1rem;
+      margin-top: -0.25rem;
+      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+    }
+
+    .section-label {
+      display: none;
+    }
+
+    .sub-nav-link {
+      padding: 0.35rem 0.7rem;
+      font-size: 0.75rem;
+    }
+  }
+</style>

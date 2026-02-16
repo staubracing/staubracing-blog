@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import { CATEGORY_INFO } from '../content/config';
+import SubNav from '../components/SubNav.astro';
 import codeProjectsData from '../data/code-projects.json';
 
 const posts = await getCollection('blog', (post) =>
@@ -17,6 +18,8 @@ const sortedProjects = [...codeProjectsData.projects].sort(
 ---
 
 <Layout title="Code - StaubRacing">
+  <SubNav slot="subnav" section="code" currentPath="/code" />
+
   <section class="section-card" style={`--category-color: ${CATEGORY_INFO.code.color}`}>
     <header class="section-header">
       <span class="category-pill">{CATEGORY_INFO.code.emoji} {CATEGORY_INFO.code.title}</span>
@@ -24,7 +27,7 @@ const sortedProjects = [...codeProjectsData.projects].sort(
       <p>{CATEGORY_INFO.code.description}</p>
     </header>
 
-    <section class="projects-section">
+    <section id="projects" class="projects-section">
       <h2>Active Projects</h2>
       <p class="section-intro">What I'm building, planning, and have completed.</p>
 
@@ -51,7 +54,7 @@ const sortedProjects = [...codeProjectsData.projects].sort(
       </div>
     </section>
 
-    <section class="posts-section">
+    <section id="posts" class="posts-section">
       <h2>Code Posts</h2>
       {sortedPosts.length > 0 ? (
       <div class="posts-grid">

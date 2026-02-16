@@ -1,43 +1,43 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import SubNav from '../components/SubNav.astro';
+import MaintenanceList from '../components/ui/MaintenanceList.astro';
+import maintenanceData from '../data/maintenance.json';
 ---
 
-<Layout title="Race Calendar | StaubRacing">
-  <SubNav slot="subnav" section="racing" currentPath="/calendar" />
+<Layout title="Bike Maintenance | StaubRacing">
+  <SubNav slot="subnav" section="racing" currentPath="/maintenance" />
 
-  <section class="calendar-section">
+  <section class="maintenance-section">
     <header class="section-header">
       <span class="category-pill">🏁 Racing</span>
-      <h1>Race & Track Day Calendar</h1>
-      <p>Upcoming events from the racing schedule. Events are maintained by the crew and updated automatically.</p>
+      <h1>Bike Maintenance</h1>
+      <p>Track day and race prep items for the fleet. Priority indicates urgency.</p>
     </header>
 
-    <div class="calendar-wrapper">
-      <iframe
-        src="https://calendar.google.com/calendar/embed?src=q2gggqrjvn1tlusunf4ftqrr6s%40group.calendar.google.com&ctz=America%2FChicago"
-        style="border: 0"
-        width="800"
-        height="600"
-        frameborder="0"
-        scrolling="no"
-        title="Staub Racing Event Calendar"
-      ></iframe>
+    <div class="last-updated">
+      Last updated: {maintenanceData.lastUpdated}
     </div>
 
-    <div class="calendar-info">
-      <h2>Calendar Tips</h2>
+    {maintenanceData.items.length > 0 ? (
+      <MaintenanceList items={maintenanceData.items} />
+    ) : (
+      <p class="empty-state">No maintenance items. The fleet is ready to roll!</p>
+    )}
+
+    <div class="maintenance-info">
+      <h2>Priority Guide</h2>
       <ul>
-        <li>Click on events to see details and location</li>
-        <li>Track days are typically colored differently from race weekends</li>
-        <li>All times are in Central Time (America/Chicago)</li>
+        <li><span class="priority-high">●</span> High — Needs attention before next ride</li>
+        <li><span class="priority-medium">●</span> Medium — Schedule soon</li>
+        <li><span class="priority-low">●</span> Low — When convenient</li>
       </ul>
     </div>
   </section>
 </Layout>
 
 <style>
-  .calendar-section {
+  .maintenance-section {
     display: grid;
     gap: 1.75rem;
     padding: clamp(1.75rem, 2.5vw, 2.75rem);
@@ -83,31 +83,28 @@ import SubNav from '../components/SubNav.astro';
     color: var(--accent-lime);
   }
 
-  .calendar-wrapper {
-    position: relative;
-    width: 100%;
-    border-radius: var(--radius-md);
-    overflow: hidden;
-    border: 1px solid var(--surface-border);
-    background: var(--surface-soft);
+  .last-updated {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
   }
 
-  .calendar-wrapper iframe {
-    display: block;
-    width: 100%;
-    min-height: 600px;
-    height: 70vh;
-    max-width: 100%;
+  .empty-state {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 2rem;
+    margin: 0;
   }
 
-  .calendar-info {
+  .maintenance-info {
     padding: 1.25rem;
     background: linear-gradient(155deg, color-mix(in srgb, var(--accent-racing) 8%, transparent), var(--overlay-base-light));
     border-radius: var(--radius-md);
     border: 1px solid color-mix(in srgb, var(--accent-racing) 20%, var(--surface-border));
   }
 
-  .calendar-info h2 {
+  .maintenance-info h2 {
     margin: 0 0 0.75rem;
     font-size: 1.1rem;
     letter-spacing: 0.08em;
@@ -115,22 +112,31 @@ import SubNav from '../components/SubNav.astro';
     color: var(--text-primary);
   }
 
-  .calendar-info ul {
+  .maintenance-info ul {
     margin: 0;
-    padding: 0 0 0 1.25rem;
-    color: var(--text-secondary);
+    padding: 0;
+    list-style: none;
     display: grid;
     gap: 0.5rem;
   }
 
-  .calendar-info li {
+  .maintenance-info li {
     font-size: 0.9rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
   }
 
-  @media (max-width: 768px) {
-    .calendar-wrapper iframe {
-      min-height: 450px;
-      height: 60vh;
-    }
+  .priority-high {
+    color: #ef4444;
+  }
+
+  .priority-medium {
+    color: #f59e0b;
+  }
+
+  .priority-low {
+    color: #22c55e;
   }
 </style>
