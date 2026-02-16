@@ -40,6 +40,11 @@
           "title": "Claude Code",
           "url": "https://claude.ai/code",
           "description": "AI-powered terminal coding assistant"
+        },
+        {
+          "title": "Creating the Perfect CLAUDE.md for Claude Code",
+          "url": "https://dometrain.com/blog/creating-the-perfect-claudemd-for-claude-code/",
+          "description": "Guide to structuring effective CLAUDE.md files for better AI assistance"
         }
       ]
     }
