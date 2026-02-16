@@ -7,8 +7,9 @@
       "engine": "449cc",
       "power": "55+ HP",
       "weight": "247.5 lbs",
-      "status": "ready",
-      "statusText": "Ready for next race"
+      "status": "maintenance",
+      "statusText": "Undergoing maintenance",
+      "notes": "Cracked cylinder head from frozen water"
     },
     {
       "id": "zx6r",
@@ -18,7 +19,8 @@
       "power": "127 HP",
       "weight": "421 lbs",
       "status": "maintenance",
-      "statusText": "Undergoing maintenance"
+      "statusText": "Undergoing maintenance",
+      "notes": "Water in the oil, suspected frozen water in the cooling system"
     }
   ]
 }
