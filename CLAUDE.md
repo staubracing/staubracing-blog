@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Staub Racing is a consolidated personal site built with Astro 5, featuring motorcycle racing content, coding projects, DIY builds, and life updates. The site uses static generation with MDX support and deploys to AWS S3 + CloudFront at `staubracing.com`.
 
-**Migration Status:** Consolidating the legacy static HTML site and blog into a unified Astro codebase. See `docs/MIGRATION_PLAN.md` for phased implementation.
+**Status:** Migration complete. Unified Astro codebase deployed to AWS.
 
 ## Quick Start
 
@@ -63,12 +63,7 @@ staubracing.com/
 │   ├── components/
 │   │   ├── ui/            # Reusable cards and UI elements
 │   │   │   ├── BikeCard.astro
-│   │   │   ├── BlogPostCard.astro
-│   │   │   ├── StatCard.astro
-│   │   │   └── LinkCard.astro
-│   │   ├── Nav.astro      # Main navigation
-│   │   ├── SubNav.astro   # Contextual sub-navigation
-│   │   ├── Footer.astro
+│   │   │   └── StatCard.astro
 │   │   ├── ThemeToggle.astro
 │   │   └── MediaDisplay.astro
 │   ├── content/
@@ -77,9 +72,10 @@ staubracing.com/
 │   │   └── config.ts      # Content collection schema
 │   ├── data/              # Static data files (bike specs, links, etc.)
 │   ├── layouts/
-│   │   └── BaseLayout.astro  # Shared page shell
+│   │   └── Layout.astro   # Shared page shell (includes nav + footer inline)
 │   ├── pages/
 │   │   ├── index.astro       # Home
+│   │   ├── about.astro       # About page
 │   │   ├── racing.astro      # Racing section
 │   │   ├── projects.astro    # Projects section
 │   │   ├── code.astro        # Code section
@@ -89,6 +85,8 @@ staubracing.com/
 │   │   ├── blog/[...slug].astro
 │   │   └── category/[category].astro
 │   └── styles/
+│       ├── theme.css      # CSS custom properties for theming
+│       └── global.css     # Global styles
 └── astro.config.mjs       # Site config (URL: https://staubracing.com)
 ```
 
@@ -125,14 +123,15 @@ Each section page (racing, projects, code, life) aggregates blog posts from its 
 - Mobile-first responsive design
 
 ### Layouts
-- `src/layouts/BaseLayout.astro` — Shared page shell (head, meta, fonts, nav, footer)
+- `src/layouts/Layout.astro` — Shared page shell with embedded navigation and footer (no separate Nav/Footer components)
 
 ### Key Components
-- `Nav.astro` — Main navigation with section links
-- `SubNav.astro` — Contextual sub-navigation per section
 - `ThemeToggle.astro` — Dark/light mode switching with localStorage persistence
-- `MediaDisplay.astro` — Renders images, videos, and embedded content
-- Card components: `BikeCard`, `BlogPostCard`, `StatCard`, `LinkCard`
+- `MediaDisplay.astro` — Renders images, videos, and embedded content for blog posts
+- `ui/BikeCard.astro` — Bike specs display with status indicators
+- `ui/StatCard.astro` — Quick stat display
+
+**Note:** Blog posts and links are rendered inline in page templates rather than using card components. Navigation is embedded directly in Layout.astro.
 
 ## Commit Style
 
@@ -152,15 +151,17 @@ Use imperative sentence case: "Revise homepage content..." or "Add new blog post
 | CI/CD | GitHub Actions |
 | Package Manager | Yarn |
 
-## Migration Reference
+## Migration Complete
 
-The site is being migrated from a two-site setup (static HTML + blog subdomain) to a unified Astro codebase. Key migration tasks are tracked in `docs/MIGRATION_PLAN.md`:
+The site was migrated from a two-site setup (static HTML + blog subdomain) to a unified Astro codebase. All phases completed:
 
-- **Phase 1**: Foundation — Layout components, routing structure, design system
-- **Phase 2**: Content migration — Blog posts, bike data, gallery images, links
-- **Phase 3**: Home page & polish — Hero, stats, dark/light toggle, responsiveness
-- **Phase 4**: AWS deployment — S3 sync, CloudFront config, GitHub Actions
-- **Phase 5**: Content cadence — Weekly publishing habit
+- **Phase 1**: Foundation — Layout components, routing structure, design system ✅
+- **Phase 2**: Content migration — Blog posts, bike data, gallery images, links ✅
+- **Phase 3**: Home page & polish — Hero, stats, dark/light toggle, responsiveness ✅
+- **Phase 4**: AWS deployment — S3 sync, CloudFront config, GitHub Actions ✅
+- **Phase 5**: Content cadence — Weekly publishing habit (ongoing)
+
+See `docs/MIGRATION_PLAN.md` for historical reference.
 
 ## Documentation
 
