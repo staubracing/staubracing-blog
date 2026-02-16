@@ -1,0 +1,133 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Race Calendar | StaubRacing">
+  <section class="calendar-section">
+    <header class="section-header">
+      <span class="category-pill">🏁 Racing</span>
+      <h1>Race & Track Day Calendar</h1>
+      <p>Upcoming events from the racing schedule. Events are maintained by the crew and updated automatically.</p>
+    </header>
+
+    <div class="calendar-wrapper">
+      <iframe
+        src="https://calendar.google.com/calendar/embed?src=q2gggqrjvn1tlusunf4ftqrr6s%40group.calendar.google.com&ctz=America%2FChicago"
+        style="border: 0"
+        width="800"
+        height="600"
+        frameborder="0"
+        scrolling="no"
+        title="Staub Racing Event Calendar"
+      ></iframe>
+    </div>
+
+    <div class="calendar-info">
+      <h2>Calendar Tips</h2>
+      <ul>
+        <li>Click on events to see details and location</li>
+        <li>Track days are typically colored differently from race weekends</li>
+        <li>All times are in Central Time (America/Chicago)</li>
+      </ul>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .calendar-section {
+    display: grid;
+    gap: 1.75rem;
+    padding: clamp(1.75rem, 2.5vw, 2.75rem);
+    background: var(--surface-solid);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--surface-border);
+    box-shadow: var(--shadow-soft);
+    backdrop-filter: blur(16px);
+  }
+
+  .section-header {
+    display: grid;
+    gap: 0.8rem;
+    text-align: center;
+  }
+
+  .section-header h1 {
+    font-size: clamp(2.3rem, 5vw, 3.1rem);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .section-header p {
+    margin: 0;
+    color: var(--text-secondary);
+  }
+
+  .section-header .category-pill {
+    justify-self: center;
+  }
+
+  .category-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--accent-racing) 15%, transparent), transparent);
+    border: 1px solid color-mix(in srgb, var(--accent-racing) 40%, var(--surface-border));
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent-lime);
+  }
+
+  .calendar-wrapper {
+    position: relative;
+    width: 100%;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--surface-border);
+    background: var(--surface-soft);
+  }
+
+  .calendar-wrapper iframe {
+    display: block;
+    width: 100%;
+    min-height: 600px;
+    height: 70vh;
+    max-width: 100%;
+  }
+
+  .calendar-info {
+    padding: 1.25rem;
+    background: linear-gradient(155deg, color-mix(in srgb, var(--accent-racing) 8%, transparent), var(--overlay-base-light));
+    border-radius: var(--radius-md);
+    border: 1px solid color-mix(in srgb, var(--accent-racing) 20%, var(--surface-border));
+  }
+
+  .calendar-info h2 {
+    margin: 0 0 0.75rem;
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+  }
+
+  .calendar-info ul {
+    margin: 0;
+    padding: 0 0 0 1.25rem;
+    color: var(--text-secondary);
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .calendar-info li {
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 768px) {
+    .calendar-wrapper iframe {
+      min-height: 450px;
+      height: 60vh;
+    }
+  }
+</style>

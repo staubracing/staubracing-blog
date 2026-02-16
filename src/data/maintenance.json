@@ -1,0 +1,40 @@
+{
+  "lastUpdated": "2026-02-16",
+  "items": [
+    {
+      "id": "zx6r-brake-pads",
+      "bike": "ZX6R",
+      "task": "Replace front brake pads",
+      "priority": "high",
+      "notes": "EBC HH sintered pads recommended"
+    },
+    {
+      "id": "kx450f-oil-change",
+      "bike": "KX450F",
+      "task": "Oil change",
+      "priority": "medium",
+      "notes": "Last changed: Dec 2025"
+    },
+    {
+      "id": "zx6r-chain-sprocket",
+      "bike": "ZX6R",
+      "task": "Inspect chain and sprocket",
+      "priority": "medium",
+      "notes": "Check for wear, adjust tension if needed"
+    },
+    {
+      "id": "kx450f-air-filter",
+      "bike": "KX450F",
+      "task": "Clean air filter",
+      "priority": "low",
+      "notes": "After last ride at the track"
+    },
+    {
+      "id": "zx6r-coolant",
+      "bike": "ZX6R",
+      "task": "Flush and replace coolant",
+      "priority": "low",
+      "notes": "Due before first race of season"
+    }
+  ]
+}

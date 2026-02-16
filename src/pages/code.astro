@@ -2,11 +2,18 @@
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import { CATEGORY_INFO } from '../content/config';
+import codeProjectsData from '../data/code-projects.json';
 
 const posts = await getCollection('blog', (post) =>
   post.data.category === 'code' && !post.data.draft
 );
 const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+// Sort projects: active first, then planned, then done
+const statusOrder = { active: 0, planned: 1, done: 2 };
+const sortedProjects = [...codeProjectsData.projects].sort(
+  (a, b) => statusOrder[a.status] - statusOrder[b.status]
+);
 ---
 
 <Layout title="Code - StaubRacing">
@@ -17,7 +24,36 @@ const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.get
       <p>{CATEGORY_INFO.code.description}</p>
     </header>
 
-    {sortedPosts.length > 0 ? (
+    <section class="projects-section">
+      <h2>Active Projects</h2>
+      <p class="section-intro">What I'm building, planning, and have completed.</p>
+
+      <div class="projects-grid">
+        {sortedProjects.map(project => (
+          <article class={`project-card status-${project.status}`}>
+            <header class="project-header">
+              <h3>{project.name}</h3>
+              <span class={`status-badge ${project.status}`}>
+                {project.status === 'active' && '🔄'}
+                {project.status === 'planned' && '📋'}
+                {project.status === 'done' && '✓'}
+                {project.status}
+              </span>
+            </header>
+            <p class="project-description">{project.description}</p>
+            {project.link && (
+              <a href={project.link} class="project-link" target="_blank" rel="noopener noreferrer">
+                View Project →
+              </a>
+            )}
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="posts-section">
+      <h2>Code Posts</h2>
+      {sortedPosts.length > 0 ? (
       <div class="posts-grid">
         {sortedPosts.map(post => (
           <article class="post-card">
@@ -37,6 +73,7 @@ const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.get
     ) : (
       <p class="empty-state">No code posts yet. Tutorials, app development, and dev tools coming soon.</p>
     )}
+    </section>
   </section>
 </Layout>
 
@@ -71,6 +108,128 @@ const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.get
 
   .section-header .category-pill {
     justify-self: center;
+  }
+
+  .projects-section,
+  .posts-section {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .projects-section h2,
+  .posts-section h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--surface-border);
+    position: relative;
+  }
+
+  .projects-section h2::after,
+  .posts-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: var(--accent-electric);
+    border-radius: 1px;
+  }
+
+  .section-intro {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+
+  .projects-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
+  .project-card {
+    display: grid;
+    gap: 0.75rem;
+    padding: 1.25rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--surface-border);
+    background: var(--surface-solid);
+    transition: border 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .project-card:hover {
+    border-color: color-mix(in srgb, var(--accent-electric) 40%, var(--surface-border));
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .project-header h3 {
+    margin: 0;
+    font-size: 1.15rem;
+    color: var(--text-primary);
+  }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .status-badge.active {
+    background: color-mix(in srgb, var(--accent-lime) 20%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent-lime) 50%, transparent);
+    color: var(--accent-lime);
+  }
+
+  .status-badge.planned {
+    background: color-mix(in srgb, var(--accent-amber) 20%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent-amber) 50%, transparent);
+    color: var(--accent-amber);
+  }
+
+  .status-badge.done {
+    background: color-mix(in srgb, var(--text-secondary) 20%, transparent);
+    border: 1px solid color-mix(in srgb, var(--text-secondary) 40%, transparent);
+    color: var(--text-secondary);
+  }
+
+  .project-description {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent-electric);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .project-link:hover {
+    color: color-mix(in srgb, var(--accent-electric) 80%, white);
   }
 
   .posts-grid {

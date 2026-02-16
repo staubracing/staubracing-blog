@@ -3,7 +3,9 @@ import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import { CATEGORY_INFO } from '../content/config';
 import BikeCard from '../components/ui/BikeCard.astro';
+import MaintenanceList from '../components/ui/MaintenanceList.astro';
 import bikesData from '../data/bikes.json';
+import maintenanceData from '../data/maintenance.json';
 
 const posts = await getCollection('blog', (post) =>
   post.data.category === 'racing' && !post.data.draft
@@ -34,6 +36,10 @@ type BikeStatus = 'ready' | 'maintenance';
         <span class="stat-label">Championship</span>
         <span class="stat-value">7th - Ultralight</span>
       </div>
+      <a href="/calendar" class="calendar-link">
+        <span class="stat-label">📅</span>
+        <span class="stat-value">View Calendar</span>
+      </a>
     </div>
 
     <section class="bikes-section">
@@ -52,6 +58,10 @@ type BikeStatus = 'ready' | 'maintenance';
         ))}
       </div>
     </section>
+
+    {maintenanceData.items.length > 0 && (
+      <MaintenanceList items={maintenanceData.items} />
+    )}
 
     {sortedPosts.length > 0 ? (
       <section class="posts-section">
@@ -141,6 +151,25 @@ type BikeStatus = 'ready' | 'maintenance';
     font-size: 1.1rem;
     font-weight: 600;
     color: var(--text-primary);
+  }
+
+  .calendar-link {
+    display: grid;
+    gap: 0.35rem;
+    text-align: center;
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: var(--radius-sm);
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+
+  .calendar-link:hover {
+    background: color-mix(in srgb, var(--accent-lime) 15%, transparent);
+    transform: translateY(-1px);
+  }
+
+  .calendar-link .stat-value {
+    color: var(--accent-lime);
   }
 
   .bikes-section h2,

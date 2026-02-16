@@ -1,0 +1,31 @@
+{
+  "lastUpdated": "2026-02-16",
+  "projects": [
+    {
+      "name": "Staub Racing Site",
+      "status": "active",
+      "description": "This site - ongoing improvements, content, and features",
+      "link": "https://github.com/StaubRacing/staubracing.com"
+    },
+    {
+      "name": "Track Day Timer App",
+      "status": "planned",
+      "description": "Mobile app for lap timing, session tracking, and performance analysis"
+    },
+    {
+      "name": "Race Results Scraper",
+      "status": "done",
+      "description": "Python script to pull results from CRA website and format for analysis"
+    },
+    {
+      "name": "Motorcycle Maintenance Tracker",
+      "status": "planned",
+      "description": "Track maintenance schedules, parts, and service history for the fleet"
+    },
+    {
+      "name": "Weather API Integration",
+      "status": "active",
+      "description": "Track day weather forecast widget with wind and temperature alerts"
+    }
+  ]
+}

@@ -1,0 +1,179 @@
+---
+interface MaintenanceItem {
+  id: string;
+  bike: string;
+  task: string;
+  priority: 'high' | 'medium' | 'low';
+  notes?: string;
+}
+
+interface Props {
+  items: MaintenanceItem[];
+}
+
+const { items } = Astro.props;
+
+// Group items by bike
+const groupedItems = items.reduce((acc, item) => {
+  if (!acc[item.bike]) {
+    acc[item.bike] = [];
+  }
+  acc[item.bike].push(item);
+  return acc;
+}, {} as Record<string, MaintenanceItem[]>);
+
+// Sort priority order
+const priorityOrder = { high: 0, medium: 1, low: 2 };
+---
+
+<section class="maintenance-section">
+  <h2>Maintenance List</h2>
+  <p class="section-intro">Track day and race prep items for the fleet. Priority indicates urgency.</p>
+
+  <div class="maintenance-grid">
+    {Object.entries(groupedItems).map(([bike, bikeItems]) => (
+      <div class="bike-group">
+        <h3>{bike}</h3>
+        <ul class="maintenance-list">
+          {bikeItems
+            .sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority])
+            .map(item => (
+              <li class={`maintenance-item priority-${item.priority}`}>
+                <span class="priority-indicator" aria-label={`${item.priority} priority`}></span>
+                <div class="item-content">
+                  <span class="task">{item.task}</span>
+                  {item.notes && <span class="notes">{item.notes}</span>}
+                </div>
+              </li>
+            ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .maintenance-section {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .maintenance-section h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--surface-border);
+    position: relative;
+  }
+
+  .maintenance-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 60px;
+    height: 2px;
+    background: var(--accent-lime);
+    border-radius: 1px;
+  }
+
+  .section-intro {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+
+  .maintenance-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
+  .bike-group {
+    background: var(--surface-soft);
+    border: 1px solid var(--surface-border);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+  }
+
+  .bike-group h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    color: var(--accent-lime);
+  }
+
+  .maintenance-list {
+    display: grid;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .maintenance-item {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: var(--surface-solid);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--surface-border);
+    transition: border-color 0.2s ease;
+  }
+
+  .maintenance-item:hover {
+    border-color: color-mix(in srgb, var(--accent-lime) 30%, var(--surface-border));
+  }
+
+  .priority-indicator {
+    flex-shrink: 0;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-top: 0.4rem;
+  }
+
+  .priority-high .priority-indicator {
+    background: #ef4444;
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
+  }
+
+  .priority-medium .priority-indicator {
+    background: #f59e0b;
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.5);
+  }
+
+  .priority-low .priority-indicator {
+    background: #22c55e;
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.5);
+  }
+
+  .item-content {
+    display: grid;
+    gap: 0.25rem;
+    min-width: 0;
+  }
+
+  .task {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .notes {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+  }
+
+  @media (max-width: 768px) {
+    .bike-group {
+      padding: 1rem;
+    }
+
+    .maintenance-item {
+      padding: 0.6rem;
+    }
+  }
+</style>
