@@ -10,35 +10,43 @@
 - Eventually syncs to mobile app database
 - Needs authentication (only you can add)
 
-**Current State:**
-- Website: Static Astro site with `src/data/maintenance.json`
-- Mobile App: React Native with Lambda API + PostgreSQL
-- No write capability from web today
+---
+
+## Current Status: ✅ WORKING (Local Dev)
+
+**What's functional:**
+- ✅ Login page at `/admin/login`
+- ✅ Maintenance form at `/admin/maintenance`
+- ✅ Add tasks with title, bike, priority, notes
+- ✅ Toggle task completion
+- ✅ Recent tasks list with bike names
+- ✅ API key authentication
+- ✅ Logout functionality
+
+**What's pending:**
+- ⏳ Remote access (Tailscale routing issue)
+- ⏳ Production deployment (AWS Lambda + HTTPS)
 
 ---
 
-## Chosen Approach: Real-Time Database Writes
-
-Form posts to your Lambda API, writes directly to PostgreSQL.
+## Architecture
 
 ```
-Web Form → Lambda API (public) → PostgreSQL
+Web Form (Astro) → Lambda API (localhost:3000) → PostgreSQL (Docker on Pi)
 ```
 
-**Mobile sync deferred** — same database will be used by mobile app later.
-
-**What this enables:**
-- Instant writes from web (no rebuild needed)
-- Single source of truth in PostgreSQL
-- Mobile app can connect to same table whenever ready
+**For production:**
+```
+Web Form (HTTPS) → AWS API Gateway (HTTPS) → PostgreSQL (Docker on Pi)
+```
 
 ---
 
-## Implementation Steps
+## Implementation Details
 
-### Step 1: Create `maintenance_records` Table ✅ DONE (Manual)
+### Database Table
 
-Run this SQL on your PostgreSQL database:
+Located in `moto_db_local` on the Pi's PostgreSQL Docker container.
 
 ```sql
 CREATE TABLE maintenance_records (
@@ -52,142 +60,93 @@ CREATE TABLE maintenance_records (
 );
 ```
 
-### Step 2: Add Public POST Endpoint to Lambda API ⏳ NEXT
+### Bike UUIDs (for form dropdown)
 
-Add to `serverless.yml`:
-```yaml
-functions:
-  maintenanceCreate:
-    handler: src/handlers/maintenance/create.handler
-    events:
-      - http:
-          path: maintenance
-          method: post
-          cors: true
-  maintenanceList:
-    handler: src/handlers/maintenance/findAll.handler
-    events:
-      - http:
-          path: maintenance
-          method: get
-          cors: true
 ```
-
-Add simple API key auth:
-```typescript
-// In handler
-const apiKey = event.headers['x-api-key'];
-if (apiKey !== process.env.MAINTENANCE_API_KEY) {
-  return { statusCode: 401, body: 'Unauthorized' };
-}
+d8454deb-4ac6-4ed3-8c46-255c293685f4 → KX450F (2014)
+9f803ba6-27db-4f7c-8403-7118b5b49035 → Z125 (2018)
+37053aac-a94d-43d4-a523-43c8b9fc6686 → ZX6R (2009)
 ```
-
-### Step 3: Create Authenticated Form Page ✅ DONE
-
-**Files created:**
-- `src/pages/admin/login.astro` — Simple API key entry page
-- `src/pages/admin/maintenance.astro` — Quick-capture form
-
-**Form fields:**
-1. Title (required) — "Change oil on R6"
-2. Bike (dropdown) — populated from `bikes.json`
-3. Priority — High / Medium / Low
-
-**Auth:** API key stored in localStorage
-
-### Step 4: Test End-to-End ⏳ PENDING
-
-1. Visit `/admin/login` on phone or desktop
-2. Enter API key
-3. Submit a task
-4. Verify it appears in PostgreSQL
 
 ---
 
-## Files Created/Modified
+## Files Created
 
-### staubracing.com (Website) ✅ DONE
+### staubracing.com (Website)
 
-| File | Status |
-|------|--------|
-| `src/pages/admin/login.astro` | ✅ Created |
-| `src/pages/admin/maintenance.astro` | ✅ Created |
+| File | Description |
+|------|-------------|
+| `src/pages/admin/login.astro` | API key entry, stores in localStorage |
+| `src/pages/admin/maintenance.astro` | Quick-capture form + task list |
 
-### moto-lambda-API (Backend) ⏳ TODO
+### moto-lambda-API (Backend)
 
-| File | Status |
-|------|--------|
-| `src/types/maintenanceFields.ts` | ⏳ Create |
-| `src/models/Maintenance.ts` | ⏳ Create |
-| `src/handlers/maintenance/create.ts` | ⏳ Create |
-| `src/handlers/maintenance/findAll.ts` | ⏳ Create |
-| `serverless.yml` | ⏳ Modify |
+| File | Description |
+|------|-------------|
+| `src/types/maintenanceFields.ts` | TypeScript interfaces |
+| `src/models/Maintenance.ts` | Database CRUD operations |
+| `src/handlers/maintenance/create.ts` | POST /maintenance |
+| `src/handlers/maintenance/findAll.ts` | GET /maintenance |
+| `src/handlers/maintenance/update.ts` | PATCH /maintenance/{id} |
+| `serverless.yml` | Route definitions + API key env var |
 
 ---
 
-## API Contract
+## API Endpoints
 
 ### POST /maintenance
-
-**Headers:**
-```
-Content-Type: application/json
-x-api-key: <your-api-key>
-```
-
-**Body:**
-```json
-{
-  "title": "Change oil on KX450F",
-  "bike_id": "uuid-or-null",
-  "priority": "medium",
-  "notes": "Use 10W-40"
-}
-```
-
-**Response:**
-```json
-{
-  "id": "uuid",
-  "title": "Change oil on KX450F",
-  "bike_id": "uuid",
-  "priority": "medium",
-  "notes": "Use 10W-40",
-  "completed": false,
-  "created_at": "2026-02-16T12:00:00Z"
-}
-```
+Create a new task.
 
 ### GET /maintenance
+List all tasks.
 
-**Headers:**
-```
-x-api-key: <your-api-key>
-```
+### PATCH /maintenance/{id}
+Update a task (e.g., toggle completion).
 
-**Response:**
-```json
-[
-  {
-    "id": "uuid",
-    "title": "Change oil on KX450F",
-    "bike_id": "uuid",
-    "priority": "medium",
-    "notes": "Use 10W-40",
-    "completed": false,
-    "created_at": "2026-02-16T12:00:00Z"
-  }
-]
-```
+All endpoints require `x-api-key` header.
 
 ---
 
-## Later: Mobile App Connection
+## Running Locally
 
-When ready to connect the mobile app:
-- Mobile app uses same API endpoints
-- Bi-directional sync (add from phone, see on web, and vice versa)
-- Add UPDATE/DELETE endpoints for full CRUD
+1. **Start the Lambda server** (on Pi):
+   ```bash
+   cd /home/staub-racing/Projects/Mobile-Apps/MotoAppPro/moto-lambda-API
+   yarn start:offline-local
+   ```
+
+2. **Start the Astro dev server**:
+   ```bash
+   cd /home/staub-racing/Projects/Websites/staubracing.com
+   yarn dev
+   ```
+
+3. **Access the form**:
+   ```
+   http://localhost:4321/admin/login
+   ```
+
+---
+
+## Known Issues
+
+### Tailscale Routing
+- Accessing API via Tailscale IP (100.85.179.68:3000) returns wrong routes
+- Works fine via localhost:3000
+- Needs investigation or deploy to AWS for remote access
+
+### Mixed Content
+- Production site (HTTPS) can't call HTTP API
+- Solution: Deploy Lambda to AWS API Gateway (provides HTTPS)
+
+---
+
+## Next Steps
+
+1. **Deploy Lambda to AWS** - Get HTTPS endpoint for production
+2. **Set `MAINTENANCE_API_URL` env var** - Point to AWS API Gateway
+3. **Debug Tailscale** - Or skip if AWS deployment works
+4. **Mobile app sync** - Connect React Native app to same endpoints
 
 ---
 
@@ -196,10 +155,13 @@ When ready to connect the mobile app:
 | Phase | Status |
 |-------|--------|
 | Planning | ✅ Complete |
-| Database Schema | ✅ Ready (run SQL on Pi) |
+| Database Schema | ✅ Complete |
+| Lambda API Endpoints | ✅ Complete |
 | Web Login Page | ✅ Complete |
 | Web Form Page | ✅ Complete |
-| Lambda API Endpoints | ⏳ Next step |
-| Testing | ⏳ Pending |
+| Task Completion Toggle | ✅ Complete |
+| Local Testing | ✅ Working |
+| Remote Access (Tailscale) | ⏳ Issue found |
+| Production Deployment | ⏳ Pending |
 
-**Last Updated:** 2026-02-16
+**Last Updated:** 2026-02-17
