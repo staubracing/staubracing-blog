@@ -1,0 +1,194 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Admin Login - StaubRacing">
+  <section class="section-card">
+    <header class="section-header">
+      <span class="pill">Admin</span>
+      <h1>Login</h1>
+      <p>Enter your API key to access the maintenance form.</p>
+    </header>
+
+    <form id="login-form" class="login-form">
+      <div class="form-group">
+        <label for="api-key">API Key</label>
+        <input
+          type="password"
+          id="api-key"
+          name="api-key"
+          placeholder="Enter your API key"
+          required
+          autocomplete="off"
+        />
+      </div>
+
+      <button type="submit" class="submit-btn">
+        <span class="btn-text">Login</span>
+        <span class="btn-arrow">→</span>
+      </button>
+
+      <p id="error-msg" class="error-msg"></p>
+    </form>
+  </section>
+</Layout>
+
+<script>
+  const form = document.getElementById('login-form') as HTMLFormElement;
+  const errorMsg = document.getElementById('error-msg') as HTMLElement;
+
+  // Check if already logged in
+  const existingKey = localStorage.getItem('maintenance_api_key');
+  if (existingKey) {
+    window.location.href = '/admin/maintenance';
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const apiKey = (document.getElementById('api-key') as HTMLInputElement).value;
+
+    if (!apiKey.trim()) {
+      errorMsg.textContent = 'Please enter an API key';
+      return;
+    }
+
+    // Store the key and redirect
+    localStorage.setItem('maintenance_api_key', apiKey.trim());
+    window.location.href = '/admin/maintenance';
+  });
+</script>
+
+<style>
+  .section-card {
+    display: grid;
+    gap: 1.75rem;
+    padding: clamp(1.75rem, 2.5vw, 2.75rem);
+    background: var(--surface-solid);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--surface-border);
+    box-shadow: var(--shadow-soft);
+    backdrop-filter: blur(16px);
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    display: grid;
+    gap: 0.8rem;
+    text-align: center;
+  }
+
+  .section-header h1 {
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .section-header p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+  }
+
+  .section-header .pill {
+    justify-self: center;
+    background: var(--accent-racing);
+    color: white;
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .login-form {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .form-group {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .form-group label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .form-group input {
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--surface-border);
+    background: var(--overlay-base-light);
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: border 0.2s ease, background 0.2s ease;
+  }
+
+  .form-group input::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.6;
+  }
+
+  .form-group input:focus {
+    outline: none;
+    border-color: var(--accent-electric);
+    background: var(--overlay-accent-light);
+  }
+
+  .submit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    border-radius: var(--radius-md);
+    border: none;
+    background: var(--accent-racing);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hard);
+  }
+
+  .submit-btn:active {
+    transform: translateY(0);
+  }
+
+  .btn-arrow {
+    transition: transform 0.2s ease;
+  }
+
+  .submit-btn:hover .btn-arrow {
+    transform: translateX(4px);
+  }
+
+  .error-msg {
+    margin: 0;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius-md);
+    background: var(--overlay-warning-light);
+    border: 1px solid var(--accent-amber);
+    color: var(--accent-amber);
+    font-size: 0.9rem;
+    text-align: center;
+    display: none;
+  }
+
+  .error-msg:not(:empty) {
+    display: block;
+  }
+</style>

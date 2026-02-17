@@ -2,5 +2,10 @@
   "enableAllProjectMcpServers": true,
   "enabledMcpjsonServers": [
     "memory"
-  ]
+  ],
+  "permissions": {
+    "allow": [
+      "Bash(yarn build:*)"
+    ]
+  }
 }
