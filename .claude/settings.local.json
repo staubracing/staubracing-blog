@@ -1,11 +1,7 @@
 {
-  "enableAllProjectMcpServers": true,
-  "enabledMcpjsonServers": [
-    "memory"
-  ],
   "permissions": {
-    "allow": [
-      "Bash(yarn build:*)"
-    ]
-  }
+    "allow": ["Bash(yarn build:*)", "mcp__memory__create_entities"]
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": ["memory"]
 }
