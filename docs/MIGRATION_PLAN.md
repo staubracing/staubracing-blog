@@ -8,7 +8,7 @@ Consolidate `staubracing.com` (static HTML) and `blog.staubracing.com` (Astro/Gi
 
 ---
 
-## Current Status (Updated 2026-02-15)
+## Current Status (Updated 2026-02-18)
 
 | Phase | Status | Completion |
 |-------|--------|------------|
@@ -16,7 +16,9 @@ Consolidate `staubracing.com` (static HTML) and `blog.staubracing.com` (Astro/Gi
 | 2: Content Migration | ✅ Complete | 100% |
 | 3: Home Page & Polish | ✅ Complete | 100% |
 | 4: AWS Deployment | ✅ Complete | 100% |
-| 5: Content Cadence | ⏳ Ongoing | — |
+| 5: Content Cadence | ✅ Complete | 100% |
+
+**Migration complete.** Ongoing content planning now tracked in `docs/BLOG_IDEAS.md`.
 
 ---
 
@@ -114,18 +116,26 @@ Consolidate `staubracing.com` (static HTML) and `blog.staubracing.com` (Astro/Gi
 
 ---
 
-## Phase 5: Content Cadence ⏳
+## Phase 5: Content Cadence ✅
 
 **Goal:** Establish the weekly publishing habit.
 
-- [ ] Start with biweekly posts for the first 8 weeks, then move to weekly
-- [ ] Rotate across categories to keep the site balanced:
-  - Week 1: Racing (race report, bike update, track day recap)
-  - Week 2: Code or Projects (tutorial, project update, dev log)
-  - Week 3: Life (story, reflection, career)
-  - Week 4: Wild card
 - [x] Blog post workflow: write `.md` file → `git add` → `git push` → auto-deploys
-- [ ] Keep a running ideas list in `docs/BLOG_IDEAS.md`
+- [x] Ideas list and publishing cadence moved to `docs/BLOG_IDEAS.md`
+
+**Note:** Phase 5 described an operational workflow, not a build task. Content planning is now tracked separately in BLOG_IDEAS.md as ongoing work.
+
+---
+
+## Migration Complete 🎉
+
+All infrastructure phases are finished. The site is:
+
+- **Live** at `staubracing.com` via AWS S3 + CloudFront
+- **Automated** with GitHub Actions CI/CD
+- **Ready** for ongoing content creation
+
+For future content planning, see `docs/BLOG_IDEAS.md`.
 
 ---
 
