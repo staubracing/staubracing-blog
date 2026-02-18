@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import SocialIcons from '../components/SocialIcons.astro';
 ---
 
 <Layout title="Contact - StaubRacing">
@@ -10,43 +11,7 @@ import Layout from '../layouts/Layout.astro';
       <p>Want to talk bikes, code, or just say hi? Here's how to reach me.</p>
     </header>
 
-    <div class="contact-grid">
-      <a href="https://x.com/StaubRacing106" target="_blank" rel="noreferrer" class="contact-card">
-        <span class="contact-icon">𝕏</span>
-        <div class="contact-info">
-          <h3>X (Twitter)</h3>
-          <p>@StaubRacing106</p>
-        </div>
-        <span class="contact-arrow">→</span>
-      </a>
-
-      <a href="https://www.youtube.com/@staubracing106" target="_blank" rel="noreferrer" class="contact-card">
-        <span class="contact-icon">▶</span>
-        <div class="contact-info">
-          <h3>YouTube</h3>
-          <p>@staubracing106</p>
-        </div>
-        <span class="contact-arrow">→</span>
-      </a>
-
-      <a href="https://github.com/staubracing" target="_blank" rel="noreferrer" class="contact-card">
-        <span class="contact-icon">⌘</span>
-        <div class="contact-info">
-          <h3>GitHub</h3>
-          <p>staubracing</p>
-        </div>
-        <span class="contact-arrow">→</span>
-      </a>
-
-      <a href="https://www.linkedin.com/in/christopher-staub-engineer/" target="_blank" rel="noreferrer" class="contact-card">
-        <span class="contact-icon">in</span>
-        <div class="contact-info">
-          <h3>LinkedIn</h3>
-          <p>Christopher Staub</p>
-        </div>
-        <span class="contact-arrow">→</span>
-      </a>
-    </div>
+    <SocialIcons variant="cards" />
 
     <div class="contact-note">
       <p>For business inquiries or collaboration, LinkedIn is the best way to reach me.</p>
@@ -88,68 +53,6 @@ import Layout from '../layouts/Layout.astro';
     justify-self: center;
   }
 
-  .contact-grid {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  }
-
-  .contact-card {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    gap: 1rem;
-    align-items: center;
-    padding: 1.25rem 1.5rem;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--surface-border);
-    background: var(--overlay-base-light);
-    color: var(--text-primary);
-    text-decoration: none;
-    transition: border 0.2s ease, transform 0.2s ease, background 0.2s ease;
-  }
-
-  .contact-card:hover,
-  .contact-card:focus-visible {
-    border-color: var(--accent-electric);
-    background: var(--overlay-accent-light);
-    transform: translateY(-2px);
-  }
-
-  .contact-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 48px;
-    height: 48px;
-    border-radius: var(--radius-md);
-    background: var(--overlay-base-medium);
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--accent-electric);
-  }
-
-  .contact-info h3 {
-    margin: 0;
-    font-size: 1.1rem;
-  }
-
-  .contact-info p {
-    margin: 0;
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-  }
-
-  .contact-arrow {
-    font-size: 1.25rem;
-    color: var(--text-secondary);
-    transition: transform 0.2s ease, color 0.2s ease;
-  }
-
-  .contact-card:hover .contact-arrow {
-    transform: translateX(4px);
-    color: var(--accent-electric);
-  }
-
   .contact-note {
     display: grid;
     gap: 0.5rem;
@@ -164,20 +67,5 @@ import Layout from '../layouts/Layout.astro';
     margin: 0;
     font-size: 0.9rem;
     color: var(--text-secondary);
-  }
-
-  @media (max-width: 768px) {
-    .contact-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .contact-card {
-      padding: 1rem 1.25rem;
-    }
-
-    .contact-icon {
-      width: 40px;
-      height: 40px;
-    }
   }
 </style>
