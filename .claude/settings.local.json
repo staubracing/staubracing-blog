@@ -3,7 +3,10 @@
     "allow": [
       "Bash(yarn build:*)",
       "mcp__memory__create_entities",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
