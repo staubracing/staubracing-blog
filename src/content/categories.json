@@ -15,9 +15,9 @@
     },
     "projects": {
       "emoji": "🔧",
-      "title": "Projects",
+      "title": "Workshop",
       "color": "#f39c12",
-      "description": "Linux, Raspberry Pi, DIY electronics"
+      "description": "DIY builds, homelab, hardware hacks"
     },
     "life": {
       "emoji": "📝",
