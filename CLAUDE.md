@@ -63,7 +63,6 @@ staubracing.com/
 │   ├── components/
 │   │   ├── ui/            # Reusable cards and UI elements
 │   │   │   ├── BikeCard.astro
-│   │   │   ├── StatCard.astro
 │   │   │   └── MaintenanceList.astro
 │   │   ├── SocialIcons.astro  # Social links with compact/cards variants
 │   │   ├── SubNav.astro
@@ -81,7 +80,7 @@ staubracing.com/
 │   │   ├── about.astro       # About page
 │   │   ├── racing.astro      # Racing section
 │   │   ├── racing/reports.astro # Race reports listing
-│   │   ├── projects.astro    # Projects section
+│   │   ├── workshop.astro    # Workshop section (DIY builds)
 │   │   ├── code.astro        # Code section
 │   │   ├── code/posts.astro  # Code posts listing
 │   │   ├── journal.astro     # Journal section
@@ -118,13 +117,13 @@ Categories are configured in `src/content/categories.json` with associated emoji
 ## Architecture
 
 ### Site Structure
-Main navigation: Home, Racing, Projects, Code, Journal, Contact
+Main navigation: Home, Racing, Workshop, Code, Journal, Contact
 
-Each section page (racing, projects, code, journal) aggregates blog posts from its category and may include section-specific content.
+Each section page (racing, workshop, code, journal) aggregates blog posts from its category and may include section-specific content.
 
 ### Routing
 - File-based routing in `src/pages/`
-- Static pages: `index.astro`, `racing.astro`, `projects.astro`, `code.astro`, `journal.astro`, `contact.astro`, `links.astro`, `calendar.astro`, `maintenance.astro`
+- Static pages: `index.astro`, `racing.astro`, `workshop.astro`, `code.astro`, `journal.astro`, `contact.astro`, `links.astro`, `calendar.astro`, `maintenance.astro`
 - Admin pages: `admin/login.astro`, `admin/maintenance.astro` (API key auth required)
 - Dynamic: `blog/[...slug].astro` for posts, `category/[category].astro` for category listings
 
@@ -144,7 +143,6 @@ Each section page (racing, projects, code, journal) aggregates blog posts from i
 - `SubNav.astro` — Section-specific navigation with category links
 - `SocialIcons.astro` — Social media links with two variants: `compact` (small icons) and `cards` (contact page style). Uses platform-specific accent colors with glow effects.
 - `ui/BikeCard.astro` — Bike specs display with status indicators
-- `ui/StatCard.astro` — Quick stat display
 - `ui/MaintenanceList.astro` — Renders maintenance tasks from Lambda API
 
 **Note:** Blog posts and links are rendered inline in page templates rather than using card components. Navigation is embedded directly in Layout.astro.

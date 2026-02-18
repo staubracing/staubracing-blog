@@ -183,8 +183,6 @@ import Layout from '../../layouts/Layout.astro';
     statusMsg.className = 'status-msg';
 
     try {
-      console.log('Submitting:', { title, bike_id: bikeId || null, priority, notes: notes || null });
-
       const response = await fetch(API_URL, {
         method: 'POST',
         headers: {
@@ -199,9 +197,7 @@ import Layout from '../../layouts/Layout.astro';
         })
       });
 
-      console.log('Response status:', response.status);
       const data = await response.json();
-      console.log('Response data:', data);
 
       if (response.ok) {
         statusMsg.textContent = 'Task added!';
