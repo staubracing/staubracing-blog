@@ -65,6 +65,7 @@ staubracing.com/
 │   │   │   ├── BikeCard.astro
 │   │   │   ├── StatCard.astro
 │   │   │   └── MaintenanceList.astro
+│   │   ├── SocialIcons.astro  # Social links with compact/cards variants
 │   │   ├── SubNav.astro
 │   │   ├── ThemeToggle.astro
 │   │   └── MediaDisplay.astro
@@ -141,11 +142,21 @@ Each section page (racing, projects, code, journal) aggregates blog posts from i
 - `ThemeToggle.astro` — Dark/light mode switching with localStorage persistence
 - `MediaDisplay.astro` — Renders images, videos, and embedded content for blog posts
 - `SubNav.astro` — Section-specific navigation with category links
+- `SocialIcons.astro` — Social media links with two variants: `compact` (small icons) and `cards` (contact page style). Uses platform-specific accent colors with glow effects.
 - `ui/BikeCard.astro` — Bike specs display with status indicators
 - `ui/StatCard.astro` — Quick stat display
 - `ui/MaintenanceList.astro` — Renders maintenance tasks from Lambda API
 
 **Note:** Blog posts and links are rendered inline in page templates rather than using card components. Navigation is embedded directly in Layout.astro.
+
+### Component Patterns
+
+**Variant Props** — Components like `SocialIcons.astro` support multiple rendering modes via a `variant` prop:
+```astro
+<SocialIcons variant="cards" />   <!-- Contact page: full cards with icons -->
+<SocialIcons variant="compact" /> <!-- Footer: small icon buttons -->
+```
+This pattern keeps shared data (links, icons) in one place while allowing different visual presentations.
 
 ## Commit Style
 
