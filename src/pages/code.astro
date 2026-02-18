@@ -1,14 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { getCollection } from 'astro:content';
 import { CATEGORY_INFO } from '../content/config';
 import SubNav from '../components/SubNav.astro';
 import codeProjectsData from '../data/code-projects.json';
-
-const posts = await getCollection('blog', (post) =>
-  post.data.category === 'code' && !post.data.draft
-);
-const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 
 // Sort projects: active first, then planned, then done
 const statusOrder = { active: 0, planned: 1, done: 2 };
@@ -23,20 +17,17 @@ const projectsByCategory = Object.fromEntries(
 );
 ---
 
-<Layout title="Code - StaubRacing">
+<Layout title="Code Projects - StaubRacing">
   <SubNav slot="subnav" section="code" currentPath="/code" />
 
   <section class="section-card" style={`--category-color: ${CATEGORY_INFO.code.color}`}>
     <header class="section-header">
       <span class="category-pill">{CATEGORY_INFO.code.emoji} {CATEGORY_INFO.code.title}</span>
-      <h1>Code</h1>
-      <p>{CATEGORY_INFO.code.description}</p>
+      <h1>Projects</h1>
+      <p>What I'm building, planning, and have completed.</p>
     </header>
 
-    <section id="projects" class="projects-section">
-      <h2>Active Projects</h2>
-      <p class="section-intro">What I'm building, planning, and have completed.</p>
-
+    <section class="projects-section">
       {categories.map(category => projectsByCategory[category].length > 0 && (
         <div class="category-group">
           <h3 class="category-heading">{category}</h3>
@@ -68,30 +59,6 @@ const projectsByCategory = Object.fromEntries(
           </div>
         </div>
       ))}
-    </section>
-
-    <section id="posts" class="posts-section">
-      <h2>Code Posts</h2>
-      {sortedPosts.length > 0 ? (
-      <div class="posts-grid">
-        {sortedPosts.map(post => (
-          <article class="post-card">
-            <header>
-              <h2><a href={`/blog/${post.slug}`}>{post.data.title}</a></h2>
-              <time>{post.data.date.toLocaleDateString()}</time>
-            </header>
-            {post.data.description && <p>{post.data.description}</p>}
-            {post.data.tags.length > 0 && (
-              <ul class="tag-list">
-                {post.data.tags.map(tag => <li>{tag}</li>)}
-              </ul>
-            )}
-          </article>
-        ))}
-      </div>
-    ) : (
-      <p class="empty-state">No code posts yet. Tutorials, app development, and dev tools coming soon.</p>
-    )}
     </section>
   </section>
 </Layout>
@@ -129,39 +96,9 @@ const projectsByCategory = Object.fromEntries(
     justify-self: center;
   }
 
-  .projects-section,
-  .posts-section {
+  .projects-section {
     display: grid;
     gap: 1rem;
-  }
-
-  .projects-section h2,
-  .posts-section h2 {
-    margin: 0;
-    font-size: 1.5rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding-bottom: 0.75rem;
-    border-bottom: 1px solid var(--surface-border);
-    position: relative;
-  }
-
-  .projects-section h2::after,
-  .posts-section h2::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 60px;
-    height: 2px;
-    background: var(--accent-electric);
-    border-radius: 1px;
-  }
-
-  .section-intro {
-    margin: 0;
-    color: var(--text-secondary);
-    font-size: 0.9rem;
   }
 
   .category-group {
@@ -282,68 +219,5 @@ const projectsByCategory = Object.fromEntries(
     border: 1px solid color-mix(in srgb, var(--text-secondary) 25%, transparent);
     border-radius: var(--radius-sm);
     color: var(--text-secondary);
-  }
-
-  .posts-grid {
-    display: grid;
-    gap: 1.25rem;
-  }
-
-  .post-card {
-    display: grid;
-    gap: 0.75rem;
-    padding: 1.35rem 1.5rem;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--surface-border);
-    background: var(--surface-solid);
-    transition: border 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-  }
-
-  .post-card:hover,
-  .post-card:focus-within {
-    border-color: color-mix(in srgb, var(--category-color) 40%, var(--surface-border));
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-soft);
-  }
-
-  .post-card header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .post-card h2 {
-    margin: 0;
-    font-size: 1.3rem;
-  }
-
-  .post-card time {
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .post-card p {
-    margin: 0;
-  }
-
-  .empty-state {
-    margin: 0;
-    text-align: center;
-    color: var(--text-secondary);
-    padding: 2rem;
-  }
-
-  @media (max-width: 768px) {
-    .post-card {
-      padding: 1.2rem 1.25rem;
-    }
-
-    .post-card header {
-      flex-direction: column;
-      align-items: flex-start;
-    }
   }
 </style>
