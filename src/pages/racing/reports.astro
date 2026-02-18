@@ -10,13 +10,13 @@ const posts = await getCollection('blog', (post) =>
 const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
-<Layout title="Race Journal - StaubRacing">
-  <SubNav slot="subnav" section="racing" currentPath="/racing/journal" />
+<Layout title="Race Reports - StaubRacing">
+  <SubNav slot="subnav" section="racing" currentPath="/racing/reports" />
 
   <section class="section-card" style={`--category-color: ${CATEGORY_INFO.racing.color}`}>
     <header class="section-header">
       <span class="category-pill">{CATEGORY_INFO.racing.emoji} {CATEGORY_INFO.racing.title}</span>
-      <h1>Race Journal</h1>
+      <h1>Race Reports</h1>
       <p>Track day reports, race recaps, and bike builds</p>
     </header>
 
