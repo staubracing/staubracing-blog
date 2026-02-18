@@ -63,7 +63,9 @@ staubracing.com/
 │   ├── components/
 │   │   ├── ui/            # Reusable cards and UI elements
 │   │   │   ├── BikeCard.astro
-│   │   │   └── StatCard.astro
+│   │   │   ├── StatCard.astro
+│   │   │   └── MaintenanceList.astro
+│   │   ├── SubNav.astro
 │   │   ├── ThemeToggle.astro
 │   │   └── MediaDisplay.astro
 │   ├── content/
@@ -77,9 +79,15 @@ staubracing.com/
 │   │   ├── index.astro       # Home
 │   │   ├── about.astro       # About page
 │   │   ├── racing.astro      # Racing section
+│   │   ├── racing/reports.astro # Race reports listing
 │   │   ├── projects.astro    # Projects section
 │   │   ├── code.astro        # Code section
-│   │   ├── life.astro        # Life section
+│   │   ├── code/posts.astro  # Code posts listing
+│   │   ├── journal.astro     # Journal section
+│   │   ├── calendar.astro    # Event calendar
+│   │   ├── maintenance.astro # Public maintenance view
+│   │   ├── admin/login.astro       # API key auth
+│   │   ├── admin/maintenance.astro # Quick-capture form
 │   │   ├── contact.astro     # Contact page
 │   │   ├── links.astro       # Links hub
 │   │   ├── blog/[...slug].astro
@@ -98,6 +106,9 @@ Blog posts use Astro's content collection system with schema validation in `src/
 - `tags` - Array of tags
 - `category` - One of: racing, code, projects, life
 - `draft` - Boolean (true for WIP posts, excluded from builds)
+- `series` - Optional string for multi-part posts (e.g., "ZX6R Rebuild")
+- `editor` - Optional editor credit
+- `featured` - Boolean for highlighting posts (default: false)
 
 **Draft posts:** Setting `draft: true` excludes the post from production builds. Draft posts are still visible during development (`yarn dev`).
 
@@ -106,13 +117,14 @@ Categories are configured in `src/content/categories.json` with associated emoji
 ## Architecture
 
 ### Site Structure
-Main navigation: Home, Racing, Projects, Code, Life, Contact
+Main navigation: Home, Racing, Projects, Code, Journal, Contact
 
-Each section page (racing, projects, code, life) aggregates blog posts from its category and may include section-specific content.
+Each section page (racing, projects, code, journal) aggregates blog posts from its category and may include section-specific content.
 
 ### Routing
 - File-based routing in `src/pages/`
-- Static pages: `index.astro`, `racing.astro`, `projects.astro`, `code.astro`, `life.astro`, `contact.astro`, `links.astro`
+- Static pages: `index.astro`, `racing.astro`, `projects.astro`, `code.astro`, `journal.astro`, `contact.astro`, `links.astro`, `calendar.astro`, `maintenance.astro`
+- Admin pages: `admin/login.astro`, `admin/maintenance.astro` (API key auth required)
 - Dynamic: `blog/[...slug].astro` for posts, `category/[category].astro` for category listings
 
 ### Styling
@@ -128,8 +140,10 @@ Each section page (racing, projects, code, life) aggregates blog posts from its 
 ### Key Components
 - `ThemeToggle.astro` — Dark/light mode switching with localStorage persistence
 - `MediaDisplay.astro` — Renders images, videos, and embedded content for blog posts
+- `SubNav.astro` — Section-specific navigation with category links
 - `ui/BikeCard.astro` — Bike specs display with status indicators
 - `ui/StatCard.astro` — Quick stat display
+- `ui/MaintenanceList.astro` — Renders maintenance tasks from Lambda API
 
 **Note:** Blog posts and links are rendered inline in page templates rather than using card components. Navigation is embedded directly in Layout.astro.
 
@@ -163,6 +177,17 @@ The site was migrated from a two-site setup (static HTML + blog subdomain) to a 
 
 See `docs/MIGRATION_PLAN.md` for historical reference.
 
+## Claude Code Extensions
+
+Custom skills and agents for this project:
+
+**Skills** (invoked with `/skill-name`):
+- `new-post` — Scaffold a new blog post with proper frontmatter and image folder
+- `add-maintenance` — Add a maintenance task to the tracker
+
+**Agents**:
+- `content-reviewer` — Validates blog posts for quality and consistency
+
 ## Documentation
 
 | File | Purpose |
@@ -171,3 +196,4 @@ See `docs/MIGRATION_PLAN.md` for historical reference.
 | `docs/THEME_GUIDE.md` | How to update colors and theme variables |
 | `docs/IMAGE_GUIDE.md` | Adding images to blog posts |
 | `docs/BLOG_IDEAS.md` | Content ideas and post tracking |
+| `docs/DATABASE_INTEGRATION.md` | Maintenance quick-capture system (Lambda API + PostgreSQL) |
