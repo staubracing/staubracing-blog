@@ -1,7 +1,7 @@
 ---
 /**
  * SubNav - Contextual sub-navigation for section pages
- * Appears below the main nav on Racing, Projects, Code, and Life pages
+ * Appears below the main nav on Racing and Code pages
  */
 
 interface SubNavItem {
@@ -10,7 +10,7 @@ interface SubNavItem {
 }
 
 interface Props {
-  section: 'racing' | 'projects' | 'code';
+  section: 'racing' | 'code';
   currentPath?: string;
 }
 
@@ -24,15 +24,6 @@ const subNavConfig: Record<string, { label: string; items: SubNavItem[] }> = {
       { label: 'Calendar', href: '/calendar' },
       { label: 'Maintenance', href: '/maintenance' },
       { label: 'Race Reports', href: '/racing/reports' },
-    ],
-  },
-  projects: {
-    label: 'PROJECTS',
-    items: [
-      { label: 'All Projects', href: '/projects' },
-      { label: 'Homelab', href: '/projects#homelab' },
-      { label: 'Automation', href: '/projects#automation' },
-      { label: 'Hardware', href: '/projects#hardware' },
     ],
   },
   code: {
