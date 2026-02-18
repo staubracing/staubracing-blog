@@ -2,7 +2,21 @@
 import Layout from '../layouts/Layout.astro';
 import SubNav from '../components/SubNav.astro';
 import MaintenanceList from '../components/ui/MaintenanceList.astro';
-import maintenanceData from '../data/maintenance.json';
+import maintenanceData from '../data/maintenance.json' with { type: 'json' };
+
+// Type assertion to satisfy TypeScript's literal union type for priority
+type MaintenanceItem = {
+  id: string;
+  bike: string;
+  task: string;
+  priority: 'high' | 'medium' | 'low';
+  notes?: string;
+};
+
+const typedMaintenanceData = maintenanceData as {
+  lastUpdated: string;
+  items: MaintenanceItem[];
+};
 ---
 
 <Layout title="Bike Maintenance | StaubRacing">
@@ -16,11 +30,11 @@ import maintenanceData from '../data/maintenance.json';
     </header>
 
     <div class="last-updated">
-      Last updated: {maintenanceData.lastUpdated}
+      Last updated: {typedMaintenanceData.lastUpdated}
     </div>
 
-    {maintenanceData.items.length > 0 ? (
-      <MaintenanceList items={maintenanceData.items} />
+    {typedMaintenanceData.items.length > 0 ? (
+      <MaintenanceList items={typedMaintenanceData.items} />
     ) : (
       <p class="empty-state">No maintenance items. The fleet is ready to roll!</p>
     )}

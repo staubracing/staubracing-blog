@@ -93,6 +93,15 @@ import Layout from '../../layouts/Layout.astro';
   const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
   const recentList = document.getElementById('recent-list') as HTMLElement;
 
+  // Helper to safely show empty/error states
+  function showEmptyState(message: string) {
+    recentList.textContent = '';
+    const p = document.createElement('p');
+    p.className = 'empty-state';
+    p.textContent = message;
+    recentList.appendChild(p);
+  }
+
   // Fetch recent tasks
   async function loadRecentTasks() {
     try {
@@ -108,39 +117,58 @@ import Layout from '../../layouts/Layout.astro';
       } else if (response.status === 401) {
         window.location.href = '/admin/login';
       } else {
-        recentList.innerHTML = '<p class="empty-state">Unable to load tasks</p>';
+        showEmptyState('Unable to load tasks');
       }
     } catch {
-      recentList.innerHTML = '<p class="empty-state">API not connected</p>';
+      showEmptyState('API not connected');
     }
   }
 
   function renderTasks(tasks: any[]) {
+    // Clear existing content safely
+    recentList.textContent = '';
+
     if (tasks.length === 0) {
-      recentList.innerHTML = '<p class="empty-state">No tasks yet</p>';
+      const emptyMsg = document.createElement('p');
+      emptyMsg.className = 'empty-state';
+      emptyMsg.textContent = 'No tasks yet';
+      recentList.appendChild(emptyMsg);
       return;
     }
 
-    recentList.innerHTML = tasks.map(task => `
-      <div class="task-item ${task.completed ? 'completed' : ''}" data-id="${task.id}">
-        <button class="task-toggle" data-id="${task.id}" data-completed="${task.completed}" title="Toggle complete">
-          ${task.completed ? '✓' : ''}
-        </button>
-        <div class="task-content">
-          <span class="task-title">${task.title}</span>
-          <span class="task-bike">${task.bike_id ? (bikeNames[task.bike_id] || 'Unknown bike') : 'No bike'}</span>
-        </div>
-      </div>
-    `).join('');
+    // Build task elements safely with DOM APIs (prevents XSS)
+    tasks.forEach(task => {
+      const taskItem = document.createElement('div');
+      taskItem.className = `task-item ${task.completed ? 'completed' : ''}`;
+      taskItem.dataset.id = task.id;
 
-    // Add click handlers for toggle buttons
-    document.querySelectorAll('.task-toggle').forEach(btn => {
-      btn.addEventListener('click', async (e) => {
-        const target = e.currentTarget as HTMLButtonElement;
-        const id = target.dataset.id;
-        const isCompleted = target.dataset.completed === 'true';
-        await toggleComplete(id!, !isCompleted);
+      const toggleBtn = document.createElement('button');
+      toggleBtn.className = 'task-toggle';
+      toggleBtn.dataset.id = task.id;
+      toggleBtn.dataset.completed = String(task.completed);
+      toggleBtn.title = 'Toggle complete';
+      toggleBtn.textContent = task.completed ? '✓' : '';
+      toggleBtn.addEventListener('click', async () => {
+        const isCompleted = toggleBtn.dataset.completed === 'true';
+        await toggleComplete(task.id, !isCompleted);
       });
+
+      const taskContent = document.createElement('div');
+      taskContent.className = 'task-content';
+
+      const taskTitle = document.createElement('span');
+      taskTitle.className = 'task-title';
+      taskTitle.textContent = task.title; // Safe: textContent escapes HTML
+
+      const taskBike = document.createElement('span');
+      taskBike.className = 'task-bike';
+      taskBike.textContent = task.bike_id ? (bikeNames[task.bike_id] || 'Unknown bike') : 'No bike';
+
+      taskContent.appendChild(taskTitle);
+      taskContent.appendChild(taskBike);
+      taskItem.appendChild(toggleBtn);
+      taskItem.appendChild(taskContent);
+      recentList.appendChild(taskItem);
     });
   }
 
