@@ -127,20 +127,6 @@ a:focus-visible {
   color: var(--text-secondary);
 }
 
-/* Base Card Styles */
-.card-base {
-  display: grid;
-  border-radius: var(--radius-md);
-  border: 1px solid rgba(148, 163, 184, 0.16);
-  transition: border 0.2s ease, transform 0.2s ease;
-}
-
-.card-base:hover,
-.card-base:focus-within {
-  border-color: color-mix(in srgb, var(--category-color, var(--accent-electric)) 42%, transparent);
-  transform: translateY(-1px);
-}
-
 /* ============================================
    MOBILE RESPONSIVE
    ============================================ */
