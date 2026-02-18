@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(yarn build:*)",
-      "mcp__memory__create_entities"
+      "mcp__memory__create_entities",
+      "Bash(ls:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
