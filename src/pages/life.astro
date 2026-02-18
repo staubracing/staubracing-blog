@@ -2,7 +2,6 @@
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import { CATEGORY_INFO } from '../content/config';
-import SubNav from '../components/SubNav.astro';
 
 const posts = await getCollection('blog', (post) =>
   post.data.category === 'life' && !post.data.draft
@@ -10,14 +9,12 @@ const posts = await getCollection('blog', (post) =>
 const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
 ---
 
-<Layout title="Life - StaubRacing">
-  <SubNav slot="subnav" section="life" currentPath="/life" />
-
+<Layout title="Journal - StaubRacing">
   <section class="section-card" style={`--category-color: ${CATEGORY_INFO.life.color}`}>
     <header class="section-header">
       <span class="category-pill">{CATEGORY_INFO.life.emoji} {CATEGORY_INFO.life.title}</span>
-      <h1>Life</h1>
-      <p>{CATEGORY_INFO.life.description}</p>
+      <h1>Journal</h1>
+      <p>Personal stories, thoughts, and what I've been up to</p>
     </header>
 
     {sortedPosts.length > 0 ? (

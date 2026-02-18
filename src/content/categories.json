@@ -21,9 +21,9 @@
     },
     "life": {
       "emoji": "📝",
-      "title": "Life & Updates",
+      "title": "Journal",
       "color": "#2ecc71",
-      "description": "Personal stuff, thoughts, what I am up to"
+      "description": "Personal stories, thoughts, and updates"
     }
   }
 }

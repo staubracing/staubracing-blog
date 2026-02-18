@@ -10,7 +10,7 @@ interface SubNavItem {
 }
 
 interface Props {
-  section: 'racing' | 'projects' | 'code' | 'life';
+  section: 'racing' | 'projects' | 'code';
   currentPath?: string;
 }
 
@@ -40,15 +40,6 @@ const subNavConfig: Record<string, { label: string; items: SubNavItem[] }> = {
     items: [
       { label: 'Projects', href: '/code' },
       { label: 'Posts', href: '/code/posts' },
-    ],
-  },
-  life: {
-    label: 'LIFE',
-    items: [
-      { label: 'All Stories', href: '/life' },
-      { label: 'Aviation', href: '/life#aviation' },
-      { label: 'Personal', href: '/life#personal' },
-      { label: 'Adventures', href: '/life#adventures' },
     ],
   },
 };
