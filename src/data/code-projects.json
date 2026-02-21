@@ -29,15 +29,15 @@
       "name": "Chris Staub Site",
       "status": "active",
       "category": "Websites",
-      "description": "Personal website and portfolio",
-      "tech": ["HTML", "CSS"],
-      "link": null
+      "description": "Personal portfolio with clean, minimal design",
+      "tech": ["HTML", "CSS", "Responsive Design"],
+      "link": "https://chrisstaub.com"
     },
     {
       "name": "Kiera Site",
       "status": "planned",
       "category": "Websites",
-      "description": "Personal website project",
+      "description": "Personal website project - planned redesign",
       "tech": ["HTML", "CSS"],
       "link": null
     },

@@ -207,17 +207,28 @@ const projectsByCategory = Object.fromEntries(
     display: flex;
     flex-wrap: wrap;
     gap: 0.4rem;
+    margin-top: 0.25rem;
   }
 
   .tech-tag {
-    display: inline-block;
-    padding: 0.2rem 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.6rem;
     font-size: 0.7rem;
     font-weight: 500;
-    letter-spacing: 0.05em;
-    background: color-mix(in srgb, var(--text-secondary) 10%, transparent);
-    border: 1px solid color-mix(in srgb, var(--text-secondary) 25%, transparent);
+    font-family: "SF Mono", "Fira Code", "JetBrains Mono", monospace;
+    letter-spacing: 0.02em;
+    background: var(--surface-soft);
+    border: 1px solid var(--surface-border);
     border-radius: var(--radius-sm);
     color: var(--text-secondary);
+    transition: all 0.2s ease;
+  }
+
+  .tech-tag:hover {
+    background: color-mix(in srgb, var(--accent-electric) 15%, var(--surface-soft));
+    border-color: color-mix(in srgb, var(--accent-electric) 40%, var(--surface-border));
+    color: var(--accent-electric);
+    transform: translateY(-1px);
   }
 </style>
