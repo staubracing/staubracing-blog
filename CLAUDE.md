@@ -206,3 +206,18 @@ Custom skills and agents for this project:
 | `docs/IMAGE_GUIDE.md` | Adding images to blog posts |
 | `docs/BLOG_IDEAS.md` | Content ideas and post tracking |
 | `docs/DATABASE_INTEGRATION.md` | Maintenance quick-capture system (Lambda API + PostgreSQL) |
+
+## Future Improvements
+
+### Typography Cleanup
+Individual page components (racing.astro, workshop.astro, journal.astro, code.astro) have scoped font styles that duplicate the global typography variables in theme.css. Consider removing redundant scoped styles once the global system is proven stable.
+
+**Affected files:**
+- `src/pages/racing.astro` — `.section-header h1` font-size, letter-spacing
+- `src/pages/workshop.astro` — `.section-header h1`, `.post-card h2` font-size
+- `src/pages/journal.astro` — `.section-header h1`, `.post-card h2` font-size
+- `src/pages/code.astro` — similar patterns
+
+**Global variables available:**
+- `--font-size-h1`, `--font-size-h2`, `--font-size-h3`, `--font-size-h4`
+- `--letter-spacing-heading`
