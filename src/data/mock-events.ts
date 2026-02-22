@@ -1,6 +1,11 @@
 /**
  * Mock Calendar Events
  * Based on actual racing schedule - will be replaced with Google Calendar API
+ *
+ * NOTE: Event type classification logic for API integration:
+ * - Events with "CRA" in title → race
+ * - Events with "ZARS" in title → trackday
+ * - All other events → trackday (default)
  */
 
 export interface CalendarEvent {
