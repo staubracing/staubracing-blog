@@ -4,6 +4,7 @@ import '../styles/theme.css';
 import '../styles/global.css';
 
 const { title } = Astro.props;
+const currentPath = Astro.url.pathname;
 ---
 
 <!DOCTYPE html>
@@ -54,13 +55,13 @@ const { title } = Astro.props;
         <span class="brand-secondary">Racing</span>
       </a>
       <nav class="site-nav" aria-label="Primary navigation">
-        <a href="/">Home</a>
-        <a href="/about">About</a>
-        <a href="/racing">Racing</a>
-        <a href="/workshop">Workshop</a>
-        <a href="/code">Code</a>
-        <a href="/journal">Journal</a>
-        <a href="/contact">Contact</a>
+        <a href="/" class={currentPath === '/' ? 'active' : ''}>Home</a>
+        <a href="/about" class={currentPath === '/about' ? 'active' : ''}>About</a>
+        <a href="/racing" class={currentPath.startsWith('/racing') ? 'active' : ''}>Racing</a>
+        <a href="/workshop" class={currentPath.startsWith('/workshop') ? 'active' : ''}>Workshop</a>
+        <a href="/code" class={currentPath.startsWith('/code') ? 'active' : ''}>Code</a>
+        <a href="/journal" class={currentPath.startsWith('/journal') ? 'active' : ''}>Journal</a>
+        <a href="/contact" class={currentPath === '/contact' ? 'active' : ''}>Contact</a>
       </nav>
     </header>
 
@@ -222,6 +223,13 @@ const { title } = Astro.props;
     color: var(--text-primary);
     transform: translateY(-1px);
     box-shadow: 0 4px 12px -4px rgba(102, 187, 106, 0.25), 0 4px 12px -4px rgba(56, 189, 248, 0.2);
+  }
+
+  .site-nav a.active {
+    background: var(--accent-racing);
+    border-color: var(--accent-racing);
+    color: white;
+    box-shadow: 0 4px 16px -4px rgba(26, 135, 84, 0.5);
   }
 
   .page-shell {
