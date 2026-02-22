@@ -24,7 +24,6 @@ const typedMaintenanceData = maintenanceData as {
 
   <section class="maintenance-section">
     <header class="section-header">
-      <span class="category-pill">🏁 Racing</span>
       <h1>Bike Maintenance</h1>
       <p>Track day and race prep items for the fleet. Priority indicates urgency.</p>
     </header>
@@ -78,23 +77,6 @@ const typedMaintenanceData = maintenanceData as {
   .section-header p {
     margin: 0;
     color: var(--text-secondary);
-  }
-
-  .section-header .category-pill {
-    justify-self: center;
-  }
-
-  .category-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: linear-gradient(135deg, color-mix(in srgb, var(--accent-racing) 15%, transparent), transparent);
-    border: 1px solid color-mix(in srgb, var(--accent-racing) 40%, var(--surface-border));
-    border-radius: 999px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--accent-lime);
   }
 
   .last-updated {

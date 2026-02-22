@@ -13,7 +13,6 @@ type BikeStatus = 'ready' | 'maintenance';
 
   <section class="section-card" style={`--category-color: ${CATEGORY_INFO.racing.color}`}>
     <header class="section-header">
-      <span class="category-pill">{CATEGORY_INFO.racing.emoji} {CATEGORY_INFO.racing.title}</span>
       <h1>The Fleet</h1>
       <p>My race bikes and track machines</p>
     </header>
@@ -78,10 +77,6 @@ type BikeStatus = 'ready' | 'maintenance';
   .section-header p {
     margin: 0;
     color: var(--text-secondary);
-  }
-
-  .section-header .category-pill {
-    justify-self: center;
   }
 
   .stats-row {

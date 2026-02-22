@@ -134,6 +134,29 @@ Each section page (racing, workshop, code, journal) aggregates blog posts from i
 - Glassmorphism effects with backdrop filters
 - Mobile-first responsive design
 
+### Page Headers
+Section pages use clean, minimal headers with just `h1` and `p` — no redundant category pills. The navigation and theming already provide context.
+
+**Pattern:**
+```astro
+<header class="section-header">
+  <h1>{title}</h1>
+  <p>{description}</p>
+</header>
+```
+
+**Where `.category-pill` IS still used:**
+- Homepage featured post cards (each card needs its category label)
+- `category/[category].astro` (dynamic category pages)
+- `index.astro` post cards
+
+**Where `.category-pill` is NOT used:**
+- Main section pages (`racing.astro`, `workshop.astro`, `code.astro`, `journal.astro`)
+- Sub-section pages (`racing/reports.astro`, `code/posts.astro`)
+- Racing-related pages (`calendar.astro`, `maintenance.astro`)
+- Utility pages (`contact.astro`, `links.astro`)
+- Admin pages (`admin/login.astro`, `admin/maintenance.astro`)
+
 ### Layouts
 - `src/layouts/Layout.astro` — Shared page shell with embedded navigation and footer (no separate Nav/Footer components)
 

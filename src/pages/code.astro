@@ -22,7 +22,6 @@ const projectsByCategory = Object.fromEntries(
 
   <section class="section-card" style={`--category-color: ${CATEGORY_INFO.code.color}`}>
     <header class="section-header">
-      <span class="category-pill">{CATEGORY_INFO.code.emoji} {CATEGORY_INFO.code.title}</span>
       <h1>Projects</h1>
       <p>What I'm building, planning, and have completed.</p>
     </header>
@@ -90,10 +89,6 @@ const projectsByCategory = Object.fromEntries(
   .section-header p {
     margin: 0;
     color: var(--text-secondary);
-  }
-
-  .section-header .category-pill {
-    justify-self: center;
   }
 
   .projects-section {

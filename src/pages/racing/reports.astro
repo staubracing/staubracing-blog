@@ -15,7 +15,6 @@ const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.get
 
   <section class="section-card" style={`--category-color: ${CATEGORY_INFO.racing.color}`}>
     <header class="section-header">
-      <span class="category-pill">{CATEGORY_INFO.racing.emoji} {CATEGORY_INFO.racing.title}</span>
       <h1>Race Reports</h1>
       <p>Track day reports, race recaps, and bike builds</p>
     </header>
@@ -70,10 +69,6 @@ const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.get
   .section-header p {
     margin: 0;
     color: var(--text-secondary);
-  }
-
-  .section-header .category-pill {
-    justify-self: center;
   }
 
   .posts-grid {

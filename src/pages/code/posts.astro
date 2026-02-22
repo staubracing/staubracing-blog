@@ -15,7 +15,6 @@ const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.get
 
   <section class="section-card" style={`--category-color: ${CATEGORY_INFO.code.color}`}>
     <header class="section-header">
-      <span class="category-pill">{CATEGORY_INFO.code.emoji} {CATEGORY_INFO.code.title}</span>
       <h1>Code Posts</h1>
       <p>Tutorials, app development, and dev tools</p>
     </header>
@@ -70,10 +69,6 @@ const sortedPosts = posts.sort((a, b) => b.data.date.getTime() - a.data.date.get
   .section-header p {
     margin: 0;
     color: var(--text-secondary);
-  }
-
-  .section-header .category-pill {
-    justify-self: center;
   }
 
   .posts-grid {
