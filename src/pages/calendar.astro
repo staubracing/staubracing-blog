@@ -2,16 +2,65 @@
 import Layout from '../layouts/Layout.astro';
 import SubNav from '../components/SubNav.astro';
 import {
-  mockEvents,
   formatDateRange,
   getEventsByMonth,
   type CalendarEvent
 } from '../data/mock-events';
 
-// TODO: Replace with Google Calendar API fetch when API key is configured
-// const API_KEY = import.meta.env.GOOGLE_CALENDAR_API_KEY;
-// const response = await fetch(`https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events...`);
-const events = mockEvents;
+// Google Calendar API configuration
+const API_KEY = import.meta.env.GOOGLE_CALENDAR_API_KEY;
+const CALENDAR_ID = '2ee5866170c9db9ff52e5c925cb4d49281e3b1efff7a28d50f1677ffe12d975b@group.calendar.google.com';
+
+// Fetch events from Google Calendar API
+async function fetchCalendarEvents(): Promise<CalendarEvent[]> {
+  if (!API_KEY) {
+    console.warn('No Google Calendar API key found, using empty events');
+    return [];
+  }
+
+  const now = new Date().toISOString();
+  const endOfYear = new Date(new Date().getFullYear(), 11, 31).toISOString();
+
+  const url = new URL(`https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events`);
+  url.searchParams.set('key', API_KEY);
+  url.searchParams.set('timeMin', now);
+  url.searchParams.set('timeMax', endOfYear);
+  url.searchParams.set('singleEvents', 'true');
+  url.searchParams.set('orderBy', 'startTime');
+  url.searchParams.set('maxResults', '50');
+
+  try {
+    const response = await fetch(url.toString());
+    if (!response.ok) {
+      console.error('Calendar API error:', response.status);
+      return [];
+    }
+    const data = await response.json();
+
+    return (data.items || []).map((item: any) => ({
+      id: item.id,
+      title: item.summary || 'Untitled Event',
+      start: item.start?.date || item.start?.dateTime,
+      end: item.end?.date || item.end?.dateTime,
+      location: item.location || '',
+      type: getEventType(item.summary || ''),
+      description: item.description || '',
+    }));
+  } catch (error) {
+    console.error('Failed to fetch calendar events:', error);
+    return [];
+  }
+}
+
+// Classify event type based on title
+function getEventType(title: string): 'race' | 'trackday' | 'test' {
+  const upper = title.toUpperCase();
+  if (upper.includes('CRA')) return 'race';
+  if (upper.includes('ZARS')) return 'trackday';
+  return 'trackday'; // default
+}
+
+const events = await fetchCalendarEvents();
 const eventsByMonth = getEventsByMonth(events);
 
 // Event type styling config
@@ -39,7 +88,7 @@ const eventTypeConfig = {
 
   <section class="calendar-section">
     <header class="section-header">
-      <h1>2025 Race Schedule</h1>
+      <h1>2026 Race Schedule</h1>
       <p>Where Staub Racing will be competing this season. Click any event for details.</p>
     </header>
 
