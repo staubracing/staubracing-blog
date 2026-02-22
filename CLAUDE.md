@@ -32,6 +32,11 @@ Deployed automatically via GitHub Actions on push to `main`:
 
 No manual deploy command needed — just `git push`.
 
+**Production gotcha:** S3/CloudFront serves URLs with trailing slashes (`/about/`) while local dev does not (`/about`). Always normalize paths when comparing `Astro.url.pathname`:
+```javascript
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+```
+
 ### Media Helper Scripts
 ```bash
 node scripts/add-images.js create-folders           # Scaffold category directories
@@ -156,6 +161,27 @@ Section pages use clean, minimal headers with just `h1` and `p` — no redundant
 - Racing-related pages (`calendar.astro`, `maintenance.astro`)
 - Utility pages (`contact.astro`, `links.astro`)
 - Admin pages (`admin/login.astro`, `admin/maintenance.astro`)
+
+### Navigation Active States
+The main navigation highlights the current page/section with a racing green filled pill. Path matching handles trailing slashes for production compatibility:
+
+```javascript
+// Normalize path (production uses trailing slashes, local dev does not)
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+// Exact match for single pages
+<a href="/about" class={currentPath === '/about' ? 'active' : ''}>About</a>
+
+// Prefix match for sections with nested routes
+<a href="/racing" class={currentPath.startsWith('/racing') ? 'active' : ''}>Racing</a>
+```
+
+### Brand Accent Consistency
+The racing green (`--accent-racing`) is used consistently for the "Staub" brand across:
+- Header logo: `.brand-primary` class
+- Footer brand: `.brand-accent` within `.footer-brand`
+- Homepage hero: `.brand-accent` class
+- Active nav pill: `.site-nav a.active`
 
 ### Layouts
 - `src/layouts/Layout.astro` — Shared page shell with embedded navigation and footer (no separate Nav/Footer components)

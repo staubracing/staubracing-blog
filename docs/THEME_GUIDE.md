@@ -30,6 +30,18 @@ src/
 
 **Design principle:** Racing green is the foundation, lime adds pops, blue handles interactivity.
 
+### Where Racing Green is Used
+
+The primary brand color (`--accent-racing`) creates visual consistency across:
+
+| Element | Location | CSS Class |
+| ------- | -------- | --------- |
+| Header logo "Staub" | `Layout.astro` | `.brand-primary` |
+| Footer brand "Staub" | `Layout.astro` | `.footer-brand .brand-accent` |
+| Homepage hero "Staub" | `index.astro` | `.brand-accent` |
+| Active nav pill | `Layout.astro` | `.site-nav a.active` |
+| Category pills | Various | `.category-pill` variants |
+
 ### Want to change your brand colors?
 
 **Edit `src/styles/theme.css`**
