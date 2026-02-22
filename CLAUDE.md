@@ -266,25 +266,21 @@ Custom skills and agents for this project:
 
 ## Documentation
 
-| File | Purpose |
-|------|---------|
-| `docs/MIGRATION_PLAN.md` | Consolidation roadmap and phases |
-| `docs/THEME_GUIDE.md` | How to update colors and theme variables |
-| `docs/IMAGE_GUIDE.md` | Adding images to blog posts |
-| `docs/BLOG_IDEAS.md` | Content ideas and post tracking |
-| `docs/DATABASE_INTEGRATION.md` | Maintenance quick-capture system (Lambda API + PostgreSQL) |
+Documentation is organized by purpose using the [Diátaxis framework](https://diataxis.fr/).
 
-## Future Improvements
+### Quick Reference
 
-### Typography Cleanup
-Individual page components (racing.astro, workshop.astro, journal.astro, code.astro) have scoped font styles that duplicate the global typography variables in theme.css. Consider removing redundant scoped styles once the global system is proven stable.
+| I want to... | See |
+|--------------|-----|
+| Change colors/theme | [guides/theme-customization.md](docs/guides/theme-customization.md) |
+| Add images to posts | [guides/adding-images.md](docs/guides/adding-images.md) |
+| Create a new post | [guides/creating-posts.md](docs/guides/creating-posts.md) |
+| Understand architecture | [reference/architecture.md](docs/reference/architecture.md) |
+| Look up frontmatter fields | [reference/content-schema.md](docs/reference/content-schema.md) |
+| Use the Maintenance API | [reference/maintenance-api.md](docs/reference/maintenance-api.md) |
+| Understand design decisions | [explanation/design-decisions.md](docs/explanation/design-decisions.md) |
+| Plan content | [planning/blog-ideas.md](docs/planning/blog-ideas.md) |
 
-**Affected files:**
-- `src/pages/racing.astro` — `.section-header h1` font-size, letter-spacing
-- `src/pages/workshop.astro` — `.section-header h1`, `.post-card h2` font-size
-- `src/pages/journal.astro` — `.section-header h1`, `.post-card h2` font-size
-- `src/pages/code.astro` — similar patterns
+### Documentation Index
 
-**Global variables available:**
-- `--font-size-h1`, `--font-size-h2`, `--font-size-h3`, `--font-size-h4`
-- `--letter-spacing-heading`
+See [docs/README.md](docs/README.md) for the full documentation index and navigation.
