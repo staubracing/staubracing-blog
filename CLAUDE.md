@@ -276,25 +276,6 @@ Custom skills and agents for this project:
 
 ## Future Improvements
 
-### Calendar Auto-Rebuild
-The race calendar currently uses static mock data. Once Google Calendar API is integrated, events will be fetched at build time. To keep the calendar fresh without manual rebuilds:
-
-**Add scheduled GitHub Actions workflow** (weekly rebuild):
-```yaml
-# .github/workflows/scheduled-build.yml
-name: Weekly Calendar Refresh
-on:
-  schedule:
-    - cron: '0 6 * * 1'  # Monday 6am UTC
-  workflow_dispatch:  # Allow manual trigger
-
-jobs:
-  build-and-deploy:
-    uses: ./.github/workflows/deploy.yml
-```
-
-This ensures calendar events stay current without requiring a git push for every schedule change.
-
 ### Typography Cleanup
 Individual page components (racing.astro, workshop.astro, journal.astro, code.astro) have scoped font styles that duplicate the global typography variables in theme.css. Consider removing redundant scoped styles once the global system is proven stable.
 
