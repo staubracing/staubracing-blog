@@ -162,6 +162,7 @@ a:focus-visible {
 .tech-tags {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
   gap: 0.4rem;
   margin-top: 0.25rem;
 }
