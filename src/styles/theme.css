@@ -71,8 +71,6 @@
   --overlay-base-light: rgba(10, 10, 10, 0.55);
   --overlay-base-medium: rgba(10, 10, 10, 0.6);
   --overlay-base-strong: rgba(10, 10, 10, 0.75);
-  --overlay-base-subtle: rgba(0, 0, 0, 0.45);
-  --overlay-base-soft: rgba(0, 0, 0, 0.6);
   --overlay-accent-hover: rgba(56, 189, 248, 0.18);
   --overlay-accent-light: rgba(56, 189, 248, 0.08);
   --overlay-accent-medium: rgba(56, 189, 248, 0.16);
@@ -122,8 +120,6 @@
   --overlay-base-light: rgba(241, 245, 249, 0.8);
   --overlay-base-medium: rgba(248, 250, 252, 0.9);
   --overlay-base-strong: rgba(255, 255, 255, 0.95);
-  --overlay-base-subtle: rgba(241, 245, 249, 0.6);
-  --overlay-base-soft: rgba(248, 250, 252, 0.85);
   --overlay-accent-hover: rgba(56, 189, 248, 0.1);
   --overlay-accent-light: rgba(56, 189, 248, 0.05);
   --overlay-accent-medium: rgba(56, 189, 248, 0.08);
