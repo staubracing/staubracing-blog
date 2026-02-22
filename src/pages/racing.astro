@@ -51,33 +51,7 @@ type BikeStatus = 'ready' | 'maintenance';
 </Layout>
 
 <style>
-  .section-card {
-    display: grid;
-    gap: 1.75rem;
-    padding: clamp(1.75rem, 2.5vw, 2.75rem);
-    background: var(--surface-solid);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--surface-border);
-    box-shadow: var(--shadow-soft);
-    backdrop-filter: blur(16px);
-  }
-
-  .section-header {
-    display: grid;
-    gap: 0.8rem;
-    text-align: center;
-  }
-
-  .section-header h1 {
-    font-size: clamp(2.3rem, 5vw, 3.1rem);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .section-header p {
-    margin: 0;
-    color: var(--text-secondary);
-  }
+  /* Page-specific styles - shared .section-card and .section-header in global.css */
 
   .stats-row {
     display: grid;

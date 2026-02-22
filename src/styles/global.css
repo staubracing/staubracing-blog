@@ -191,6 +191,91 @@ a:focus-visible {
   transform: translateY(-1px);
 }
 
+/* Section Card - shared across section pages */
+.section-card {
+  display: grid;
+  gap: 1.75rem;
+  padding: clamp(1.75rem, 2.5vw, 2.75rem);
+  background: var(--surface-solid);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--surface-border);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(16px);
+}
+
+/* Section Header - shared across section pages */
+.section-header {
+  display: grid;
+  gap: 0.8rem;
+  text-align: center;
+}
+
+.section-header h1 {
+  font-size: clamp(2.3rem, 5vw, 3.1rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.section-header p {
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+/* Post Card - shared by workshop and journal pages */
+.post-card {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1.35rem 1.5rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--surface-border);
+  background: var(--surface-solid);
+  transition: border 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.post-card:hover,
+.post-card:focus-within {
+  border-color: color-mix(in srgb, var(--category-color) 40%, var(--surface-border));
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-soft);
+}
+
+.post-card header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.post-card h2 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.post-card time {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.post-card p {
+  margin: 0;
+}
+
+/* Posts Grid - shared by workshop and journal pages */
+.posts-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+/* Empty State - shared pattern */
+.empty-state {
+  margin: 0;
+  text-align: center;
+  color: var(--text-secondary);
+  padding: 2rem;
+}
+
 /* ============================================
    MOBILE RESPONSIVE
    ============================================ */
