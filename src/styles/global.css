@@ -158,6 +158,38 @@ a:focus-visible {
   transform: translateY(-1px);
 }
 
+/* Tech Tags (project cards) */
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.25rem;
+}
+
+.tech-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.7rem;
+  line-height: 1;
+  font-weight: 500;
+  font-family: "SF Mono", "Fira Code", "JetBrains Mono", monospace;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  background: var(--surface-soft);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+}
+
+.tech-tag:hover {
+  background: color-mix(in srgb, var(--accent-electric) 15%, var(--surface-soft));
+  border-color: color-mix(in srgb, var(--accent-electric) 40%, var(--surface-border));
+  color: var(--accent-electric);
+  transform: translateY(-1px);
+}
+
 /* ============================================
    MOBILE RESPONSIVE
    ============================================ */
