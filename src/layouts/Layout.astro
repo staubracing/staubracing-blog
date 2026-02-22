@@ -72,7 +72,7 @@ const currentPath = Astro.url.pathname;
     </main>
 
     <footer class="site-footer">
-      <span class="footer-brand">© {new Date().getFullYear()} Staub Racing</span>
+      <span class="footer-brand">© {new Date().getFullYear()} <span class="brand-accent">Staub</span>Racing</span>
       <span class="footer-tagline">No bullshit. Just bikes, builds, and bytes.</span>
       <ThemeToggle />
     </footer>
@@ -257,6 +257,10 @@ const currentPath = Astro.url.pathname;
 
   .footer-brand {
     font-weight: 600;
+  }
+
+  .footer-brand .brand-accent {
+    color: var(--accent-racing);
   }
 
   .footer-tagline {
