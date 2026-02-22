@@ -9,7 +9,9 @@
       "Bash(git push:*)",
       "mcp__context7__resolve-library-id",
       "mcp__context7__query-docs",
-      "mcp__brave-search__brave_web_search"
+      "mcp__brave-search__brave_web_search",
+      "Bash(sleep 2:*)",
+      "Bash(curl:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
