@@ -132,6 +132,24 @@ Each section page (racing, workshop, code, journal) aggregates blog posts from i
 - Admin pages: `admin/login.astro`, `admin/maintenance.astro` (API key auth required)
 - Dynamic: `blog/[...slug].astro` for posts, `category/[category].astro` for category listings
 
+### Calendar Integration
+The race calendar (`/calendar`) displays Staub Racing's season schedule with a clean event list + toggle to full Google Calendar view.
+
+**Current Status:** Mock data in `src/data/mock-events.ts`. Ready for Google Calendar API integration.
+
+**Calendar Details:**
+- **Calendar ID:** `2ee5866170c9db9ff52e5c925cb4d49281e3b1efff7a28d50f1677ffe12d975b@group.calendar.google.com`
+- **Event type classification (for API):**
+  - `CRA` in title → Race Weekend (🏁 lime badge)
+  - `ZARS` in title → Track Day (🔧 blue badge)
+  - Other → Track Day (default)
+
+**API Integration TODO:**
+1. Create Google Cloud project → Enable Calendar API
+2. Generate API key (restrict to Calendar API only)
+3. Add `GOOGLE_CALENDAR_API_KEY` to `.env`
+4. Replace mock data fetch in `calendar.astro` frontmatter
+
 ### Styling
 - CSS custom properties in `src/styles/theme.css` for theming
 - Dark mode by default, light mode via `ThemeToggle` component
@@ -257,6 +275,25 @@ Custom skills and agents for this project:
 | `docs/DATABASE_INTEGRATION.md` | Maintenance quick-capture system (Lambda API + PostgreSQL) |
 
 ## Future Improvements
+
+### Calendar Auto-Rebuild
+The race calendar currently uses static mock data. Once Google Calendar API is integrated, events will be fetched at build time. To keep the calendar fresh without manual rebuilds:
+
+**Add scheduled GitHub Actions workflow** (weekly rebuild):
+```yaml
+# .github/workflows/scheduled-build.yml
+name: Weekly Calendar Refresh
+on:
+  schedule:
+    - cron: '0 6 * * 1'  # Monday 6am UTC
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  build-and-deploy:
+    uses: ./.github/workflows/deploy.yml
+```
+
+This ensures calendar events stay current without requiring a git push for every schedule change.
 
 ### Typography Cleanup
 Individual page components (racing.astro, workshop.astro, journal.astro, code.astro) have scoped font styles that duplicate the global typography variables in theme.css. Consider removing redundant scoped styles once the global system is proven stable.
