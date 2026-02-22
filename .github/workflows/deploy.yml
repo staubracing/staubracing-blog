@@ -16,6 +16,8 @@ jobs:
           node-version: "20"
       - run: yarn install
       - run: yarn build
+        env:
+          GOOGLE_CALENDAR_API_KEY: ${{ secrets.GOOGLE_CALENDAR_API_KEY }}
 
       - name: Sync to S3
         run: aws s3 sync ./dist s3://staubracing.com --delete
