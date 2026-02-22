@@ -11,7 +11,8 @@
       "mcp__context7__query-docs",
       "mcp__brave-search__brave_web_search",
       "Bash(sleep 2:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(gh run:*)"
     ]
   },
   "enableAllProjectMcpServers": true,
