@@ -5,6 +5,20 @@ import '../styles/global.css';
 
 const { title } = Astro.props;
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+// Helper to check if a path belongs to a section (includes orphan sub-nav pages)
+function isInSection(path: string, section: string): boolean {
+  // Direct path match
+  if (path.startsWith(`/${section}`)) return true;
+
+  // Orphan pages that belong to sections but have non-nested URLs
+  const sectionOrphans: Record<string, string[]> = {
+    racing: ['/calendar', '/maintenance'],
+    // Add more sections here if needed
+  };
+
+  return sectionOrphans[section]?.includes(path) ?? false;
+}
 ---
 
 <!DOCTYPE html>
@@ -57,10 +71,10 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
       <nav class="site-nav" aria-label="Primary navigation">
         <a href="/" class={currentPath === '/' ? 'active' : ''}>Home</a>
         <a href="/about" class={currentPath === '/about' ? 'active' : ''}>About</a>
-        <a href="/racing" class={currentPath.startsWith('/racing') ? 'active' : ''}>Racing</a>
-        <a href="/workshop" class={currentPath.startsWith('/workshop') ? 'active' : ''}>Workshop</a>
-        <a href="/code" class={currentPath.startsWith('/code') ? 'active' : ''}>Code</a>
-        <a href="/journal" class={currentPath.startsWith('/journal') ? 'active' : ''}>Journal</a>
+        <a href="/racing" class={isInSection(currentPath, 'racing') ? 'active' : ''}>Racing</a>
+        <a href="/workshop" class={isInSection(currentPath, 'workshop') ? 'active' : ''}>Workshop</a>
+        <a href="/code" class={isInSection(currentPath, 'code') ? 'active' : ''}>Code</a>
+        <a href="/journal" class={isInSection(currentPath, 'journal') ? 'active' : ''}>Journal</a>
         <a href="/contact" class={currentPath === '/contact' ? 'active' : ''}>Contact</a>
       </nav>
     </header>
