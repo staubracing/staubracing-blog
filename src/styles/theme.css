@@ -38,6 +38,12 @@
   --accent-lime: #66BB6A; /* Kawasaki lime green - subtle pops */
   --accent-amber: #facc15; /* Warning/attention */
 
+  /* Platform Colors - Social/external brand colors */
+  --color-twitter: #1da1f2;
+  --color-github: #8b949e; /* Neutral gray that works on dark/light */
+  --color-youtube: #ff0000;
+  --color-linkedin: #0a66c2;
+
   /* Typography - Font Families */
   --brand-font: "Space Grotesk", "Racing Sans One", sans-serif;
   --body-font: "Inter", "Roboto", "Segoe UI", sans-serif;

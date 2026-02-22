@@ -81,9 +81,9 @@ const { name, image, engine, power, weight, status, statusText } = Astro.props;
   }
 
   .status-badge.maintenance {
-    background: color-mix(in srgb, #f39c12 20%, transparent);
-    border: 1px solid color-mix(in srgb, #f39c12 50%, transparent);
-    color: #f39c12;
+    background: color-mix(in srgb, var(--accent-amber) 20%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent-amber) 50%, transparent);
+    color: var(--accent-amber);
   }
 
   .bike-image {
